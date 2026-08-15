@@ -62,6 +62,45 @@ For every topic:
 
 A trainee may be ahead or behind the calendar. The level checklist matters more than the day number.
 
+### Suggested timebox
+
+These are focus windows, not deadlines. A trainee who finishes early should deepen the same level with a harder artifact, not skip ahead casually.
+
+| Level | Suggested focus | Minimum artifact |
+| :---: | --- | --- |
+| 1 | 3–5 days | Request-path diagram + static page |
+| 2 | 7–10 days | Responsive page, form, DOM app, fetch demo |
+| 3 | 8–12 days | Typed React app with layout, routes, and one form |
+| 4 | 4–6 days | API contract + Network notes + Postman collection |
+| 5 | 10–14 days | Authenticated CRUD API on one track |
+| 6 | 7–10 days | Schema, seed data, join report, transaction example |
+| 7 | 3–5 days | Layered architecture diagram and module map |
+| 8 | 7–10 days | Tests, one security write-up, one measured improvement |
+| 9 | 5–8 days | Compose file, CI workflow, deploy notes |
+| 10 | Continuous | Stories, reviews, daily reports, demo |
+
+### Daily notebook
+
+Every study day, write:
+
+1. Topic studied
+2. What I can now explain
+3. What I built
+4. What broke
+5. What I still cannot explain
+6. Commit hash or PR link
+7. Tomorrow’s one objective
+
+If there is no notebook entry and no Git artifact, the day does not count as self-growth.
+
+### Commit standard
+
+```text
+level-03: add protected employee list route
+```
+
+A useful commit is small, named after the level, and reviewable. Do not store a week of mixed work in one commit.
+
 ---
 
 ## Official progression
@@ -148,6 +187,18 @@ Do not start React, Spring Boot, or FastAPI until this level is solid.
 
 > A trainee who cannot explain how a browser request reaches a server is not ready for React or Spring Boot.
 
+### Worked example
+
+Explain this URL in writing:
+
+`https://app.deshmukh.local:5173/employees?status=active#list`
+
+Identify protocol, host, port, path, query, and fragment. Then open any website, find one document request and one API request in the Network tab, and write the difference.
+
+### Stop rule
+
+Do not start Level 2 until the trainee can narrate a request without using the words “it just loads.”
+
 ---
 
 ## Level 2 — Frontend Engineering
@@ -202,6 +253,14 @@ This level is the foundation for React forms, validation, loading states, and ac
 - [ ] Can update the DOM from JavaScript
 - [ ] Can fetch JSON and render success/error/loading states
 - [ ] Can name at least three accessibility checks
+
+### Worked example
+
+Build a “New Employee” HTML form with name, email, department, and joining date. Validate empty fields before submit. After submit, append a row to a table using the DOM. Then fetch a public user list and render names. Make the form usable with Tab and Enter only.
+
+### Stop rule
+
+Do not start React until the trainee can do this without a framework.
 
 ---
 
@@ -267,6 +326,20 @@ Use this level to start the Employee Management System frontend: dashboard, empl
 - [ ] Can implement routing and a protected page
 - [ ] Can integrate an API through a service layer
 - [ ] Can keep UI responsive and readable
+
+### Worked example
+
+Build:
+
+- `/login`
+- `/dashboard` (protected)
+- `/employees` (protected list + create form)
+
+Put API calls in `services/employeeService.ts`. Types go in `types/employee.ts`. If the token is missing, redirect to login. Show an empty state when the list is `[]`.
+
+### Stop rule
+
+Do not start backend specialization until the trainee can explain props, state, effects, and a service layer.
 
 ---
 
@@ -341,6 +414,34 @@ PUT    /api/leaves/{id}/approve
 - [ ] Can choose the correct HTTP method and status code
 - [ ] Can describe REST resource design
 - [ ] Can say when polling, SSE, or WebSockets is appropriate
+
+### Worked example
+
+For `POST /api/employees`, write the expected:
+
+- request JSON
+- 201 response JSON
+- 400/422 validation response
+- 401 response when the token is missing
+- 403 response when an EMPLOYEE tries to create another employee
+
+Then capture the same calls in Postman.
+
+### Error payload standard
+
+```json
+{
+  "error": "VALIDATION_FAILED",
+  "message": "Email is required",
+  "field": "email"
+}
+```
+
+Use one error shape across Java and Python tracks.
+
+### Stop rule
+
+Do not start backend specialization until the trainee can choose method, status, and error shape for create, read, update, delete, unauthorized, and forbidden without guessing.
 
 ---
 
@@ -422,6 +523,26 @@ Both tracks satisfy the same Employee Management business requirements.
 - [ ] Can protect at least one endpoint with authentication
 - [ ] Can explain a request through every backend layer
 
+### Worked example
+
+Implement `POST /api/employees` on the chosen track:
+
+1. Controller / router accepts a DTO and returns HTTP status only.
+2. Service rejects a missing name or email, rejects a duplicate email, and assigns a valid department.
+3. Repository persists the employee.
+4. Missing email returns `400` / `422` with the standard error payload.
+5. Duplicate email returns `409`.
+6. Missing token returns `401`.
+7. An `EMPLOYEE` caller returns `403`.
+8. A successful create returns `201` and the new employee JSON.
+9. One unit test proves the service rejects a duplicate email without talking to the controller.
+
+Then implement `GET`, `PUT`, and `DELETE` with the same layering.
+
+### Stop rule
+
+If the trainee cannot walk one request through controller → service → repository → database, stay here. Fat controllers do not complete this level.
+
 ---
 
 ## Level 6 — Database Engineering
@@ -482,6 +603,30 @@ The Employee Management System depends on this level. Do not hide all data work 
 - [ ] Can name one valid later use of NoSQL
 
 > ORM knowledge must not replace SQL knowledge.
+
+### Worked example
+
+Design and seed this minimum schema:
+
+```text
+departments(id, name UNIQUE)
+employees(id, name, email UNIQUE, department_id FK, joining_date, role)
+attendance(id, employee_id FK, work_date, status)
+leaves(id, employee_id FK, start_date, end_date, type, status)
+```
+
+Then write, by hand:
+
+1. Employees with department names (`INNER JOIN`).
+2. Employees with or without a department (`LEFT JOIN`).
+3. Leave count by department (`GROUP BY`).
+4. A transaction that approves a leave and writes the related attendance change. If the second write fails, both roll back.
+
+Show the SQL that the ORM would generate for the leave-count report.
+
+### Stop rule
+
+If the trainee cannot write the join and the transaction without the ORM, stay here.
 
 ---
 
@@ -551,6 +696,28 @@ React → REST → Service → Persistence → MySQL / PostgreSQL
 - [ ] Can name each layer and its responsibility
 - [ ] Can explain monolith vs microservices without slogans
 - [ ] Can justify the DTTP architecture sequence
+
+### Worked example
+
+Draw one diagram with these layers and one sentence of ownership for each:
+
+```text
+React pages / services
+        ↓
+REST controllers or routers
+        ↓
+Domain services (leave rules, role checks)
+        ↓
+Repositories / ORM
+        ↓
+MySQL or PostgreSQL
+```
+
+Mark modules: auth, employees, departments, attendance, leave, reports. Write three reasons this training system should remain a layered monolith. Example: one database, one team, one deployable, and no independent scaling need yet.
+
+### Stop rule
+
+If the trainee says “microservices scale better” without naming a concrete problem the current system has, stay here.
 
 ---
 
@@ -628,6 +795,20 @@ Security and tests are part of the Definition of Done in the 90-day handbook. Th
 
 > Never commit passwords, API keys, tokens, private keys, or production credentials to GitHub.
 
+### Worked example
+
+For leave approval, write:
+
+1. A service unit test: HR can approve a pending leave.
+2. A service unit test: an ordinary employee cannot approve leave.
+3. API tests for `401` (no token), `403` (wrong role), and `409` (already decided).
+4. A short security note: where the JWT is stored, why `localStorage` is risky, and how secrets stay out of Git.
+5. One measured improvement: time `GET /api/employees` before and after an index or query change. Record both numbers.
+
+### Stop rule
+
+If the trainee cannot show a failing test first, or cannot show a measured number, stay here. “It feels faster” does not complete this level.
+
 ---
 
 ## Level 9 — DevOps & Deployment
@@ -701,6 +882,21 @@ AWS introduction: IAM, EC2, S3, RDS, CloudFront, Route 53, Security Groups, Clou
 - [ ] Can explain the purpose of the core AWS services
 - [ ] Can diagnose a failed deploy from logs
 
+### Worked example
+
+Deliver the Employee Management System as a repeatable path:
+
+1. Feature branch named after the task.
+2. Dockerfile for frontend and backend.
+3. `docker-compose.yml` that starts frontend, backend, and database.
+4. GitHub Actions workflow: lint, unit tests, then image build.
+5. A health endpoint the trainee can hit after compose starts.
+6. A one-page deploy note: what ran, what failed, what the logs said, and how they recovered.
+
+### Stop rule
+
+If the trainee cannot start the stack with Compose and explain a failed CI log, stay here. Pushing straight to `main` / `master` does not complete this level.
+
 ---
 
 ## Level 10 — Professional Software Engineering
@@ -769,6 +965,94 @@ This level is how the trainee becomes eligible for Junior Full-Stack Developer r
 - [ ] Can review code with specific comments
 - [ ] Can present a feature to a mentor
 - [ ] Can describe their own skill gaps honestly
+
+### Worked example
+
+Write this story and the work under it:
+
+> As an HR user, I want to approve or reject a pending leave request so that attendance stays accurate.
+
+Acceptance criteria:
+
+- Only HR or ADMIN can approve or reject.
+- A pending leave can be decided once.
+- The employee can see the new status.
+- A rejected request does not change attendance.
+- Tests, review, and notes exist before the story is called done.
+
+Break it into backend, frontend, test, and documentation tasks. Present a 10-minute pull-request walkthrough. Keep daily reports for ten consecutive training days.
+
+### Stop rule
+
+If the trainee cannot state acceptance criteria without saying “it works,” stay here.
+
+---
+
+## Incremental Employee Management build
+
+The same project grows through the ten levels. Do not wait until Level 5 to start it, and do not rebuild a new app at every level.
+
+| Level | What to add to the same Employee Management System |
+| :---: | --- |
+| 1 | Static employee table page and a request-path diagram |
+| 2 | New-employee form, DOM table, public fetch demo |
+| 3 | React login, protected list, create form, service layer, mocked API |
+| 4 | Written API contract, error shape, Postman collection |
+| 5 | Real authenticated CRUD on the chosen backend track |
+| 6 | Schema, seed data, join report, leave transaction |
+| 7 | Layered diagram and module map attached to the repo |
+| 8 | Service tests, API tests, security note, one measured query |
+| 9 | Compose file, CI workflow, health check, deploy notes |
+| 10 | Stories, PR walkthrough, daily reports, mentor demo |
+
+### Role matrix the trainee must implement
+
+| Action | ADMIN | HR | EMPLOYEE |
+| --- | :---: | :---: | :---: |
+| Manage users and roles | Yes | No | No |
+| Create / update employees | Yes | Yes | No |
+| View own profile | Yes | Yes | Yes |
+| Record / view attendance | Yes | Yes | Own only |
+| Apply for leave | Yes | Yes | Yes |
+| Approve / reject leave | Yes | Yes | No |
+
+---
+
+## Oral review bank
+
+A mentor can close a level with these questions. The trainee answers without reading notes. A vague answer means the level is not closed.
+
+| Level | Ask this |
+| :---: | --- |
+| 1 | What happens after a user types a URL? What is the difference between a file server and an application server? |
+| 2 | Why did this CSS rule not apply? How is `fetch` different from reloading the page? |
+| 3 | Where should employee-list state live? Why is the API call not inside the JSX? |
+| 4 | When is the answer `401` instead of `403`? What JSON do you return for a missing email? |
+| 5 | Which layer owns “email must be unique”? What does the controller return if the service throws a conflict? |
+| 6 | Write the SQL for employees with department names. What does a rollback protect in leave approval? |
+| 7 | Why is this system still a monolith? What would have to be true before leave becomes its own service? |
+| 8 | What did you measure? What test proves an employee cannot approve leave? |
+| 9 | Why did CI fail? What is the difference between an image and a container? |
+| 10 | What is the acceptance criteria for leave approval? What would you tell a peer in a review? |
+
+---
+
+## Depth ladder
+
+Use this when a trainee finishes a level early. Do not skip ahead. Deepen the same level.
+
+| Level | Minimum | Expected | Stretch |
+| :---: | --- | --- | --- |
+| 1 | Static page + URL parts | Request-path diagram + DevTools notes | Compare static hosting vs an application server |
+| 2 | Form + table | Keyboard-only use + fetch error state | Accessible date field and validation messages |
+| 3 | Login + one list | Protected routes + service layer | Empty, loading, and error states on every page |
+| 4 | Method/status table | Postman collection + error contract | Pagination and filter query design |
+| 5 | One CRUD resource | Authn + one role check + one service test | Attendance and leave on the same layering |
+| 6 | Schema + one join | Report query + transaction | Explain an `EXPLAIN` / query plan |
+| 7 | Layer diagram | Module map + three “not yet services” reasons | Sketch a later modular-monolith split |
+| 8 | Two tests | 401/403/409 tests + security note | Before/after timing on one query |
+| 9 | Branch + PR | Compose + failing-then-passing CI | Health check and rollback note |
+| 10 | One user story | Ten daily reports + PR walkthrough | Mentor a peer on one topic |
 
 ---
 

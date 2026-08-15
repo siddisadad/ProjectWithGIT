@@ -33,7 +33,7 @@ A 90-day full-stack software development and professional development program.
 
 ## DTTP — Self-Growth Program
 
-Ten learning levels from web fundamentals to professional engineering. Use full-stack reference material as a knowledge map, then apply it through the Deshmukh Technologies practice stack.
+Ten learning levels from web fundamentals to professional engineering, with timeboxes, worked examples, stop rules, and mentor reviews. Use full-stack reference material as a knowledge map, then apply it through the Deshmukh Technologies practice stack.
 
 | Format | File |
 | --- | --- |
