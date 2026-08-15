@@ -175,6 +175,20 @@
     .path li::before { content: counter(step, decimal-leading-zero) "  "; color: var(--gold); font-size: 11px; }
     .kpi { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
     .chip { background: var(--teal-soft); color: var(--teal); padding: 4px 8px; font-size: 12px; font-weight: 600; }
+    .checklist { list-style: none; margin: 0 0 14px; columns: 2; column-gap: 22px; }
+    .checklist li {
+      break-inside: avoid; padding: 4px 0 4px 22px; position: relative;
+      border-bottom: 1px solid var(--line); font-size: 13px;
+    }
+    .checklist li::before {
+      content: ""; width: 12px; height: 12px; border: 1.4px solid var(--navy);
+      position: absolute; left: 0; top: 7px;
+    }
+    .tree {
+      background: var(--navy); color: #e8e2d4; font-family: ui-monospace, monospace;
+      font-size: 12px; line-height: 1.5; padding: 14px 16px; margin: 8px 0 14px;
+      white-space: pre; break-inside: avoid;
+    }
     table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13.5px; break-inside: avoid; }
     th, td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
     th { background: var(--navy); color: #f4efe4; font-weight: 600; }
@@ -217,7 +231,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.0</span>
+          <span class="badge">DTTP · v1.1</span>
         </div>
         <h1>Self-Growth<br />Program</h1>
         <div class="gold-rule"></div>
@@ -242,7 +256,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Self-Growth Program</div>
-          <div><small>Version</small>1.0</div>
+          <div><small>Version</small>1.1</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -267,7 +281,37 @@
 
       <h2 class="section-title"><span class="n">00</span>How to use this program</h2>
       <p class="lead">Full-stack reference material provides a strong foundation. It is <strong>not</strong> the entire DTTP curriculum. Use it as the <strong>Full-Stack Knowledge Reference</strong>, then apply it through Deshmukh Technologies tracks and real projects.</p>
-      <div class="callout">Do not ask trainees to study the reference as one large syllabus. Organize growth into ten levels, then combine each level with Java/Spring Boot or Python/FastAPI, React/TypeScript, SQL, GitHub, Docker, CI/CD, AWS, and real Deshmukh Technologies work.</div>
+      <div class="callout">Do not ask trainees to study the reference as one large syllabus. Complete one level before treating the next as the main focus. Combine each level with Java/Spring Boot or Python/FastAPI, React/TypeScript, SQL, GitHub, Docker, CI/CD, AWS, and real Deshmukh Technologies work.</div>
+      <table>
+        <thead><tr><th>Document</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>90-Day DTTP Handbook</td><td>Timed training path, project, assessment, and graduation</td></tr>
+          <tr><td>Self-Growth Program</td><td>Deeper knowledge map for study before, during, and after the 90 days</td></tr>
+          <tr><td>Full-Stack Reference</td><td>Topic encyclopedia — not a replacement for practice</td></tr>
+        </tbody>
+      </table>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Study method</h4>
+          <ol>
+            <li>Read the concept.</li>
+            <li>Explain it in your own words.</li>
+            <li>Build a small example.</li>
+            <li>Break it, then debug it.</li>
+            <li>Commit the work.</li>
+            <li>Ask a mentor to review it.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <h4>Weekly habit</h4>
+          <ul>
+            <li>20% theory</li>
+            <li>30% exercises</li>
+            <li>40% project work</li>
+            <li>10% review and notes</li>
+          </ul>
+        </div>
+      </div>
       <ol class="path">
         <li>Web Fundamentals</li>
         <li>Frontend Fundamentals</li>
@@ -283,214 +327,364 @@
       <p>The destination is a <strong>self-directed full-stack developer</strong> who can build, test, debug, explain, document, and maintain software.</p>
 
       <h2 class="section-title"><span class="n">01</span>Level 1 — Web Fundamentals</h2>
-      <p>These are the starting concepts for understanding full-stack development.</p>
-      <div class="kpi">
-        <span class="chip">Client &amp; server</span><span class="chip">URLs, domains, IP addresses</span><span class="chip">Web application structure</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Server-side logic</span><span class="chip">Full-stack concepts</span><span class="chip">Development tools</span>
+      <p><strong>Purpose:</strong> give the trainee a mental model of the web before frameworks.</p>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Study</h4>
+          <ul>
+            <li>Client and server roles</li>
+            <li>Browser, DNS, domain, IP address, port</li>
+            <li>URL: protocol, host, path, query, fragment</li>
+            <li>HTTP as request/response</li>
+            <li>Static page vs dynamic application</li>
+            <li>HTML structure, CSS presentation, JavaScript behavior</li>
+            <li>Server-side logic and the meaning of full-stack</li>
+            <li>Editor, DevTools, terminal, package manager, Git</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Must be able to explain</h4>
+          <ul>
+            <li>What happens after a user types a URL</li>
+            <li>Difference between frontend and backend</li>
+            <li>File server vs application server</li>
+            <li>Why JavaScript runs in the browser and Java/Python run on the server</li>
+          </ul>
+          <h4>Practice</h4>
+          <ul>
+            <li>Draw browser → DNS → server → response</li>
+            <li>Build <code>index.html</code>, <code>styles.css</code>, <code>app.js</code></li>
+            <li>Inspect Elements, Network, and Console</li>
+            <li>Serve a static folder locally</li>
+          </ul>
+        </div>
       </div>
+      <ul class="checklist">
+        <li>Can explain client, server, URL, DNS, and HTTP</li>
+        <li>Can build and style a simple page</li>
+        <li>Can inspect HTML, CSS, and network calls</li>
+        <li>Can describe what a full-stack application contains</li>
+      </ul>
       <div class="callout">A trainee who cannot explain how a browser request reaches a server is not ready for React or Spring Boot.</div>
 
       <h2 class="section-title"><span class="n">02</span>Level 2 — Frontend Engineering</h2>
-      <p>Progress from HTML, CSS and JavaScript into the DOM, Fetch/API usage, and accessibility.</p>
+      <p><strong>Purpose:</strong> make the trainee fluent in the browser before React abstractions.</p>
       <div class="two-col">
         <div class="panel">
           <h4>Structure &amp; style</h4>
           <ul>
-            <li>HTML elements and forms</li>
-            <li>CSS selectors and specificity</li>
-            <li>Flexbox</li>
-            <li>CSS Grid</li>
+            <li>Semantic HTML, landmarks, tables, lists</li>
+            <li>Forms, labels, input types, native validation</li>
+            <li>Cascade, selectors, specificity, inheritance</li>
+            <li>Box model, Flexbox, CSS Grid</li>
+            <li>Responsive units and media queries</li>
           </ul>
         </div>
         <div class="panel">
           <h4>Behavior &amp; access</h4>
           <ul>
-            <li>JavaScript variables, types, functions</li>
-            <li>Error handling, objects, arrays</li>
-            <li>DOM, Fetch API, Web APIs</li>
-            <li>Accessibility</li>
+            <li>Variables, types, scope, functions</li>
+            <li>Objects, arrays, errors, <code>try / catch</code></li>
+            <li>DOM events, create/update/remove nodes</li>
+            <li>Fetch: JSON, loading, error states</li>
+            <li>Storage, timers, history</li>
+            <li>Accessibility: keyboard, contrast, labels, focus</li>
           </ul>
         </div>
       </div>
+      <h4>Practice</h4>
+      <div class="kpi">
+        <span class="chip">Responsive landing page</span><span class="chip">Validated form</span><span class="chip">DOM todo list</span><span class="chip">Public JSON API render</span><span class="chip">Keyboard-only use</span>
+      </div>
+      <ul class="checklist">
+        <li>Can layout a page with Flexbox and Grid</li>
+        <li>Can handle form input and validation</li>
+        <li>Can update the DOM from JavaScript</li>
+        <li>Can fetch JSON and render success/error/loading</li>
+        <li>Can name at least three accessibility checks</li>
+      </ul>
 
       <h2 class="section-title"><span class="n">03</span>Level 3 — React &amp; Modern Frontend</h2>
-      <p>The common DTTP frontend path is <strong>React + TypeScript</strong>.</p>
+      <p><strong>Purpose:</strong> build maintainable UI with <strong>React + TypeScript</strong>.</p>
       <div class="kpi">
-        <span class="chip">Components</span><span class="chip">State</span><span class="chip">Lifecycle</span><span class="chip">Forms</span><span class="chip">Component hierarchy</span><span class="chip">Context API</span><span class="chip">Routing</span><span class="chip">Responsive design</span><span class="chip">SPA architecture</span>
+        <span class="chip">Components</span><span class="chip">Props vs state</span><span class="chip">Effects / lifecycle</span><span class="chip">Controlled forms</span><span class="chip">Composition</span><span class="chip">Context API</span><span class="chip">Routing</span><span class="chip">Protected routes</span><span class="chip">SPA structure</span><span class="chip">Typed API responses</span>
       </div>
+      <div class="tree">src/
+├── components/   pages/   layouts/   services/
+├── hooks/        types/   utils/     routes/
+└── assets/</div>
+      <p>Practice: multi-page app, login + protected route, form POST, loading/empty/error states, reusable table. Apply this to the Employee Management System frontend.</p>
+      <ul class="checklist">
+        <li>Can create typed React components</li>
+        <li>Can manage local and shared state</li>
+        <li>Can implement routing and a protected page</li>
+        <li>Can integrate an API through a service layer</li>
+        <li>Can keep UI responsive and readable</li>
+      </ul>
 
       <h2 class="section-title"><span class="n">04</span>Level 4 — Web Communication &amp; APIs</h2>
-      <p>These topics teach what actually happens between frontend and backend.</p>
+      <p><strong>Purpose:</strong> teach what actually happens between frontend and backend.</p>
       <div class="three-col">
         <article class="card">
           <h3>HTTP</h3>
           <ul>
-            <li>Requests / responses</li>
-            <li>Headers</li>
-            <li>Methods</li>
-            <li>Status codes</li>
-            <li>Cookies</li>
+            <li>Request/response line, headers, body</li>
+            <li>GET, POST, PUT, PATCH, DELETE</li>
+            <li>Safe methods and idempotency</li>
+            <li>200, 201, 204, 400, 401, 403, 404, 409, 422, 500</li>
+            <li>Cookies, Content-Type, CORS preflight</li>
           </ul>
         </article>
         <article class="card teal">
           <h3>Realtime</h3>
           <ul>
-            <li>Polling</li>
+            <li>Short and long polling</li>
             <li>Server-Sent Events</li>
             <li>WebSockets</li>
+            <li>When each model is the right choice</li>
           </ul>
         </article>
         <article class="card gold">
           <h3>API styles</h3>
           <ul>
-            <li>JSON</li>
-            <li>REST</li>
-            <li>GraphQL</li>
+            <li>JSON as a data contract</li>
+            <li>REST resources and error payloads</li>
+            <li>Pagination and filtering</li>
+            <li>GraphQL as a query API</li>
+            <li>OpenAPI / Swagger</li>
           </ul>
         </article>
       </div>
+      <p>Both backend tracks implement the same Employee Management API so Java and Python trainees learn the same design.</p>
+      <div class="tree">POST /api/auth/login
+GET|POST /api/employees    GET|PUT|DELETE /api/employees/{id}
+GET|POST /api/departments  GET|POST /api/attendance
+GET|POST /api/leaves       PUT /api/leaves/{id}/approve</div>
+      <ul class="checklist">
+        <li>Can read a network trace and explain each part</li>
+        <li>Can choose the correct HTTP method and status code</li>
+        <li>Can describe REST resource design</li>
+        <li>Can say when polling, SSE, or WebSockets is appropriate</li>
+      </ul>
 
       <h2 class="section-title"><span class="n">05</span>Level 5 — Backend Development</h2>
-      <p>Specialize server-side concepts into the Deshmukh Technologies tracks. Trainees are not required to learn every backend language in the reference material.</p>
+      <p><strong>Purpose:</strong> implement server-side business logic on one DTTP track. Trainees are not required to learn every backend language in the reference.</p>
+      <h4>Shared backend skills</h4>
+      <div class="kpi">
+        <span class="chip">Validation</span><span class="chip">DTO / models</span><span class="chip">Service layer</span><span class="chip">Repository</span><span class="chip">Errors &amp; logging</span><span class="chip">Authn / authz</span><span class="chip">Environment config</span>
+      </div>
       <div class="two-col">
         <div class="panel">
           <h4>Java track</h4>
-          <ol class="stepper"><li>Java</li><li>Spring Boot</li><li>REST</li><li>JPA / Hibernate</li><li>Spring Security</li></ol>
+          <ol class="stepper"><li>Java</li><li>Spring Boot</li><li>REST</li><li>JPA / Hibernate</li><li>Spring Security</li><li>JUnit / Mockito</li></ol>
+          <p>Controller → Service → Repository → JPA / Hibernate → Database</p>
         </div>
         <div class="panel">
           <h4>Python track</h4>
-          <ol class="stepper"><li>Python</li><li>FastAPI</li><li>Pydantic</li><li>SQLAlchemy</li><li>Authentication</li></ol>
+          <ol class="stepper"><li>Python</li><li>FastAPI</li><li>Pydantic</li><li>SQLAlchemy</li><li>Authentication</li><li>Pytest</li></ol>
+          <p>Router → Service → Repository → SQLAlchemy → Database</p>
         </div>
       </div>
+      <p>Practice: login, employee CRUD, departments, attendance, leave apply/approve, consistent error JSON, one unit test per service.</p>
+      <ul class="checklist">
+        <li>Can implement a validated REST endpoint</li>
+        <li>Can separate controller, service, and repository</li>
+        <li>Can persist and read data through the ORM</li>
+        <li>Can protect at least one endpoint with authentication</li>
+        <li>Can explain a request through every backend layer</li>
+      </ul>
 
       <h2 class="section-title"><span class="n">06</span>Level 6 — Database Engineering</h2>
-      <p>This is a major self-growth area. <strong>SQL + MySQL / PostgreSQL is mandatory.</strong> NoSQL is introduced later.</p>
+      <p><strong>Purpose:</strong> make SQL a first-class skill. <strong>SQL + MySQL / PostgreSQL is mandatory.</strong> NoSQL is introduced later.</p>
       <div class="two-col">
         <div class="panel">
           <h4>Relational — mandatory</h4>
           <ul>
-            <li>Tables and relationships</li>
-            <li>SQL</li>
-            <li>ORM</li>
-            <li>Transactions</li>
-            <li>Query design</li>
+            <li>Tables, types, keys, constraints</li>
+            <li>One-to-one, one-to-many, many-to-many</li>
+            <li>SELECT, INSERT, UPDATE, DELETE</li>
+            <li>JOIN, GROUP BY, HAVING, indexes</li>
+            <li>Transactions and isolation</li>
+            <li>Normalization and query plans</li>
+            <li>ORM mapping and N+1 awareness</li>
           </ul>
         </div>
         <div class="panel">
           <h4>Non-relational — later</h4>
           <ul>
-            <li>Key-value</li>
-            <li>Document</li>
-            <li>Graph</li>
+            <li>Key-value stores</li>
+            <li>Document databases</li>
+            <li>Graph databases</li>
             <li>Column-oriented databases</li>
+            <li>When SQL is still the better default</li>
           </ul>
         </div>
       </div>
+      <p>Practice: schema for employees, departments, attendance, leave; join reports; justified index; all-or-nothing transaction; same query in SQL and ORM.</p>
+      <ul class="checklist">
+        <li>Can design a normalized schema for the training project</li>
+        <li>Can write joins and aggregations by hand</li>
+        <li>Can use transactions correctly</li>
+        <li>Can explain an ORM query in SQL</li>
+        <li>Can name one valid later use of NoSQL</li>
+      </ul>
       <div class="callout">ORM knowledge must not replace SQL knowledge.</div>
 
       <h2 class="section-title"><span class="n">07</span>Level 7 — Architecture</h2>
-      <p>This is where trainees move from <strong>developer thinking to engineer thinking</strong>. Study architectural models, but understand <strong>why</strong> architecture changes.</p>
+      <p><strong>Purpose:</strong> move from developer thinking to engineer thinking. Study models, but understand <strong>why</strong> architecture changes.</p>
       <div class="kpi">
-        <span class="chip">Layered architecture</span><span class="chip">Client-server</span><span class="chip">Multi-tier</span><span class="chip">Monolith</span><span class="chip">SOA</span><span class="chip">Microservices</span><span class="chip">Component-based</span><span class="chip">Microfrontends</span><span class="chip">Messaging</span><span class="chip">MVC</span><span class="chip">MVP</span><span class="chip">MVVM</span>
+        <span class="chip">Client-server</span><span class="chip">Layered / n-tier</span><span class="chip">Monolith</span><span class="chip">Modular monolith</span><span class="chip">SOA</span><span class="chip">Microservices</span><span class="chip">Component-based</span><span class="chip">Microfrontends</span><span class="chip">Messaging</span><span class="chip">MVC</span><span class="chip">MVP</span><span class="chip">MVVM</span><span class="chip">Coupling / cohesion</span>
       </div>
-      <h4>DTTP architecture principle</h4>
       <div class="callout dark">Do not teach microservices first. Teach Monolith → Layered Architecture → Modular Monolith → Distributed Systems → Microservices.</div>
+      <p>Practice: draw Employee Management as a layered monolith; identify auth, employees, attendance, leave, reports; list three reasons not to split them into services yet.</p>
+      <p>Both tracks use the same shape: <strong>React → REST → Service → Persistence → MySQL / PostgreSQL</strong>.</p>
+      <ul class="checklist">
+        <li>Can draw the current training system</li>
+        <li>Can name each layer and its responsibility</li>
+        <li>Can explain monolith vs microservices without slogans</li>
+        <li>Can justify the DTTP architecture sequence</li>
+      </ul>
 
       <h2 class="section-title"><span class="n">08</span>Level 8 — Testing, Security &amp; Performance</h2>
-      <p>These three become permanent self-growth subjects.</p>
+      <p><strong>Purpose:</strong> make quality a permanent habit, not a late phase.</p>
       <div class="three-col">
         <article class="card">
           <h3>Testing</h3>
           <ul>
-            <li>Automated testing</li>
-            <li>Unit and integration tests</li>
-            <li>TDD and coverage</li>
-            <li>Test doubles, spies, stubs, mocks</li>
+            <li>Unit tests for business rules</li>
+            <li>Integration tests for API and database</li>
+            <li>TDD as discipline, coverage as signal</li>
+            <li>Doubles: dummy, stub, spy, mock, fake</li>
+            <li>Frontend component, form, and error-state tests</li>
+            <li>Postman collections for the business API</li>
           </ul>
         </article>
         <article class="card teal">
           <h3>Security</h3>
           <ul>
-            <li>Injection, XSS, access control</li>
-            <li>Authentication and authorization</li>
-            <li>Sensitive data, TLS / HTTPS</li>
-            <li>CORS, CSP, token authentication</li>
+            <li>SQL injection and XSS</li>
+            <li>Authentication vs authorization</li>
+            <li>Password hashing, JWT risks</li>
+            <li>Roles, secrets, environment variables</li>
+            <li>TLS / HTTPS, CORS, CSP</li>
+            <li>Least privilege and security headers</li>
           </ul>
         </article>
         <article class="card gold">
           <h3>Performance</h3>
           <ul>
             <li>Measure before optimizing</li>
-            <li>Connection and image optimization</li>
+            <li>TTFB, payload size, query time</li>
             <li>Server- and client-side caching</li>
-            <li>Minification, compression, lazy loading, preloading</li>
+            <li>Images, minification, compression</li>
+            <li>Lazy loading and preloading</li>
+            <li>Slow SQL and N+1 queries</li>
           </ul>
         </article>
       </div>
-      <div class="callout">Measure performance before optimizing it.</div>
+      <ul class="checklist">
+        <li>Can write unit and API tests</li>
+        <li>Can explain authn vs authz</li>
+        <li>Can keep secrets out of source control</li>
+        <li>Can measure one performance number and improve it</li>
+        <li>Can name the main project security risks</li>
+      </ul>
+      <div class="callout">Never commit passwords, API keys, tokens, private keys, or production credentials to GitHub. Measure performance before optimizing it.</div>
 
       <h2 class="section-title"><span class="n">09</span>Level 9 — DevOps &amp; Deployment</h2>
-      <p>This level connects directly to the DTTP development workflow.</p>
+      <p><strong>Purpose:</strong> connect code to a running, repeatable delivery path.</p>
       <div class="three-col">
         <article class="card">
           <h3>Git</h3>
           <ul>
-            <li>Repository and staging</li>
-            <li>Commits</li>
-            <li>Remote repositories</li>
-            <li>Branches and merging</li>
+            <li>Working tree, staging, commit</li>
+            <li>Meaningful messages</li>
+            <li>Branch per task, PR, review</li>
+            <li>Merge, rebase, conflicts</li>
+            <li>Revert and stash</li>
           </ul>
         </article>
         <article class="card teal">
           <h3>Docker</h3>
           <ul>
-            <li>Images</li>
-            <li>Containers</li>
-            <li>Dockerfiles</li>
-            <li>Docker Compose</li>
+            <li>Image vs container</li>
+            <li>Dockerfile</li>
+            <li>Volumes, networks, env vars</li>
+            <li>Compose: frontend, backend, database</li>
           </ul>
         </article>
         <article class="card gold">
           <h3>Deployment</h3>
           <ul>
-            <li>Build and deploy</li>
-            <li>Hosting and servers</li>
+            <li>Build artifacts and hosting</li>
             <li>Container deployment</li>
+            <li>Health checks and logs</li>
+            <li>Rollback thinking</li>
           </ul>
         </article>
       </div>
       <h4>DTTP delivery path</h4>
       <ol class="stepper"><li>Git</li><li>GitHub</li><li>GitHub Actions</li><li>Docker</li><li>AWS</li></ol>
+      <p>Pipeline: Developer → GitHub → Build → Lint → Unit Tests → Integration Tests → Docker Build → Artifact → Deployment → Health Check.</p>
+      <p>AWS introduction: IAM, EC2, S3, RDS, CloudFront, Route 53, Security Groups, CloudWatch. Understand the purpose of each service before using it.</p>
+      <ul class="checklist">
+        <li>Can complete a branch / PR / review / merge cycle</li>
+        <li>Can run the project with Docker Compose</li>
+        <li>Can describe a CI pipeline</li>
+        <li>Can explain the purpose of the core AWS services</li>
+        <li>Can diagnose a failed deploy from logs</li>
+      </ul>
 
       <h2 class="section-title"><span class="n">10</span>Level 10 — Professional Software Engineering</h2>
-      <p>The final level moves beyond technology.</p>
+      <p><strong>Purpose:</strong> move beyond technology into how professional teams work.</p>
       <div class="two-col">
         <div class="panel">
           <h4>Agile &amp; Scrum</h4>
           <ul>
             <li>Agile principles</li>
-            <li>Scrum roles, events, artifacts</li>
-            <li>Sprint planning and backlog</li>
-            <li>Review and retrospective</li>
+            <li>Roles: Product Owner, Scrum Master, Developers</li>
+            <li>Events: planning, daily, review, retrospective</li>
+            <li>Artifacts: product backlog, sprint backlog, increment</li>
+            <li>User stories and acceptance criteria</li>
           </ul>
         </div>
         <div class="panel">
           <h4>Professional skills</h4>
           <ul>
-            <li>Communication and requirement analysis</li>
-            <li>Documentation and code review</li>
-            <li>Estimation and ownership</li>
-            <li>Teamwork, presentation, mentoring</li>
+            <li>Stand-up and written communication</li>
+            <li>Requirement analysis and documentation</li>
+            <li>Code review: clarity, correctness, security, tests</li>
+            <li>Estimation, ownership, asking for help early</li>
+            <li>Technical presentation and peer mentoring</li>
           </ul>
         </div>
       </div>
+      <table>
+        <thead><tr><th>Level</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Epic</td><td>Employee Management</td></tr>
+          <tr><td>Feature</td><td>Leave</td></tr>
+          <tr><td>User story</td><td>As an HR user, I want to approve leave so that attendance stays accurate.</td></tr>
+          <tr><td>Task</td><td>Create leave approve API</td></tr>
+          <tr><td>Subtasks</td><td>Entity, DTO, service rule, controller, test, PR</td></tr>
+        </tbody>
+      </table>
+      <p>Daily report: objective, completed work, learning, problems, investigation, resolution, Git activity, next plan.</p>
+      <ul class="checklist">
+        <li>Can write a user story with acceptance criteria</li>
+        <li>Can break work into tasks and subtasks</li>
+        <li>Can review code with specific comments</li>
+        <li>Can present a feature to a mentor</li>
+        <li>Can describe their own skill gaps honestly</li>
+      </ul>
 
       <h2 class="section-title"><span class="n">11</span>Official progression</h2>
       <table>
         <thead><tr><th>Level</th><th>Focus</th><th>Outcome</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>Web Fundamentals</td><td>Can explain how the web works</td></tr>
+          <tr><td>1</td><td>Web Fundamentals</td><td>Can explain how a browser request becomes a response</td></tr>
           <tr><td>2</td><td>Frontend Engineering</td><td>Can build accessible pages and DOM interactions</td></tr>
-          <tr><td>3</td><td>React + TypeScript</td><td>Can build a structured SPA</td></tr>
+          <tr><td>3</td><td>React + TypeScript</td><td>Can build a structured SPA with routing and forms</td></tr>
           <tr><td>4</td><td>HTTP + REST + Web APIs</td><td>Can reason about frontend–backend traffic</td></tr>
           <tr><td>5</td><td>Java or Python backend</td><td>Can implement a secure REST API</td></tr>
           <tr><td>6</td><td>Databases</td><td>Can design and query SQL independently</td></tr>
@@ -510,7 +704,7 @@
       <p>Ten levels. One practice stack. Real projects.</p>
       <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.0 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.1 · Internal use</footer>
   </article>
 </body>
 </html>

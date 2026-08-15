@@ -19,8 +19,11 @@ MUTED = (0.42, 0.45, 0.49)
 MARKERS = [
     (1, "How to use this program", "How to use this program"),
     (1, "Level 1 — Web Fundamentals", "Level 1 — Web Fundamentals"),
+    (1, "Level 2 — Frontend Engineering", "Level 2 — Frontend Engineering"),
+    (1, "Level 3 — React & Modern Frontend", "Level 3 — React"),
     (1, "Level 4 — Web Communication & APIs", "Level 4 — Web Communication"),
     (1, "Level 5 — Backend Development", "Level 5 — Backend Development"),
+    (1, "Level 6 — Database Engineering", "Level 6 — Database Engineering"),
     (1, "Level 7 — Architecture", "Level 7 — Architecture"),
     (1, "Level 8 — Testing, Security & Performance", "Level 8 — Testing"),
     (1, "Level 9 — DevOps & Deployment", "Level 9 — DevOps"),
@@ -67,7 +70,7 @@ def finish_pdf() -> None:
             color=(0.84, 0.87, 0.90),
             width=0.5,
         )
-        page.insert_text(pymupdf.Point(36, height - 16), "Internal use  ·  Version 1.0", fontname="helv", fontsize=7, color=MUTED)
+        page.insert_text(pymupdf.Point(36, height - 16), "Internal use  ·  Version 1.1", fontname="helv", fontsize=7, color=MUTED)
         page.insert_text(pymupdf.Point(width - 68, height - 16), f"{i + 1}  /  {total}", fontname="helv", fontsize=7, color=NAVY)
 
     toc = [(1, "Cover", 1)]
