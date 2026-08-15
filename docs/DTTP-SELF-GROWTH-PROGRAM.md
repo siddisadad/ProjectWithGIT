@@ -1112,6 +1112,128 @@ Use this when a trainee finishes a level early. Do not skip ahead. Deepen the sa
 
 ---
 
+## Complete reference answers
+
+These are passing answers and contracts. A trainee who cannot produce something this specific is not finished, even if the checklist is ticked.
+
+### Model oral answers
+
+**Level 1.** The browser reads the URL, asks DNS for the host, opens a TCP connection to the host and port, sends an HTTP request for the path, and renders the response. A file server returns `index.html`. An application server runs Java or Python and may read a database before it responds. JavaScript in the page runs in the browser after the document arrives.
+
+**Level 2.** `fetch` sends an HTTP request and leaves the current page in place. A form submit without `preventDefault` reloads the page. If a CSS rule does not apply, check selector match, specificity, inheritance, and whether a later rule overrides it. Keyboard use means every control is reachable with Tab and activated with Enter or Space.
+
+**Level 3.** Employee-list data is fetched in a service, stored in page state or a hook, and passed to a table as props. The token lives in auth context. If the token is missing, the route redirects to `/login`. JSX does not contain `fetch` URLs.
+
+**Level 4.** `401` means the server does not know who the caller is. `403` means the server knows the caller and refuses the action. `GET` must not create an employee. Create is `POST` and success is `201`.
+
+**Level 5.** The unique-email rule lives in the service and in a database unique constraint. The controller only translates the result to HTTP. A conflict is `409`, not `500`.
+
+**Level 6.** `INNER JOIN` returns employees who have a department. `LEFT JOIN` also returns employees with a null department. A transaction around leave approval means the status change and any attendance write both commit or both roll back.
+
+**Level 7.** This training system is a layered monolith because one team, one database, and one deployable are enough. Microservices would add network, data, and ownership cost before there is an independent scale problem.
+
+**Level 8.** A unit test for leave approval must fail when an EMPLOYEE calls it. Coverage percentage is not proof. A performance claim needs two measured numbers.
+
+**Level 9.** An image is the packaged filesystem. A container is a running instance of that image. CI must run the same tests as the trainee and fail the merge when they fail.
+
+**Level 10.** Acceptance criteria are testable statements: who can act, what status changes, and what must not happen. “It works” is not a criterion.
+
+### Login contract
+
+```json
+POST /api/auth/login
+{ "email": "hr@deshmukh.local", "password": "correct-password" }
+
+201/200
+{ "token": "<jwt>", "role": "HR", "employeeId": 12, "name": "Asha Patil" }
+
+401
+{ "error": "INVALID_CREDENTIALS", "message": "Email or password is wrong" }
+```
+
+### Create employee contract
+
+```json
+POST /api/employees
+Authorization: Bearer <hr-or-admin-token>
+{
+  "name": "Rohan Deshmukh",
+  "email": "rohan@deshmukh.local",
+  "departmentId": 3,
+  "joiningDate": "2026-08-18",
+  "role": "EMPLOYEE"
+}
+
+201
+{
+  "id": 41,
+  "name": "Rohan Deshmukh",
+  "email": "rohan@deshmukh.local",
+  "departmentId": 3,
+  "departmentName": "Engineering",
+  "joiningDate": "2026-08-18",
+  "role": "EMPLOYEE"
+}
+```
+
+| Case | Status | Error code |
+| --- | :---: | --- |
+| Missing email | 400 / 422 | `VALIDATION_FAILED` |
+| No token | 401 | `UNAUTHENTICATED` |
+| EMPLOYEE caller | 403 | `FORBIDDEN` |
+| Email already used | 409 | `CONFLICT` |
+| Department missing | 404 | `NOT_FOUND` |
+
+### Leave approve contract
+
+```json
+PUT /api/leaves/18/approve
+Authorization: Bearer <hr-token>
+{ "decision": "APPROVED" }
+
+200
+{ "id": 18, "employeeId": 41, "status": "APPROVED", "decisionBy": 12 }
+
+409 already decided
+{ "error": "CONFLICT", "message": "Leave is already APPROVED" }
+```
+
+Sequence the trainee must narrate: apply (`PENDING`) → HR approves (`APPROVED`) → second approve (`409`) → employee sees the new status. Reject uses the same endpoint with `"REJECTED"` and must not write attendance.
+
+### SQL the trainee must be able to write
+
+```sql
+SELECT e.id, e.name, d.name AS department
+FROM employees e
+INNER JOIN departments d ON d.id = e.department_id
+WHERE e.role = 'EMPLOYEE'
+ORDER BY e.name;
+
+SELECT d.name, COUNT(l.id) AS leave_count
+FROM departments d
+LEFT JOIN employees e ON e.department_id = d.id
+LEFT JOIN leaves l ON l.employee_id = e.id AND l.status = 'APPROVED'
+GROUP BY d.name
+ORDER BY leave_count DESC;
+```
+
+### Wrong answers that fail the level
+
+| Level | Fails if the trainee says |
+| :---: | --- |
+| 1 | “The browser just loads it.” |
+| 2 | “I used a div for the form because it was easier.” |
+| 3 | “I called fetch inside the button JSX.” |
+| 4 | “401 and 403 are the same — the user cannot enter.” |
+| 5 | “The controller checks the duplicate email and talks to the table.” |
+| 6 | “The ORM writes the join. I do not need SQL.” |
+| 7 | “We should start with microservices so it scales.” |
+| 8 | “I did not write a failing test. Coverage is 90%.” |
+| 9 | “I pushed to master because the change was small.” |
+| 10 | “Done means it worked on my laptop.” |
+
+---
+
 ## Mentor checkpoints and common mistakes
 
 | Level | Mentor asks | Common mistake | Required artifact |

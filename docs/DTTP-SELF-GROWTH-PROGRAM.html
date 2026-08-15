@@ -231,7 +231,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.4</span>
+          <span class="badge">DTTP · v1.5</span>
         </div>
         <h1>Self-Growth<br />Program</h1>
         <div class="gold-rule"></div>
@@ -256,7 +256,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Self-Growth Program</div>
-          <div><small>Version</small>1.4</div>
+          <div><small>Version</small>1.5</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -277,7 +277,8 @@
             <li><span class="idx">11</span>Incremental Employee Management build</li>
             <li><span class="idx">12</span>Oral review bank</li>
             <li><span class="idx">13</span>Depth ladder</li>
-            <li><span class="idx">14</span>Official progression</li>
+            <li><span class="idx">14</span>Complete reference answers</li>
+            <li><span class="idx">15</span>Official progression</li>
           </ol>
         </nav>
       </section>
@@ -936,7 +937,86 @@ MySQL or PostgreSQL</div>
         </tbody>
       </table>
 
-      <h2 class="section-title"><span class="n">14</span>Official progression</h2>
+      <h2 class="section-title"><span class="n">14</span>Complete reference answers</h2>
+      <p class="lead">These are passing answers and contracts. A trainee who cannot produce something this specific is not finished, even if the checklist is ticked.</p>
+      <h4>Model oral answers</h4>
+      <table>
+        <thead><tr><th>Level</th><th>A passing answer sounds like this</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>The browser reads the URL, asks DNS for the host, connects to the port, sends HTTP for the path, and renders the response. A file server returns <code>index.html</code>. An application server runs Java or Python and may read a database first.</td></tr>
+          <tr><td>2</td><td><code>fetch</code> leaves the page in place. A submit without <code>preventDefault</code> reloads. If CSS fails, check selector, specificity, inheritance, and later overrides. Keyboard use means Tab plus Enter or Space.</td></tr>
+          <tr><td>3</td><td>List data is fetched in a service, stored in page state, and passed as props. The token lives in auth context. Missing token redirects to <code>/login</code>. JSX does not contain <code>fetch</code> URLs.</td></tr>
+          <tr><td>4</td><td><code>401</code> means the server does not know the caller. <code>403</code> means it knows and refuses. Create is <code>POST</code> and success is <code>201</code>.</td></tr>
+          <tr><td>5</td><td>Unique email lives in the service and a database constraint. The controller only maps the result to HTTP. A conflict is <code>409</code>, not <code>500</code>.</td></tr>
+          <tr><td>6</td><td><code>INNER JOIN</code> needs a department. <code>LEFT JOIN</code> keeps employees without one. A leave transaction commits both writes or rolls both back.</td></tr>
+          <tr><td>7</td><td>This system stays a layered monolith because one team, one database, and one deployable are enough. Microservices add cost before there is an independent scale problem.</td></tr>
+          <tr><td>8</td><td>A unit test must fail when an EMPLOYEE approves leave. Coverage is not proof. A performance claim needs two measured numbers.</td></tr>
+          <tr><td>9</td><td>An image is the packaged filesystem. A container is a running instance. CI runs the same tests and blocks merge when they fail.</td></tr>
+          <tr><td>10</td><td>Acceptance criteria are testable: who can act, what status changes, and what must not happen. “It works” is not a criterion.</td></tr>
+        </tbody>
+      </table>
+      <h4>Login contract</h4>
+      <div class="tree">POST /api/auth/login
+{ "email": "hr@deshmukh.local", "password": "correct-password" }
+
+200 { "token": "&lt;jwt&gt;", "role": "HR", "employeeId": 12, "name": "Asha Patil" }
+401 { "error": "INVALID_CREDENTIALS", "message": "Email or password is wrong" }</div>
+      <h4>Create employee contract</h4>
+      <div class="tree">POST /api/employees
+Authorization: Bearer &lt;hr-or-admin-token&gt;
+{ "name": "Rohan Deshmukh", "email": "rohan@deshmukh.local",
+  "departmentId": 3, "joiningDate": "2026-08-18", "role": "EMPLOYEE" }
+
+201 { "id": 41, "name": "Rohan Deshmukh", "email": "rohan@deshmukh.local",
+      "departmentId": 3, "departmentName": "Engineering",
+      "joiningDate": "2026-08-18", "role": "EMPLOYEE" }</div>
+      <table>
+        <thead><tr><th>Case</th><th>Status</th><th>Error code</th></tr></thead>
+        <tbody>
+          <tr><td>Missing email</td><td>400 / 422</td><td><code>VALIDATION_FAILED</code></td></tr>
+          <tr><td>No token</td><td>401</td><td><code>UNAUTHENTICATED</code></td></tr>
+          <tr><td>EMPLOYEE caller</td><td>403</td><td><code>FORBIDDEN</code></td></tr>
+          <tr><td>Email already used</td><td>409</td><td><code>CONFLICT</code></td></tr>
+          <tr><td>Department missing</td><td>404</td><td><code>NOT_FOUND</code></td></tr>
+        </tbody>
+      </table>
+      <h4>Leave approve contract</h4>
+      <div class="tree">PUT /api/leaves/18/approve
+Authorization: Bearer &lt;hr-token&gt;
+{ "decision": "APPROVED" }
+
+200 { "id": 18, "employeeId": 41, "status": "APPROVED", "decisionBy": 12 }
+409 { "error": "CONFLICT", "message": "Leave is already APPROVED" }</div>
+      <p>Narrate: apply (<code>PENDING</code>) → HR approves (<code>APPROVED</code>) → second approve (<code>409</code>) → employee sees the new status. Reject uses <code>"REJECTED"</code> and must not write attendance.</p>
+      <h4>SQL the trainee must write</h4>
+      <div class="tree">SELECT e.id, e.name, d.name AS department
+FROM employees e
+INNER JOIN departments d ON d.id = e.department_id
+WHERE e.role = 'EMPLOYEE';
+
+SELECT d.name, COUNT(l.id) AS leave_count
+FROM departments d
+LEFT JOIN employees e ON e.department_id = d.id
+LEFT JOIN leaves l ON l.employee_id = e.id AND l.status = 'APPROVED'
+GROUP BY d.name;</div>
+      <h4>Wrong answers that fail the level</h4>
+      <table>
+        <thead><tr><th>Level</th><th>Fails if the trainee says</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>“The browser just loads it.”</td></tr>
+          <tr><td>2</td><td>“I used a div for the form because it was easier.”</td></tr>
+          <tr><td>3</td><td>“I called fetch inside the button JSX.”</td></tr>
+          <tr><td>4</td><td>“401 and 403 are the same.”</td></tr>
+          <tr><td>5</td><td>“The controller checks the duplicate email and talks to the table.”</td></tr>
+          <tr><td>6</td><td>“The ORM writes the join. I do not need SQL.”</td></tr>
+          <tr><td>7</td><td>“We should start with microservices so it scales.”</td></tr>
+          <tr><td>8</td><td>“I did not write a failing test. Coverage is 90%.”</td></tr>
+          <tr><td>9</td><td>“I pushed to master because the change was small.”</td></tr>
+          <tr><td>10</td><td>“Done means it worked on my laptop.”</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><span class="n">15</span>Official progression</h2>
       <table>
         <thead><tr><th>Level</th><th>Focus</th><th>Outcome</th></tr></thead>
         <tbody>
@@ -979,7 +1059,7 @@ MySQL or PostgreSQL</div>
       <p>Ten levels. One practice stack. Real projects.</p>
       <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.4 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.5 · Internal use</footer>
   </article>
 </body>
 </html>

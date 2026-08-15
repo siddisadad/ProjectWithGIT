@@ -319,6 +319,34 @@ JUNIOR FULL-STACK DEVELOPER
 | 10–11 | Docker Compose runbook and a CI workflow |
 | 12 | Final demo, documentation, and production-readiness evidence |
 
+### Week-by-week operating plan
+
+Use this when a mentor asks “what should this trainee be doing right now?”
+
+| Days | Trainee work | Mentor looks for |
+| ---: | --- | --- |
+| 1–5 | Read the three official documents. Complete baseline. Open the first repo and README. | Can summarize how the company works. First daily report exists. |
+| 6–10 | Language drills on the chosen track: types, functions, collections, errors. | Commits show small problems with input and output written in the message or notes. |
+| 11–15 | Problem set: beginner then intermediate. Explain one solution out loud. | Trainee can dry-run a loop and name the failing case. |
+| 16–20 | HTML/CSS page for login and employee table. No React yet. | Semantic markup, Flexbox/Grid, keyboard use. |
+| 21–25 | JavaScript: form, DOM table, fetch with loading and error. | Can explain why a CSS rule did not apply. |
+| 26–30 | React + TypeScript: layout, routes, typed props. | API calls are not inside JSX. |
+| 31–35 | Login page, protected `/employees`, mocked service. | Empty, loading, and error states exist. |
+| 36–40 | Backend track setup. Health endpoint. Layered folders. | Controller / router does not talk to the database. |
+| 41–45 | Login API and employee create/list with validation. | 400/401/409 are distinct. One service test exists. |
+| 46–50 | Schema, seed, joins. Department on employee. | Trainee can write the join without the ORM. |
+| 51–55 | Attendance and leave apply. Same error JSON. | Transaction or clear service rule for leave dates. |
+| 56–60 | Wire React to the real API. Create/list employee end to end. | Network tab matches the contract. |
+| 61–65 | Dashboard, profile, department screens. | Role-aware UI. No secrets in the repo. |
+| 66–69 | JWT, roles, protected routes, password hashing. | EMPLOYEE cannot create employees or approve leave. |
+| 70–72 | CORS, validation, XSS/SQL injection notes. | Secrets only in environment variables. |
+| 73–75 | Service and API tests for leave approve. | Failing test was seen before the passing test. |
+| 76–78 | Debug one real bug in writing. Measure one list query. | Layer named correctly. Two timings recorded. |
+| 79–82 | Dockerfiles and Compose for UI, API, and database. | `compose up` reaches a health endpoint. |
+| 83–86 | GitHub Actions: lint, test, image. AWS service-purpose notes. | CI fails on a broken test. Trainee can read the log. |
+| 87–88 | Finish gaps. Write stories and README. | Definition of Done holds on leave and employees. |
+| 89–90 | Demo, oral review, production-readiness gate. | Trainee explains without reading slides. |
+
 ---
 
 ## 8. Training Methodology
@@ -553,6 +581,20 @@ A pull request with no test note is not ready for review.
 - Searching
 - LinkedList
 
+### How an exercise is accepted
+
+Every problem commit includes: the prompt, one example input, the output, and the failing case the trainee tried. “Solved Two Sum” with no example is not accepted.
+
+| Problem | Example | Expected |
+| --- | --- | --- |
+| Reverse string | `DTTP` | `PTTD` |
+| Palindrome | `level` | `true` |
+| Two Sum | `[2, 7, 11, 15]`, target `9` | `[0, 1]` |
+| Duplicate detection | `[1, 3, 3, 7]` | `3` |
+| Frequency count | `leave, leave, sick` | `leave=2, sick=1` |
+
+Days 6–10: language and OOP. Days 11–15: the problem set, then one oral walkthrough of an intermediate problem.
+
 ---
 
 ## 14. Java Track
@@ -576,6 +618,14 @@ A pull request with no test note is not ready for review.
 - Optional
 - Functional interfaces
 - Date/time API
+
+### Expected evidence
+
+- An `Employee` class with private fields and validation in the constructor or factory
+- A collection exercise that filters or groups employees by department
+- A stream that maps employees to email addresses
+- An `Optional` used instead of returning `null`
+- The trainee can say when to use an interface versus a class
 
 ---
 
@@ -603,6 +653,27 @@ Controller → Service → Repository → JPA / Hibernate → Database
 - JWT
 - Testing
 
+### Request walkthrough — create employee
+
+```text
+EmployeeController.create(dto)
+  → EmployeeService.create(dto)
+      validate name/email
+      reject duplicate email
+      load department or fail
+  → EmployeeRepository.save(entity)
+  → 201 + EmployeeResponse
+```
+
+| Layer | Owns | Must not own |
+| --- | --- | --- |
+| Controller | HTTP status, DTO in/out | Unique-email rule, SQL |
+| Service | Business rules, roles | Servlet / request objects |
+| Repository | Persistence | Status codes |
+| Entity | Table mapping | Password or JWT logic |
+
+Package shape: `controller`, `service`, `repository`, `dto`, `entity`, `security`, `exception`.
+
 ---
 
 ## 16. Python Track
@@ -622,6 +693,13 @@ Controller → Service → Repository → JPA / Hibernate → Database
 - Generators
 - Decorators
 - Async programming
+
+### Expected evidence
+
+- A typed function with a docstring and a failing/passing Pytest
+- Grouping records with a dictionary
+- A Pydantic model or dataclass for an employee
+- The trainee can explain list vs tuple vs set with one sentence each
 
 ---
 
@@ -646,6 +724,20 @@ Router → Service → Repository → SQLAlchemy → Database
 - Authentication
 - Async
 - API documentation
+
+### Request walkthrough — create employee
+
+```text
+employees.router.create(payload)
+  → EmployeeService.create(payload)
+      validate with Pydantic
+      reject duplicate email
+      load department or fail
+  → EmployeeRepository.save(model)
+  → 201 + EmployeeOut
+```
+
+The Java and Python tracks use different class names and the same rules: validation, unique email, role check, and one error JSON shape.
 
 ---
 
@@ -681,6 +773,17 @@ src/
 └── assets/
 ```
 
+### Where state lives
+
+| Data | Lives in | Why |
+| --- | --- | --- |
+| Login form fields | `LoginPage` local state | Only that page edits them |
+| Auth token / current user | Auth context or auth store | Many routes need it |
+| Employee list | `EmployeesPage` or a hook | Fetched for that screen |
+| API calls | `services/*.ts` | JSX must not contain URLs and headers |
+
+Required screens by Day 35: `/login`, `/dashboard`, `/employees` (list + create), shared layout, empty/loading/error states.
+
 ---
 
 ## 19. Database
@@ -706,6 +809,61 @@ Trainees learn:
 | Python | SQLAlchemy |
 
 > **ORM knowledge must not replace SQL knowledge.**
+
+### Required schema
+
+```sql
+CREATE TABLE departments (
+  id BIGINT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE employees (
+  id BIGINT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(180) NOT NULL UNIQUE,
+  department_id BIGINT NOT NULL,
+  joining_date DATE NOT NULL,
+  role VARCHAR(20) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  FOREIGN KEY (department_id) REFERENCES departments(id)
+);
+
+CREATE TABLE attendance (
+  id BIGINT PRIMARY KEY,
+  employee_id BIGINT NOT NULL,
+  work_date DATE NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  UNIQUE (employee_id, work_date),
+  FOREIGN KEY (employee_id) REFERENCES employees(id)
+);
+
+CREATE TABLE leaves (
+  id BIGINT PRIMARY KEY,
+  employee_id BIGINT NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  type VARCHAR(30) NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  FOREIGN KEY (employee_id) REFERENCES employees(id)
+);
+```
+
+Required queries the trainee writes by hand:
+
+```sql
+SELECT e.name, d.name AS department
+FROM employees e
+INNER JOIN departments d ON d.id = e.department_id;
+
+SELECT d.name, COUNT(l.id) AS leave_count
+FROM departments d
+LEFT JOIN employees e ON e.department_id = d.id
+LEFT JOIN leaves l ON l.employee_id = e.id
+GROUP BY d.name;
+
+-- Approve leave only if still pending; both writes succeed or both roll back
+```
 
 ---
 
@@ -813,6 +971,26 @@ Required headings:
 
 A repository with only source files and no README is not a complete project.
 
+### Leave approval — full path
+
+This is the feature used in demos and the production-readiness gate.
+
+1. EMPLOYEE submits `POST /api/leaves` with `startDate`, `endDate`, `type`. Status becomes `PENDING`.
+2. HR opens the pending list. EMPLOYEE does not see the approve action.
+3. HR calls `PUT /api/leaves/{id}/approve` with `{ "decision": "APPROVED" }`.
+4. Service checks: caller is HR or ADMIN; leave exists; status is `PENDING`; dates are valid.
+5. In one transaction: leave status becomes `APPROVED`. If the product rule requires it, related attendance rows are written.
+6. If the second write fails, both roll back and the leave stays `PENDING`.
+7. Employee list/profile shows the new status. A second approve returns `409`.
+
+| Actor | Can apply | Can approve | Can see |
+| --- | :---: | :---: | --- |
+| EMPLOYEE | Yes, own | No | Own requests |
+| HR | Yes | Yes | Team / all pending |
+| ADMIN | Yes | Yes | All |
+
+Wrong answers: returning `200` for a forbidden approve; changing status in the controller; approving without a transaction when two tables change.
+
 ---
 
 ## 22. Full-Stack Architecture
@@ -856,6 +1034,23 @@ Trainees learn:
 
 > **Never commit passwords, API keys, tokens, private keys, or production credentials to GitHub.**
 
+### Login sequence
+
+1. User posts `{ "email", "password" }` to `POST /api/auth/login`.
+2. Server looks up the employee, verifies the password hash, and issues a JWT that includes `sub` (employee id) and `role`.
+3. Frontend stores the token in memory or an httpOnly cookie — not in a screenshot, README, or committed file.
+4. Later requests send `Authorization: Bearer <token>`.
+5. Missing or expired token → `401`. Valid token, wrong role → `403`.
+
+| Case | Status | Meaning |
+| --- | :---: | --- |
+| No token on `/api/employees` | 401 | Not authenticated |
+| EMPLOYEE posts `/api/employees` | 403 | Authenticated, not allowed |
+| HR posts a valid employee | 201 | Allowed and created |
+| HR posts a duplicate email | 409 | Allowed, but conflicts |
+
+Password hashing is mandatory. Plain-text passwords in the database fail the security check.
+
 ---
 
 ## 24. Testing
@@ -882,6 +1077,20 @@ Trainees learn:
 - Authentication tests
 - Authorization tests
 - Edge cases
+
+### Minimum test catalog — leave approve
+
+| Test | Layer | Must prove |
+| --- | --- | --- |
+| `approve_pending_leave_as_hr` | Service | Status becomes APPROVED |
+| `employee_cannot_approve` | Service | Rule fails before save |
+| `approve_without_token` | API | `401` |
+| `approve_as_employee` | API | `403` |
+| `approve_already_decided` | API | `409` |
+| `approve_unknown_id` | API | `404` |
+| `create_employee_missing_email` | API | `400` / `422` with field `email` |
+
+A feature with only a happy-path test is not tested.
 
 ---
 
@@ -917,6 +1126,19 @@ REGRESSION TEST
 
 The trainee should learn to determine **which layer is responsible** rather than randomly changing code.
 
+### Common training bugs
+
+| Symptom | Check first | Typical cause |
+| --- | --- | --- |
+| UI shows an empty list, Network is 401 | Token header | Token missing, expired, or stored wrong |
+| UI shows 403 on create employee | Role in JWT | Logged in as EMPLOYEE |
+| API returns 500 on duplicate email | Exception handler | Unique constraint not mapped to 409 |
+| Page works after refresh but route is blank | Router / protected route | Token read as empty string |
+| Compose starts, API cannot reach DB | DB host name | Using `localhost` inside the API container |
+| CI red, local green | Workflow commands | Tests not run the same way as locally |
+
+Every real bug the trainee hits in Days 73–78 becomes a written debug note: reproduce, layer, cause, fix, retest.
+
 ---
 
 ## 26. Docker
@@ -937,6 +1159,16 @@ Learn:
 - Environment variables
 - Docker Compose
 
+### Local stack the trainee must run
+
+| Service | Suggested name | Suggested port | Role |
+| --- | --- | ---: | --- |
+| Frontend | `ems-web` | 5173 | React app |
+| Backend | `ems-api` | 8080 | Java or Python API |
+| Database | `ems-db` | 3306 or 5432 | MySQL or PostgreSQL |
+
+The API container talks to the database by service name (`ems-db`), not `localhost`. A `.env.example` lists variable names only. `docker compose up --build` must reach `GET /api/health`.
+
 ---
 
 ## 27. CI/CD
@@ -948,6 +1180,16 @@ Developer → GitHub → Build → Lint → Unit Tests
    → Integration Tests → Docker Build → Artifact
    → Deployment → Health Check
 ```
+
+| Job | Fails when |
+| --- | --- |
+| Lint | Formatting or unused imports break the project standard |
+| Unit tests | A service rule is wrong |
+| Integration tests | API + database contract is wrong |
+| Docker build | The image cannot be built from the branch |
+| Health check | The deployed or composed app does not respond |
+
+The trainee must make CI fail on purpose once (break a test), then fix it, and keep both logs in the daily report.
 
 ---
 
@@ -965,6 +1207,19 @@ Introduce:
 - CloudWatch fundamentals
 
 The trainee should understand the purpose of each service before using it.
+
+| Service | Purpose in DTTP language |
+| --- | --- |
+| IAM | Who is allowed to do what in AWS |
+| EC2 | A virtual machine that can run the app |
+| S3 | Object storage for files and build artifacts |
+| RDS | Managed MySQL or PostgreSQL |
+| CloudFront | CDN in front of static or public content |
+| Route 53 | DNS for the application hostname |
+| Security Groups | Network allow/deny rules |
+| CloudWatch | Logs and alarms |
+
+The trainee explains each service in one sentence before using the console. Using AWS without being able to name IAM and Security Groups fails this phase.
 
 ---
 

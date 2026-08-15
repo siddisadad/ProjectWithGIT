@@ -554,7 +554,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.3</span>
+          <span class="badge">DTTP · v1.4</span>
         </div>
         <h1>Trainee<br />Program</h1>
         <div class="gold-rule"></div>
@@ -579,7 +579,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Program Handbook</div>
-          <div><small>Version</small>1.3</div>
+          <div><small>Version</small>1.4</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -824,6 +824,25 @@
           <tr><td>12</td><td>Final demo, documentation, and production-readiness evidence</td></tr>
         </tbody>
       </table>
+      <h4>Week-by-week operating plan</h4>
+      <p>Use this when a mentor asks “what should this trainee be doing right now?”</p>
+      <table>
+        <thead><tr><th>Days</th><th>Trainee work</th><th>Mentor looks for</th></tr></thead>
+        <tbody>
+          <tr><td>1–5</td><td>Read the three official documents. Complete baseline. Open the first repo.</td><td>Can summarize how the company works. First daily report exists.</td></tr>
+          <tr><td>6–10</td><td>Language drills: types, functions, collections, errors.</td><td>Commits show small problems with input and output.</td></tr>
+          <tr><td>11–15</td><td>Beginner then intermediate problems. One oral walkthrough.</td><td>Can dry-run a loop and name the failing case.</td></tr>
+          <tr><td>16–25</td><td>HTML/CSS then JavaScript form, DOM table, fetch.</td><td>No React yet. Keyboard use. Fetch error state.</td></tr>
+          <tr><td>26–35</td><td>React layout, routes, login, protected employees, mocked service.</td><td>API calls are not inside JSX.</td></tr>
+          <tr><td>36–45</td><td>Backend folders, health, login, employee create/list.</td><td>400/401/409 are distinct. One service test.</td></tr>
+          <tr><td>46–55</td><td>Schema, joins, attendance, leave apply.</td><td>Join written without the ORM.</td></tr>
+          <tr><td>56–65</td><td>Wire React to the real API. Dashboard, profile, departments.</td><td>Network tab matches the contract.</td></tr>
+          <tr><td>66–72</td><td>JWT, roles, CORS, injection notes.</td><td>EMPLOYEE cannot create or approve.</td></tr>
+          <tr><td>73–78</td><td>Leave tests, one written bug, one measured query.</td><td>Failing test first. Two timings recorded.</td></tr>
+          <tr><td>79–86</td><td>Compose, Actions, AWS service-purpose notes.</td><td>CI fails on a broken test. Health endpoint works.</td></tr>
+          <tr><td>87–90</td><td>Stories, README, demo, oral review, readiness gate.</td><td>Trainee explains without reading slides.</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s8"><span class="n">08</span>Training Methodology</h2>
       <p>Recommended allocation of trainee time:</p>
@@ -972,6 +991,17 @@ Already-decided leaves must stay unchanged</div>
           </ul>
         </div>
       </div>
+      <p>Every problem commit includes the prompt, one example input, the output, and the failing case. “Solved Two Sum” with no example is not accepted.</p>
+      <table>
+        <thead><tr><th>Problem</th><th>Example</th><th>Expected</th></tr></thead>
+        <tbody>
+          <tr><td>Reverse string</td><td><code>DTTP</code></td><td><code>PTTD</code></td></tr>
+          <tr><td>Palindrome</td><td><code>level</code></td><td><code>true</code></td></tr>
+          <tr><td>Two Sum</td><td><code>[2, 7, 11, 15]</code>, target <code>9</code></td><td><code>[0, 1]</code></td></tr>
+          <tr><td>Duplicate detection</td><td><code>[1, 3, 3, 7]</code></td><td><code>3</code></td></tr>
+          <tr><td>Frequency count</td><td><code>leave, leave, sick</code></td><td><code>leave=2, sick=1</code></td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s14"><span class="n">14</span>Java Track</h2>
       <div class="two-col">
@@ -996,23 +1026,49 @@ Already-decided leaves must stay unchanged</div>
           </ul>
         </div>
       </div>
+      <p><strong>Expected evidence:</strong> an <code>Employee</code> class with private fields; a collection or stream that filters by department; <code>Optional</code> instead of <code>null</code>; a spoken difference between an interface and a class.</p>
 
       <h2 class="section-title" id="s15"><span class="n">15</span>Spring Boot</h2>
       <ol class="stepper"><li>Controller</li><li>Service</li><li>Repository</li><li>JPA / Hibernate</li><li>Database</li></ol>
       <div class="kpi">
-        <span class="chip">Spring Boot</span><span class="chip">REST</span><span class="chip">Dependency Injection</span><span class="chip">DTO</span><span class="chip">Entity</span><span class="chip">Validation</span><span class="chip">Exception handling</span><span class="chip">Logging</span><span class="chip">JPA</span><span class="chip">Hibernate</span><span class="chip">Spring Security</span><span class="chip">JWT</span><span class="chip">Testing</span>
+        <span class="chip">Spring Boot</span><span class="chip">REST</span><span class="chip">Dependency Injection</span><span class="chip">DTO</span><span class="chip">Entity</span><span class="chip">Validation</span><span class="chip">Exception handling</span><span class="chip">Logging</span><span class="chip">JPA</span><span class="chip">Hibernate</span>        <span class="chip">Spring Security</span><span class="chip">JWT</span><span class="chip">Testing</span>
       </div>
+      <div class="tree">EmployeeController.create(dto)
+  → EmployeeService.create(dto)
+      validate name/email
+      reject duplicate email
+      load department or fail
+  → EmployeeRepository.save(entity)
+  → 201 + EmployeeResponse</div>
+      <table>
+        <thead><tr><th>Layer</th><th>Owns</th><th>Must not own</th></tr></thead>
+        <tbody>
+          <tr><td>Controller</td><td>HTTP status, DTO in/out</td><td>Unique-email rule, SQL</td></tr>
+          <tr><td>Service</td><td>Business rules, roles</td><td>Servlet / request objects</td></tr>
+          <tr><td>Repository</td><td>Persistence</td><td>Status codes</td></tr>
+          <tr><td>Entity</td><td>Table mapping</td><td>Password or JWT logic</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s16"><span class="n">16</span>Python Track</h2>
       <div class="kpi">
-        <span class="chip">Variables</span><span class="chip">Lists</span><span class="chip">Tuples</span><span class="chip">Sets</span><span class="chip">Dictionaries</span><span class="chip">Functions</span><span class="chip">Modules</span><span class="chip">Packages</span><span class="chip">Exceptions</span><span class="chip">File handling</span><span class="chip">OOP</span><span class="chip">Type hints</span><span class="chip">Generators</span><span class="chip">Decorators</span><span class="chip">Async</span>
+        <span class="chip">Variables</span><span class="chip">Lists</span><span class="chip">Tuples</span><span class="chip">Sets</span><span class="chip">Dictionaries</span><span class="chip">Functions</span><span class="chip">Modules</span><span class="chip">Packages</span><span class="chip">Exceptions</span><span class="chip">File handling</span><span class="chip">OOP</span><span class="chip">Type hints</span><span class="chip">Generators</span>        <span class="chip">Decorators</span><span class="chip">Async</span>
       </div>
+      <p><strong>Expected evidence:</strong> a typed function with Pytest; grouping records with a dictionary; a Pydantic model or dataclass for an employee; one sentence each for list, tuple, and set.</p>
 
       <h2 class="section-title" id="s17"><span class="n">17</span>FastAPI</h2>
       <ol class="stepper"><li>Router</li><li>Service</li><li>Repository</li><li>SQLAlchemy</li><li>Database</li></ol>
       <div class="kpi">
-        <span class="chip">Routes</span><span class="chip">Request models</span><span class="chip">Response models</span><span class="chip">Pydantic</span><span class="chip">Validation</span><span class="chip">Dependency injection</span><span class="chip">Middleware</span><span class="chip">Exceptions</span><span class="chip">Authentication</span><span class="chip">Async</span><span class="chip">API documentation</span>
+        <span class="chip">Routes</span><span class="chip">Request models</span><span class="chip">Response models</span><span class="chip">Pydantic</span><span class="chip">Validation</span><span class="chip">Dependency injection</span><span class="chip">Middleware</span><span class="chip">Exceptions</span><span class="chip">Authentication</span>        <span class="chip">Async</span><span class="chip">API documentation</span>
       </div>
+      <div class="tree">employees.router.create(payload)
+  → EmployeeService.create(payload)
+      validate with Pydantic
+      reject duplicate email
+      load department or fail
+  → EmployeeRepository.save(model)
+  → 201 + EmployeeOut</div>
+      <p>Java and Python use different class names and the same rules: validation, unique email, role check, and one error JSON shape.</p>
 
       <h2 class="section-title" id="s18"><span class="n">18</span>Frontend — React + TypeScript</h2>
       <p>Trainees learn components, props, state, hooks, forms, validation, routing, protected routes, API integration, error handling, loading states, and responsive design.</p>
@@ -1026,11 +1082,26 @@ Already-decided leaves must stay unchanged</div>
 ├── utils/
 ├── routes/
 └── assets/</div>
+      <table>
+        <thead><tr><th>Data</th><th>Lives in</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Login form fields</td><td><code>LoginPage</code> local state</td><td>Only that page edits them</td></tr>
+          <tr><td>Auth token / current user</td><td>Auth context</td><td>Many routes need it</td></tr>
+          <tr><td>Employee list</td><td>Page state or hook</td><td>Fetched for that screen</td></tr>
+          <tr><td>API calls</td><td><code>services/*.ts</code></td><td>JSX must not contain URLs</td></tr>
+        </tbody>
+      </table>
+      <p>Required screens by Day 35: <code>/login</code>, <code>/dashboard</code>, <code>/employees</code> (list + create), shared layout, empty/loading/error states.</p>
 
       <h2 class="section-title" id="s19"><span class="n">19</span>Database</h2>
       <p>Trainees learn SQL, tables, keys, constraints, relationships, joins, indexes, transactions, normalization, and query optimization.</p>
       <p><strong>ORM:</strong> Java uses JPA / Hibernate. Python uses SQLAlchemy.</p>
       <div class="callout">ORM knowledge must not replace SQL knowledge.</div>
+      <div class="tree">departments(id, name UNIQUE)
+employees(id, name, email UNIQUE, department_id FK, joining_date, role, password_hash)
+attendance(id, employee_id FK, work_date, status, UNIQUE(employee_id, work_date))
+leaves(id, employee_id FK, start_date, end_date, type, status)</div>
+      <p>Required by-hand queries: employees with department names (<code>INNER JOIN</code>); leave count by department (<code>LEFT JOIN</code> + <code>GROUP BY</code>); a transaction that approves leave and writes related attendance or rolls both back.</p>
 
       <h2 class="section-title" id="s20"><span class="n">20</span>REST API</h2>
       <p>Both backend tracks implement the same business API so Java and Python trainees learn the same API design principles.</p>
@@ -1104,6 +1175,24 @@ Already-decided leaves must stay unchanged</div>
         <li>Known limits</li>
       </ol>
       <p>A repository with only source files and no README is not a complete project.</p>
+      <h4>Leave approval — full path</h4>
+      <ol>
+        <li>EMPLOYEE submits <code>POST /api/leaves</code>. Status becomes <code>PENDING</code>.</li>
+        <li>HR opens the pending list. EMPLOYEE does not see the approve action.</li>
+        <li>HR calls <code>PUT /api/leaves/{id}/approve</code> with <code>{ "decision": "APPROVED" }</code>.</li>
+        <li>Service checks: caller is HR or ADMIN; leave exists; status is <code>PENDING</code>.</li>
+        <li>In one transaction the leave becomes <code>APPROVED</code>. Related attendance writes, if required, happen in the same transaction.</li>
+        <li>If the second write fails, both roll back and the leave stays <code>PENDING</code>.</li>
+        <li>A second approve returns <code>409</code>. Reject uses <code>"REJECTED"</code> and must not write attendance.</li>
+      </ol>
+      <table>
+        <thead><tr><th>Actor</th><th>Apply</th><th>Approve</th><th>Can see</th></tr></thead>
+        <tbody>
+          <tr><td>EMPLOYEE</td><td>Own</td><td>No</td><td>Own requests</td></tr>
+          <tr><td>HR</td><td>Yes</td><td>Yes</td><td>Pending / team</td></tr>
+          <tr><td>ADMIN</td><td>Yes</td><td>Yes</td><td>All</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s22"><span class="n">22</span>Full-Stack Architecture</h2>
       <h4>Java implementation</h4>
@@ -1117,6 +1206,23 @@ Already-decided leaves must stay unchanged</div>
         <span class="chip">Authentication</span><span class="chip">Authorization</span><span class="chip">Password hashing</span><span class="chip">JWT</span><span class="chip">Roles</span><span class="chip">Permissions</span><span class="chip">CORS</span><span class="chip">Input validation</span><span class="chip">SQL injection awareness</span><span class="chip">XSS fundamentals</span><span class="chip">Secrets management</span><span class="chip">Environment variables</span><span class="chip">HTTPS</span><span class="chip">Least privilege</span>
       </div>
       <div class="callout">Never commit passwords, API keys, tokens, private keys, or production credentials to GitHub.</div>
+      <h4>Login sequence</h4>
+      <ol>
+        <li>User posts <code>{ "email", "password" }</code> to <code>POST /api/auth/login</code>.</li>
+        <li>Server verifies the password hash and issues a JWT with <code>sub</code> and <code>role</code>.</li>
+        <li>Frontend stores the token in memory or an httpOnly cookie — never in Git.</li>
+        <li>Later requests send <code>Authorization: Bearer &lt;token&gt;</code>.</li>
+        <li>Missing token → <code>401</code>. Wrong role → <code>403</code>.</li>
+      </ol>
+      <table>
+        <thead><tr><th>Case</th><th>Status</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>No token on <code>/api/employees</code></td><td>401</td><td>Not authenticated</td></tr>
+          <tr><td>EMPLOYEE posts <code>/api/employees</code></td><td>403</td><td>Authenticated, not allowed</td></tr>
+          <tr><td>HR posts a valid employee</td><td>201</td><td>Allowed and created</td></tr>
+          <tr><td>HR posts a duplicate email</td><td>409</td><td>Allowed, but conflicts</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s24"><span class="n">24</span>Testing</h2>
       <div class="cards">
@@ -1144,27 +1250,85 @@ Already-decided leaves must stay unchanged</div>
           </ul>
         </article>
       </div>
+      <h4>Minimum test catalog — leave approve</h4>
+      <table>
+        <thead><tr><th>Test</th><th>Layer</th><th>Must prove</th></tr></thead>
+        <tbody>
+          <tr><td><code>approve_pending_leave_as_hr</code></td><td>Service</td><td>Status becomes APPROVED</td></tr>
+          <tr><td><code>employee_cannot_approve</code></td><td>Service</td><td>Rule fails before save</td></tr>
+          <tr><td><code>approve_without_token</code></td><td>API</td><td>401</td></tr>
+          <tr><td><code>approve_as_employee</code></td><td>API</td><td>403</td></tr>
+          <tr><td><code>approve_already_decided</code></td><td>API</td><td>409</td></tr>
+          <tr><td><code>approve_unknown_id</code></td><td>API</td><td>404</td></tr>
+          <tr><td><code>create_employee_missing_email</code></td><td>API</td><td>400/422 with field email</td></tr>
+        </tbody>
+      </table>
+      <p>A feature with only a happy-path test is not tested.</p>
 
       <h2 class="section-title" id="s25"><span class="n">25</span>Debugging</h2>
       <ol class="stepper">
         <li>Bug</li><li>Reproduce</li><li>Read error</li><li>Logs</li><li>Network</li><li>API</li><li>Backend</li><li>Database</li><li>Root cause</li><li>Fix</li><li>Retest</li><li>Regression</li>
       </ol>
       <p>The trainee should learn to determine which layer is responsible rather than randomly changing code.</p>
+      <table>
+        <thead><tr><th>Symptom</th><th>Check first</th><th>Typical cause</th></tr></thead>
+        <tbody>
+          <tr><td>Empty list, Network 401</td><td>Token header</td><td>Token missing, expired, or stored wrong</td></tr>
+          <tr><td>403 on create employee</td><td>Role in JWT</td><td>Logged in as EMPLOYEE</td></tr>
+          <tr><td>500 on duplicate email</td><td>Exception handler</td><td>Unique constraint not mapped to 409</td></tr>
+          <tr><td>Route blank after refresh</td><td>Protected route</td><td>Token read as empty string</td></tr>
+          <tr><td>API cannot reach DB in Compose</td><td>DB host name</td><td>Using <code>localhost</code> inside the API container</td></tr>
+          <tr><td>CI red, local green</td><td>Workflow commands</td><td>Tests not run the same way</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s26"><span class="n">26</span>Docker</h2>
       <ol class="stepper"><li>Frontend Container</li><li>Backend Container</li><li>Database Container</li></ol>
       <p>Learn Dockerfile, image, container, network, volume, environment variables, and Docker Compose.</p>
+      <table>
+        <thead><tr><th>Service</th><th>Name</th><th>Port</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>Frontend</td><td><code>ems-web</code></td><td>5173</td><td>React app</td></tr>
+          <tr><td>Backend</td><td><code>ems-api</code></td><td>8080</td><td>Java or Python API</td></tr>
+          <tr><td>Database</td><td><code>ems-db</code></td><td>3306 / 5432</td><td>MySQL or PostgreSQL</td></tr>
+        </tbody>
+      </table>
+      <p>The API container talks to <code>ems-db</code>, not <code>localhost</code>. <code>docker compose up --build</code> must reach <code>GET /api/health</code>.</p>
 
       <h2 class="section-title" id="s27"><span class="n">27</span>CI/CD</h2>
       <ol class="stepper">
-        <li>Developer</li><li>GitHub</li><li>Build</li><li>Lint</li><li>Unit Tests</li><li>Integration Tests</li><li>Docker Build</li><li>Artifact</li><li>Deployment</li><li>Health Check</li>
+        <li>Developer</li><li>GitHub</li><li>Build</li><li>Lint</li><li>Unit Tests</li><li>Integration Tests</li><li>Docker Build</li><li>Artifact</li><li>Deployment</li>        <li>Health Check</li>
       </ol>
+      <table>
+        <thead><tr><th>Job</th><th>Fails when</th></tr></thead>
+        <tbody>
+          <tr><td>Lint</td><td>Formatting or unused imports break the standard</td></tr>
+          <tr><td>Unit tests</td><td>A service rule is wrong</td></tr>
+          <tr><td>Integration tests</td><td>API + database contract is wrong</td></tr>
+          <tr><td>Docker build</td><td>The image cannot be built from the branch</td></tr>
+          <tr><td>Health check</td><td>The app does not respond</td></tr>
+        </tbody>
+      </table>
+      <p>The trainee must make CI fail on purpose once, then fix it, and keep both logs.</p>
 
       <h2 class="section-title" id="s28"><span class="n">28</span>AWS</h2>
       <div class="kpi">
         <span class="chip">IAM</span><span class="chip">EC2</span><span class="chip">S3</span><span class="chip">RDS</span><span class="chip">CloudFront</span><span class="chip">Route 53</span><span class="chip">Security Groups</span><span class="chip">CloudWatch</span>
       </div>
       <p>The trainee should understand the purpose of each service before using it.</p>
+      <table>
+        <thead><tr><th>Service</th><th>Purpose in DTTP language</th></tr></thead>
+        <tbody>
+          <tr><td>IAM</td><td>Who is allowed to do what in AWS</td></tr>
+          <tr><td>EC2</td><td>A virtual machine that can run the app</td></tr>
+          <tr><td>S3</td><td>Object storage for files and build artifacts</td></tr>
+          <tr><td>RDS</td><td>Managed MySQL or PostgreSQL</td></tr>
+          <tr><td>CloudFront</td><td>CDN in front of static or public content</td></tr>
+          <tr><td>Route 53</td><td>DNS for the application hostname</td></tr>
+          <tr><td>Security Groups</td><td>Network allow/deny rules</td></tr>
+          <tr><td>CloudWatch</td><td>Logs and alarms</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s29"><span class="n">29</span>Project Management</h2>
       <p>Every trainee project should use a professional work breakdown.</p>
@@ -1432,7 +1596,7 @@ Status: AMBER</div>
       <p>Learn. Build. Solve. Review. Deploy. Grow.</p>
       <p class="final">A disciplined, technically capable and production-ready Junior Full-Stack Developer.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.3 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.4 · Internal use</footer>
   </article>
 </body>
 </html>
