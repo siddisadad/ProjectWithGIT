@@ -16,6 +16,45 @@ The company's approach is centered on combining **strong engineering, practical 
 
 > **Our goal is not simply to develop software. Our goal is to use technology to solve real problems, improve processes, create opportunities, and build solutions that deliver measurable value.**
 
+This profile is a **corporate master profile**. It describes the organization’s intended identity, operating philosophy, technology focus, people system, and long-term direction. It does not make claims about current headcount, clients, revenue, or market position.
+
+---
+
+## Who we serve
+
+Deshmukh Technologies is designed to create value for:
+
+- Organizations that need reliable business applications
+- Teams that want to digitize paper or spreadsheet processes
+- Institutions that need web or mobile access to information
+- Internal operations that can be improved through automation
+- Fresh talent that needs a structured path into professional engineering
+
+Typical problem types:
+
+- Manual work that should be a system
+- Scattered data that should be one source of truth
+- Slow approvals that should be a workflow
+- Local tools that should become a web platform
+- One-off scripts that should become maintainable software
+
+---
+
+## How we work
+
+A Deshmukh Technologies engagement should follow a practical sequence:
+
+1. **Understand** the business problem, users, and constraints.
+2. **Define** the outcome, scope, and what “done” means.
+3. **Design** the data, interfaces, and application shape.
+4. **Develop** in small, reviewable increments.
+5. **Test** the happy path, the error path, and the permission path.
+6. **Review** the code, the design, and the documentation.
+7. **Deploy** in a repeatable way.
+8. **Improve** from feedback, logs, and real use.
+
+We prefer working software over unused complexity. A layered system that a team can explain is better than a distributed system nobody can operate.
+
 ---
 
 ## Our Vision
@@ -37,6 +76,17 @@ Deshmukh Technologies aims to:
 - Encourage innovation and problem solving
 - Build and nurture skilled technology professionals
 - Create practical opportunities for fresh talent
+
+### Mission in practice
+
+| Mission | What it looks like |
+| --- | --- |
+| High-quality software | Clear requirements, reviews, tests, and documentation |
+| Digitize processes | Replace informal workflows with tracked systems |
+| Web and mobile applications | Usable interfaces on the devices people already have |
+| Automation | Remove repetitive work without hiding the business rule |
+| Cloud solutions | Deploy, observe, and recover systems deliberately |
+| Talent development | DTTP, mentorship, and promotion by demonstrated capability |
 
 ---
 
@@ -78,6 +128,14 @@ Deshmukh Technologies can operate across a modern technology ecosystem.
 - Intelligent business solutions
 - API-based integrations
 
+### How the stack is used
+
+- **React + TypeScript** is the standard frontend path.
+- **Java / Spring Boot** or **Python / FastAPI** is the backend specialization.
+- **MySQL / PostgreSQL** is the default system of record.
+- **GitHub + Docker + CI/CD + AWS** is the delivery path.
+- AI and automation are introduced where they improve a real process, not as decoration.
+
 ---
 
 ## Our Development Philosophy
@@ -98,6 +156,17 @@ We believe good software should be:
 - Well documented
 - Tested
 - Business-focused
+
+### Quality bar
+
+A feature is not finished when the screen appears. It is finished when:
+
+- the requirement is understood
+- the data is correct
+- validation and permissions are in place
+- tests cover the important cases
+- the change is reviewed
+- the change can be deployed and supported
 
 ---
 
@@ -134,7 +203,9 @@ Orientation → Programming → Frontend → Backend → Database
 
 Backend specialization includes **Java + Spring Boot** or **Python + FastAPI**, with **React + TypeScript** as the common frontend path.
 
-The full program handbook is in [`DTTP-PROGRAM-HANDBOOK.pdf`](./DTTP-PROGRAM-HANDBOOK.pdf).
+The full program handbook is in [`DTTP-PROGRAM-HANDBOOK.pdf`](./DTTP-PROGRAM-HANDBOOK.pdf). The self-growth roadmap is in [`DTTP-SELF-GROWTH-PROGRAM.pdf`](./DTTP-SELF-GROWTH-PROGRAM.pdf).
+
+DTTP is not a side activity. It is the company’s method for building engineers who can later own Deshmukh Technologies products and client work.
 
 ---
 
@@ -174,6 +245,19 @@ The objective is to move the trainee from:
 | 6 | **Teamwork** | Great products are built by teams. |
 | 7 | **Customer Value** | Technology must ultimately create meaningful value for users and organizations. |
 | 8 | **Continuous Improvement** | Every product, process, and individual can become better. |
+
+### Values in daily work
+
+| Value | Daily behavior |
+| --- | --- |
+| Integrity | Do not hide a broken test, a missed requirement, or a leaked secret |
+| Learning | Write down what was learned and what is still unclear |
+| Ownership | Stay with a task until it meets the Definition of Done |
+| Quality | Prefer a smaller correct change over a large fragile one |
+| Innovation | Improve the process after the current problem is understood |
+| Teamwork | Review others’ work and ask for review early |
+| Customer value | Ask who the user is and what becomes easier for them |
+| Continuous improvement | Treat every sprint and every trainee week as a chance to get better |
 
 ---
 
@@ -215,6 +299,14 @@ Technology Training
 ```
 
 The long-term objective is to create an organization where **product development, engineering talent, innovation, and technology education reinforce one another**.
+
+### Document family
+
+| Document | Use |
+| --- | --- |
+| Corporate Master Profile | Who we are and how we work |
+| DTTP 90-Day Handbook | How trainees are trained, assessed, and graduated |
+| DTTP Self-Growth Program | How engineers keep growing after and around the 90 days |
 
 ---
 

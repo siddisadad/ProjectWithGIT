@@ -361,6 +361,11 @@
       margin-bottom: 3px;
     }
 
+    table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13.5px; break-inside: avoid; }
+    th, td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: #f4efe4; font-weight: 600; }
+    tr:nth-child(even) td { background: #faf8f3; }
+
     .closing {
       background:
         radial-gradient(circle at 50% 0%, rgba(184, 137, 44, 0.18), transparent 42%),
@@ -438,7 +443,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Corporate Master Profile</span>
-          <span class="badge">v1.0</span>
+          <span class="badge">v1.1</span>
         </div>
         <h1>Deshmukh<br />Technologies</h1>
         <div class="gold-rule"></div>
@@ -461,7 +466,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>Corporate Master Profile</div>
-          <div><small>Version</small>1.0</div>
+          <div><small>Version</small>1.1</div>
           <div><small>Classification</small>Internal Company Profile</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -469,16 +474,18 @@
         <nav class="toc">
           <ol>
             <li><span class="idx">01</span>Introduction</li>
-            <li><span class="idx">02</span>Our Vision</li>
-            <li><span class="idx">03</span>Our Mission</li>
-            <li><span class="idx">04</span>Technology Focus</li>
-            <li><span class="idx">05</span>Development Philosophy</li>
-            <li><span class="idx">06</span>Our People</li>
-            <li><span class="idx">07</span>Trainee Program</li>
-            <li><span class="idx">08</span>Commitment to Trainees</li>
-            <li><span class="idx">09</span>Core Values</li>
-            <li><span class="idx">10</span>Development Culture</li>
-            <li><span class="idx">11</span>Long-Term Direction</li>
+            <li><span class="idx">02</span>Who we serve</li>
+            <li><span class="idx">03</span>How we work</li>
+            <li><span class="idx">04</span>Our Vision</li>
+            <li><span class="idx">05</span>Our Mission</li>
+            <li><span class="idx">06</span>Technology Focus</li>
+            <li><span class="idx">07</span>Development Philosophy</li>
+            <li><span class="idx">08</span>Our People</li>
+            <li><span class="idx">09</span>Trainee Program</li>
+            <li><span class="idx">10</span>Commitment to Trainees</li>
+            <li><span class="idx">11</span>Core Values</li>
+            <li><span class="idx">12</span>Development Culture</li>
+            <li><span class="idx">13</span>Long-Term Direction</li>
           </ol>
         </nav>
       </section>
@@ -487,11 +494,43 @@
       <p class="lead"><strong>Deshmukh Technologies</strong> is envisioned as a technology and software development organization focused on building modern digital solutions, business applications, automation systems, web platforms, mobile applications, and technology-driven products.</p>
       <p>The company’s approach is centered on combining strong engineering, practical problem solving, modern technologies, and business understanding to create reliable and scalable solutions for organizations, businesses, institutions, and communities.</p>
       <div class="callout">Our goal is not simply to develop software. Our goal is to use technology to solve real problems, improve processes, create opportunities, and build solutions that deliver measurable value.</div>
+      <p>This profile describes intended identity, operating philosophy, technology focus, people system, and long-term direction. It does not make claims about current headcount, clients, revenue, or market position.</p>
 
-      <h2 class="section-title" id="s2"><span class="n">02</span>Our Vision</h2>
+      <h2 class="section-title" id="s1b"><span class="n">02</span>Who we serve</h2>
+      <p>Deshmukh Technologies is designed to create value for organizations, institutions, internal operations, and fresh talent that needs a structured path into professional engineering.</p>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Who</h4>
+          <ul>
+            <li>Organizations that need reliable business applications</li>
+            <li>Teams digitizing paper or spreadsheet processes</li>
+            <li>Institutions that need web or mobile access</li>
+            <li>Operations that can be improved through automation</li>
+            <li>Entry-level engineers on the DTTP path</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Typical problems</h4>
+          <ul>
+            <li>Manual work that should be a system</li>
+            <li>Scattered data that should be one source of truth</li>
+            <li>Slow approvals that should be a workflow</li>
+            <li>Local tools that should become a web platform</li>
+            <li>One-off scripts that should become maintainable software</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title" id="s1c"><span class="n">03</span>How we work</h2>
+      <ol class="stepper">
+        <li>Understand</li><li>Define</li><li>Design</li><li>Develop</li><li>Test</li><li>Review</li><li>Deploy</li><li>Improve</li>
+      </ol>
+      <p>We prefer working software over unused complexity. A layered system that a team can explain is better than a distributed system nobody can operate.</p>
+
+      <h2 class="section-title" id="s2"><span class="n">04</span>Our Vision</h2>
       <div class="callout dark">To build a technology organization that develops innovative, reliable, scalable, and accessible digital solutions while creating a strong culture of engineering excellence and continuous learning.</div>
 
-      <h2 class="section-title" id="s3"><span class="n">03</span>Our Mission</h2>
+      <h2 class="section-title" id="s3"><span class="n">05</span>Our Mission</h2>
       <div class="two-col">
         <ul>
           <li>Develop high-quality software solutions</li>
@@ -507,8 +546,17 @@
           <li>Create practical opportunities for fresh talent</li>
         </ul>
       </div>
+      <table>
+        <thead><tr><th>Mission</th><th>What it looks like</th></tr></thead>
+        <tbody>
+          <tr><td>High-quality software</td><td>Clear requirements, reviews, tests, and documentation</td></tr>
+          <tr><td>Digitize processes</td><td>Replace informal workflows with tracked systems</td></tr>
+          <tr><td>Cloud solutions</td><td>Deploy, observe, and recover systems deliberately</td></tr>
+          <tr><td>Talent development</td><td>DTTP, mentorship, and promotion by demonstrated capability</td></tr>
+        </tbody>
+      </table>
 
-      <h2 class="section-title" id="s4"><span class="n">04</span>Technology Focus</h2>
+      <h2 class="section-title" id="s4"><span class="n">06</span>Technology Focus</h2>
       <p>Deshmukh Technologies can operate across a modern technology ecosystem.</p>
       <div class="cards">
         <article class="card">
@@ -564,24 +612,27 @@
         </div>
       </div>
 
-      <h2 class="section-title" id="s5"><span class="n">05</span>Development Philosophy</h2>
+      <p>React + TypeScript is the standard frontend path. Java / Spring Boot or Python / FastAPI is the backend specialization. MySQL / PostgreSQL is the default system of record. GitHub + Docker + CI/CD + AWS is the delivery path. AI and automation are introduced where they improve a real process, not as decoration.</p>
+
+      <h2 class="section-title" id="s5"><span class="n">07</span>Development Philosophy</h2>
       <p>Deshmukh Technologies follows a practical engineering approach:</p>
       <ol class="stepper">
         <li>Understand</li><li>Design</li><li>Develop</li><li>Test</li><li>Review</li><li>Deploy</li><li>Improve</li>
       </ol>
       <p>We believe good software should be:</p>
       <div class="kpi">
-        <span class="chip">Reliable</span><span class="chip">Secure</span><span class="chip">Maintainable</span><span class="chip">Scalable</span><span class="chip">User-friendly</span><span class="chip">Well documented</span><span class="chip">Tested</span><span class="chip">Business-focused</span>
+        <span class="chip">Reliable</span><span class="chip">Secure</span><span class="chip">Maintainable</span><span class="chip">Scalable</span><span class="chip">User-friendly</span><span class="chip">Well documented</span><span class="chip">Tested</span>        <span class="chip">Business-focused</span>
       </div>
+      <p>A feature is not finished when the screen appears. It is finished when the requirement is understood, the data is correct, validation and permissions are in place, tests cover the important cases, the change is reviewed, and the change can be deployed and supported.</p>
 
-      <h2 class="section-title" id="s6"><span class="n">06</span>Our People</h2>
+      <h2 class="section-title" id="s6"><span class="n">08</span>Our People</h2>
       <p>Technology is built by people. Deshmukh Technologies therefore focuses on developing a culture where team members are encouraged to:</p>
       <div class="kpi">
         <span class="chip">Learn continuously</span><span class="chip">Ask questions</span><span class="chip">Solve problems</span><span class="chip">Share knowledge</span><span class="chip">Take ownership</span><span class="chip">Review each other's work</span><span class="chip">Learn from mistakes</span><span class="chip">Improve continuously</span>
       </div>
       <p>This philosophy directly supports the company’s <strong>DTTP — Deshmukh Technologies Trainee Program</strong>, which is designed to develop freshers and entry-level candidates into capable software professionals.</p>
 
-      <h2 class="section-title" id="s7"><span class="n">07</span>Deshmukh Technologies Trainee Program</h2>
+      <h2 class="section-title" id="s7"><span class="n">09</span>Deshmukh Technologies Trainee Program</h2>
       <p>The <strong>DTTP</strong> is a structured 90-day Full-Stack Software Development and Professional Development Program. The program takes a trainee through:</p>
       <ol class="path">
         <li>Orientation</li>
@@ -599,16 +650,16 @@
         <li>Real Project</li>
         <li>Production Readiness</li>
       </ol>
-      <p>Backend specialization is <strong>Java + Spring Boot</strong> or <strong>Python + FastAPI</strong>, with <strong>React + TypeScript</strong> as the common frontend path.</p>
+      <p>Backend specialization is <strong>Java + Spring Boot</strong> or <strong>Python + FastAPI</strong>, with <strong>React + TypeScript</strong> as the common frontend path. DTTP is not a side activity. It is the company’s method for building engineers who can later own products and client work.</p>
 
-      <h2 class="section-title" id="s8"><span class="n">08</span>Our Commitment to Trainees</h2>
+      <h2 class="section-title" id="s8"><span class="n">10</span>Our Commitment to Trainees</h2>
       <p>Deshmukh Technologies aims to provide trainees with more than theoretical education.</p>
       <div class="kpi">
         <span class="chip">Structured learning</span><span class="chip">Practical assignments</span><span class="chip">Mentor guidance</span><span class="chip">Code reviews</span><span class="chip">Real project exposure</span><span class="chip">Git / GitHub</span><span class="chip">Testing</span><span class="chip">Debugging</span><span class="chip">Deployment</span><span class="chip">Continuous feedback</span><span class="chip">Measurable skill development</span>
       </div>
       <div class="callout">Student → Trainee → Developer → Project Contributor → Production-Ready Engineer</div>
 
-      <h2 class="section-title" id="s9"><span class="n">09</span>Our Core Values</h2>
+      <h2 class="section-title" id="s9"><span class="n">11</span>Our Core Values</h2>
       <div class="values">
         <article class="value"><strong>1. Integrity</strong>Do the right thing, even when nobody is watching.</article>
         <article class="value"><strong>2. Learning</strong>Technology changes continuously. We must continue learning.</article>
@@ -619,8 +670,17 @@
         <article class="value"><strong>7. Customer Value</strong>Technology must ultimately create meaningful value for users and organizations.</article>
         <article class="value"><strong>8. Continuous Improvement</strong>Every product, process, and individual can become better.</article>
       </div>
+      <table>
+        <thead><tr><th>Value</th><th>Daily behavior</th></tr></thead>
+        <tbody>
+          <tr><td>Integrity</td><td>Do not hide a broken test, a missed requirement, or a leaked secret</td></tr>
+          <tr><td>Ownership</td><td>Stay with a task until it meets the Definition of Done</td></tr>
+          <tr><td>Quality</td><td>Prefer a smaller correct change over a large fragile one</td></tr>
+          <tr><td>Customer value</td><td>Ask who the user is and what becomes easier for them</td></tr>
+        </tbody>
+      </table>
 
-      <h2 class="section-title" id="s10"><span class="n">10</span>Our Development Culture</h2>
+      <h2 class="section-title" id="s10"><span class="n">12</span>Our Development Culture</h2>
       <div class="callout dark">We don't encourage developers to simply write more code. We encourage them to understand problems better and write the right code.</div>
       <p>A developer should be able to explain:</p>
       <div class="questions">
@@ -632,7 +692,7 @@
         <div><span>06</span>How will we maintain it?</div>
       </div>
 
-      <h2 class="section-title" id="s11"><span class="n">11</span>Our Long-Term Direction</h2>
+      <h2 class="section-title" id="s11"><span class="n">13</span>Our Long-Term Direction</h2>
       <p>Deshmukh Technologies can grow toward becoming a technology organization with capabilities across:</p>
       <ol class="stepper">
         <li>Software Products</li>
@@ -645,6 +705,14 @@
         <li>Technology Training</li>
       </ol>
       <p>The long-term objective is to create an organization where <strong>product development, engineering talent, innovation, and technology education reinforce one another</strong>.</p>
+      <table>
+        <thead><tr><th>Document</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>Corporate Master Profile</td><td>Who we are and how we work</td></tr>
+          <tr><td>DTTP 90-Day Handbook</td><td>How trainees are trained, assessed, and graduated</td></tr>
+          <tr><td>DTTP Self-Growth Program</td><td>How engineers keep growing around the 90 days</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <section class="closing">
@@ -653,7 +721,7 @@
       <h2>Technology · Innovation · Engineering · Growth</h2>
       <p class="final">Building technology. Developing people. Solving real problems.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · Corporate Master Profile v1.0 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · Corporate Master Profile v1.1 · Internal use</footer>
   </article>
 </body>
 </html>

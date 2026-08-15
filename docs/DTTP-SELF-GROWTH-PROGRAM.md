@@ -48,6 +48,20 @@ For every topic:
 
 > A trainee completes this program when they can independently build, test, debug, explain, document, and maintain a full-stack application.
 
+### Mapping to the 90-day handbook
+
+| Self-growth level | Typical 90-day phase |
+| :---: | --- |
+| 1–2 | Days 1–25 · orientation, programming, web foundation |
+| 3–4 | Days 26–35 · React and API thinking |
+| 5–6 | Days 36–55 · backend specialization and database |
+| 7 | Throughout the project, made explicit in design reviews |
+| 8 | Days 66–78 · security, testing, debugging |
+| 9 | Days 79–86 · Docker, CI/CD, AWS |
+| 10 | Entire program, assessed at the end |
+
+A trainee may be ahead or behind the calendar. The level checklist matters more than the day number.
+
 ---
 
 ## Official progression
@@ -755,6 +769,27 @@ This level is how the trainee becomes eligible for Junior Full-Stack Developer r
 - [ ] Can review code with specific comments
 - [ ] Can present a feature to a mentor
 - [ ] Can describe their own skill gaps honestly
+
+---
+
+## Mentor checkpoints and common mistakes
+
+| Level | Mentor asks | Common mistake | Required artifact |
+| :---: | --- | --- | --- |
+| 1 | What happens after a URL is entered? | Jumping to React immediately | Request-path diagram + static page |
+| 2 | Why did this CSS rule not apply? | Ignoring accessibility and errors | Responsive page + fetch demo |
+| 3 | Where does this state belong? | Putting API calls inside JSX | Typed React feature with routes |
+| 4 | Why is this 403, not 401? | Treating all failures as 500 | Network notes + API contract |
+| 5 | Which layer owns this rule? | Fat controllers, no tests | CRUD API with one service test |
+| 6 | Show the SQL behind this ORM call | Using only generated queries | Schema + join report query |
+| 7 | Why is this still a monolith? | Copying microservices slogans | Architecture diagram |
+| 8 | What did you measure? | Optimizing before measuring | Tests + one security note |
+| 9 | Why did CI fail? | Committing to main directly | Compose file + Actions workflow |
+| 10 | What is the acceptance criteria? | “It works on my machine” | Story, PR walkthrough, daily reports |
+
+### Evidence rule
+
+A level is not complete because the trainee attended a session. It is complete when the artifact exists in Git, the trainee can explain it, and a mentor has reviewed it.
 
 ---
 

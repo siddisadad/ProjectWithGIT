@@ -554,7 +554,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.1</span>
+          <span class="badge">DTTP · v1.2</span>
         </div>
         <h1>Trainee<br />Program</h1>
         <div class="gold-rule"></div>
@@ -579,7 +579,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Program Handbook</div>
-          <div><small>Version</small>1.1</div>
+          <div><small>Version</small>1.2</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -653,6 +653,26 @@
       <p class="lead">The Deshmukh Technologies Trainee Program (DTTP) is a structured professional development program designed to transform freshers, interns, graduates, and entry-level candidates into capable software engineers.</p>
       <p>The program combines technical education, practical coding, full-stack development, project-based learning, engineering practices, mentorship, code review, testing, debugging, security, DevOps, professional development, and continuous assessment.</p>
       <div class="callout">The program does not define success as completion of 90 days. Success means the trainee can demonstrate the ability to build, test, debug, explain, document, and maintain software.</div>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Who the program is for</h4>
+          <ul>
+            <li>Freshers and recent graduates</li>
+            <li>Interns converting into a structured path</li>
+            <li>Career-switchers with basic programming exposure</li>
+            <li>Entry-level hires who need a company standard</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Companion documents</h4>
+          <ul>
+            <li>This handbook — 90-day path and graduation</li>
+            <li>Self-Growth Program — ten-level knowledge map</li>
+            <li>Corporate Profile — identity, values, and method</li>
+          </ul>
+        </div>
+      </div>
+      <p>The program is a supervised professional environment with attendance, reviews, Git history, and a production-readiness gate.</p>
 
       <h2 class="section-title" id="s2"><span class="n">02</span>Program Vision</h2>
       <div class="callout dark">Build skilled, responsible and production-ready software professionals who can understand business requirements, develop complete applications, solve problems independently and contribute effectively to real Deshmukh Technologies projects.</div>
@@ -787,6 +807,21 @@
           <tr><td>10</td><td class="num">79–82</td><td>Docker</td></tr>
           <tr><td>11</td><td class="num">83–86</td><td>CI/CD + AWS</td></tr>
           <tr><td>12</td><td class="num">87–90</td><td>Final project + assessment</td></tr>
+        </tbody>
+      </table>
+      <h4>Phase deliverables</h4>
+      <table>
+        <thead><tr><th>Phase</th><th>The trainee should produce</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Baseline profile, professional standards acknowledgment, first Git repo</td></tr>
+          <tr><td>2</td><td>Solved problem set with commits and explanations</td></tr>
+          <tr><td>3–4</td><td>Responsive React pages for login, dashboard, and employee list</td></tr>
+          <tr><td>5–6</td><td>Working REST API and SQL schema for employees and departments</td></tr>
+          <tr><td>7</td><td>End-to-end create/list employee flow</td></tr>
+          <tr><td>8</td><td>Authenticated roles and protected routes</td></tr>
+          <tr><td>9</td><td>Automated tests and a written debug note for one real bug</td></tr>
+          <tr><td>10–11</td><td>Docker Compose runbook and a CI workflow</td></tr>
+          <tr><td>12</td><td>Final demo, documentation, and production-readiness evidence</td></tr>
         </tbody>
       </table>
 
@@ -967,8 +1002,22 @@
       <h3>Employee Management System</h3>
       <p><strong>Roles:</strong> ADMIN · HR · EMPLOYEE</p>
       <div class="kpi">
-        <span class="chip">Authentication</span><span class="chip">Dashboard</span><span class="chip">Employee Management</span><span class="chip">Department Management</span><span class="chip">Attendance</span><span class="chip">Leave</span><span class="chip">Reports</span><span class="chip">Profile</span>
+        <span class="chip">Authentication</span><span class="chip">Dashboard</span><span class="chip">Employee Management</span><span class="chip">Department Management</span><span class="chip">Attendance</span><span class="chip">Leave</span>        <span class="chip">Reports</span><span class="chip">Profile</span>
       </div>
+      <table>
+        <thead><tr><th>Module</th><th>Minimum complete behavior</th></tr></thead>
+        <tbody>
+          <tr><td>Authentication</td><td>Login, logout, invalid-credential handling, token stored safely</td></tr>
+          <tr><td>Dashboard</td><td>Role-aware summary of employees, attendance, and pending leave</td></tr>
+          <tr><td>Employees</td><td>Create, read, update, list, and validate required fields</td></tr>
+          <tr><td>Departments</td><td>Create and list; employee belongs to a department</td></tr>
+          <tr><td>Attendance</td><td>Record and list attendance for a date range</td></tr>
+          <tr><td>Leave</td><td>Apply, list own requests, approve/reject by HR or Admin</td></tr>
+          <tr><td>Reports</td><td>At least one SQL-backed report, such as leave count by department</td></tr>
+          <tr><td>Profile</td><td>View and update the signed-in user's own details</td></tr>
+        </tbody>
+      </table>
+      <p>A module is not complete until it meets the Definition of Done, including tests, review, and documentation.</p>
 
       <h2 class="section-title" id="s22"><span class="n">22</span>Full-Stack Architecture</h2>
       <h4>Java implementation</h4>
@@ -1075,6 +1124,29 @@
         <span class="chip">Trainee progress</span><span class="chip">Code-review quality</span><span class="chip">Feedback quality</span><span class="chip">Skill-gap identification</span><span class="chip">Project completion</span><span class="chip">Production-readiness improvement</span>
       </div>
       <p>This prevents mentorship from becoming informal or inconsistent.</p>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Weekly mentor agenda</h4>
+          <ol>
+            <li>Git activity and pull requests</li>
+            <li>Assignment and project progress</li>
+            <li>One code-review example</li>
+            <li>One debugging or blocker discussion</li>
+            <li>Skill-gap and next-week plan</li>
+            <li>Status: Green / Amber / Red</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <h4>Individual Improvement Plan</h4>
+          <ul>
+            <li>The skill gap</li>
+            <li>Expected evidence of improvement</li>
+            <li>Practice work for the next 7 days</li>
+            <li>Review date</li>
+            <li>Mentor responsible</li>
+          </ul>
+        </div>
+      </div>
 
       <h2 class="section-title" id="s32"><span class="n">32</span>Daily Report</h2>
       <table>
@@ -1132,6 +1204,16 @@
           <tr><td><strong>Total</strong></td><td class="num"><strong>100</strong></td></tr>
         </tbody>
       </table>
+      <table>
+        <thead><tr><th>Score band</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>85–100</td><td>Independent, reviewed, documented, and reusable work</td></tr>
+          <tr><td>70–84</td><td>Correct work with guidance and a few review cycles</td></tr>
+          <tr><td>55–69</td><td>Incomplete, fragile, or poorly explained work</td></tr>
+          <tr><td>Below 55</td><td>Missing fundamentals or professional standards</td></tr>
+        </tbody>
+      </table>
+      <p>A high weekly score requires Git history, not only a verbal update.</p>
 
       <h2 class="section-title" id="s37"><span class="n">37</span>Final Assessment</h2>
       <table>

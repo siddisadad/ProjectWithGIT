@@ -231,7 +231,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.1</span>
+          <span class="badge">DTTP · v1.2</span>
         </div>
         <h1>Self-Growth<br />Program</h1>
         <div class="gold-rule"></div>
@@ -256,7 +256,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Self-Growth Program</div>
-          <div><small>Version</small>1.1</div>
+          <div><small>Version</small>1.2</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -325,6 +325,20 @@
         <li>Agile + Professional Engineering</li>
       </ol>
       <p>The destination is a <strong>self-directed full-stack developer</strong> who can build, test, debug, explain, document, and maintain software.</p>
+      <h4>Mapping to the 90-day handbook</h4>
+      <table>
+        <thead><tr><th>Self-growth level</th><th>Typical 90-day phase</th></tr></thead>
+        <tbody>
+          <tr><td>1–2</td><td>Days 1–25 · orientation, programming, web foundation</td></tr>
+          <tr><td>3–4</td><td>Days 26–35 · React and API thinking</td></tr>
+          <tr><td>5–6</td><td>Days 36–55 · backend specialization and database</td></tr>
+          <tr><td>7</td><td>Throughout the project, made explicit in design reviews</td></tr>
+          <tr><td>8</td><td>Days 66–78 · security, testing, debugging</td></tr>
+          <tr><td>9</td><td>Days 79–86 · Docker, CI/CD, AWS</td></tr>
+          <tr><td>10</td><td>Entire program, assessed at the end</td></tr>
+        </tbody>
+      </table>
+      <p>A trainee may be ahead or behind the calendar. The level checklist matters more than the day number.</p>
 
       <h2 class="section-title"><span class="n">01</span>Level 1 — Web Fundamentals</h2>
       <p><strong>Purpose:</strong> give the trainee a mental model of the web before frameworks.</p>
@@ -694,6 +708,23 @@ GET|POST /api/leaves       PUT /api/leaves/{id}/approve</div>
           <tr><td>10</td><td>Agile + professional engineering</td><td>Can work as a team engineer</td></tr>
         </tbody>
       </table>
+      <h4>Mentor checkpoints and common mistakes</h4>
+      <table>
+        <thead><tr><th>Level</th><th>Mentor asks</th><th>Common mistake</th><th>Required artifact</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>What happens after a URL is entered?</td><td>Jumping to React immediately</td><td>Request-path diagram + static page</td></tr>
+          <tr><td>2</td><td>Why did this CSS rule not apply?</td><td>Ignoring accessibility and errors</td><td>Responsive page + fetch demo</td></tr>
+          <tr><td>3</td><td>Where does this state belong?</td><td>Putting API calls inside JSX</td><td>Typed React feature with routes</td></tr>
+          <tr><td>4</td><td>Why is this 403, not 401?</td><td>Treating all failures as 500</td><td>Network notes + API contract</td></tr>
+          <tr><td>5</td><td>Which layer owns this rule?</td><td>Fat controllers, no tests</td><td>CRUD API with one service test</td></tr>
+          <tr><td>6</td><td>Show the SQL behind this ORM call</td><td>Using only generated queries</td><td>Schema + join report query</td></tr>
+          <tr><td>7</td><td>Why is this still a monolith?</td><td>Copying microservices slogans</td><td>Architecture diagram</td></tr>
+          <tr><td>8</td><td>What did you measure?</td><td>Optimizing before measuring</td><td>Tests + one security note</td></tr>
+          <tr><td>9</td><td>Why did CI fail?</td><td>Committing to main directly</td><td>Compose file + Actions workflow</td></tr>
+          <tr><td>10</td><td>What is the acceptance criteria?</td><td>“It works on my machine”</td><td>Story, PR walkthrough, daily reports</td></tr>
+        </tbody>
+      </table>
+      <p>A level is not complete because the trainee attended a session. It is complete when the artifact exists in Git, the trainee can explain it, and a mentor has reviewed it.</p>
       <div class="callout dark">The reference material is the knowledge map. Deshmukh Technologies projects are the proof. A trainee completes this program when they can independently build, test, debug, explain, document, and maintain a full-stack application.</div>
     </div>
 
@@ -704,7 +735,7 @@ GET|POST /api/leaves       PUT /api/leaves/{id}/approve</div>
       <p>Ten levels. One practice stack. Real projects.</p>
       <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.1 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.2 · Internal use</footer>
   </article>
 </body>
 </html>

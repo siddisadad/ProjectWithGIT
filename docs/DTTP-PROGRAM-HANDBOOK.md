@@ -92,6 +92,23 @@ The program does **not** define success as completion of 90 days.
 
 > **Success means the trainee can demonstrate the ability to build, test, debug, explain, document, and maintain software.**
 
+### Who the program is for
+
+- Freshers and recent graduates
+- Interns converting into a structured engineering path
+- Career-switchers with basic programming exposure
+- Entry-level hires who need a common company standard
+
+The program is not a short tutorial series. It is a supervised professional environment with attendance, reviews, Git history, and a production-readiness gate.
+
+### Companion documents
+
+| Document | Role |
+| --- | --- |
+| This handbook | 90-day path, project, assessment, graduation |
+| Self-Growth Program | Ten-level knowledge map around and after the 90 days |
+| Corporate Profile | Company identity, values, and working method |
+
 ---
 
 ## 2. Program Vision
@@ -287,6 +304,20 @@ JUNIOR FULL-STACK DEVELOPER
 | 10 | 79–82 | Docker |
 | 11 | 83–86 | CI/CD + AWS |
 | 12 | 87–90 | Final project + assessment |
+
+### Phase deliverables
+
+| Phase | The trainee should produce |
+| :---: | --- |
+| 1 | Baseline profile, professional standards acknowledgment, first Git repo |
+| 2 | Solved problem set with commits and explanations |
+| 3–4 | Responsive React pages for login, dashboard, and employee list |
+| 5–6 | Working REST API and SQL schema for employees and departments |
+| 7 | End-to-end create/list employee flow |
+| 8 | Authenticated roles and protected routes |
+| 9 | Automated tests and a written debug note for one real bug |
+| 10–11 | Docker Compose runbook and a CI workflow |
+| 12 | Final demo, documentation, and production-readiness evidence |
 
 ---
 
@@ -657,6 +688,21 @@ PUT    /api/leaves/{id}/approve
 - Reports
 - Profile
 
+### Module acceptance criteria
+
+| Module | Minimum complete behavior |
+| --- | --- |
+| Authentication | Login, logout, invalid-credential handling, JWT or session stored safely |
+| Dashboard | Role-aware summary of employees, attendance, and pending leave |
+| Employees | Create, read, update, list, and validate required fields |
+| Departments | Create and list; employee belongs to a department |
+| Attendance | Record and list attendance for a date range |
+| Leave | Apply, list own requests, approve/reject by HR or Admin |
+| Reports | At least one SQL-backed report, for example leave count by department |
+| Profile | View and update the signed-in user's own details |
+
+A module is not complete until it meets the Definition of Done, including tests, review, and documentation.
+
 ---
 
 ## 22. Full-Stack Architecture
@@ -871,6 +917,25 @@ The mentor should be measured on:
 
 This prevents mentorship from becoming informal or inconsistent.
 
+### Weekly mentor agenda
+
+1. Git activity and pull requests
+2. Assignment and project progress
+3. One code-review example
+4. One debugging or blocker discussion
+5. Skill-gap and next-week plan
+6. Performance status: Green / Amber / Red
+
+### Individual Improvement Plan
+
+Amber and Red trainees receive a written plan with:
+
+- The skill gap
+- The expected evidence of improvement
+- The practice work for the next 7 days
+- The review date
+- The mentor responsible
+
 ---
 
 ## 32. Daily Report
@@ -950,6 +1015,17 @@ Advanced areas such as architecture, CI/CD, and AWS may initially target **L2**.
 | Discipline | 5 |
 | Documentation | 5 |
 | **Total** | **100** |
+
+### Scoring guidance
+
+| Score band | Meaning |
+| --- | --- |
+| 85–100 | Independent, reviewed, documented, and reusable work |
+| 70–84 | Correct work with guidance and a few review cycles |
+| 55–69 | Incomplete, fragile, or poorly explained work |
+| Below 55 | Missing fundamentals or professional standards |
+
+A high weekly score requires Git history, not only a verbal update.
 
 ---
 
