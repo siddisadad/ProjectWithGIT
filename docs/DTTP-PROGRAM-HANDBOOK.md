@@ -17,7 +17,7 @@
 
 > **Learn. Build. Solve. Review. Deploy. Grow.**
 
-A designed, print-ready version of this handbook is available in [`DTTP-PROGRAM-HANDBOOK.html`](./DTTP-PROGRAM-HANDBOOK.html).
+A designed, print-ready version of this handbook is available in [`DTTP-PROGRAM-HANDBOOK.pdf`](./DTTP-PROGRAM-HANDBOOK.pdf) and [`DTTP-PROGRAM-HANDBOOK.html`](./DTTP-PROGRAM-HANDBOOK.html).
 
 ---
 

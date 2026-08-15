@@ -425,7 +425,7 @@
       padding: 0 72px 40px;
     }
 
-    @media (max-width: 820px) {
+    @media screen and (max-width: 820px) {
       .cover, .inner, .closing { padding: 36px 24px; }
       .cover h1 { font-size: 48px; }
       .cards, .doc-control, .status, .levels, .two-col, .toc ol, .checklist {
@@ -435,13 +435,79 @@
       .page { margin: 0; }
     }
 
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm;
+    }
+
+    @page :first {
+      margin: 0;
+    }
+
     @media print {
-      body { background: white; }
-      .page { margin: 0; box-shadow: none; max-width: none; }
-      .cover { min-height: 100vh; page-break-after: always; }
-      h2.section-title { page-break-before: always; }
-      h2.section-title:first-of-type { page-break-before: auto; }
-      .card, .callout, table, .flow, .level { break-inside: avoid; }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      html, body {
+        background: white;
+        font-size: 11.5pt;
+      }
+
+      .page {
+        margin: 0;
+        box-shadow: none;
+        max-width: none;
+      }
+
+      .cover {
+        min-height: 100vh;
+        height: 100vh;
+        padding: 28mm 22mm 22mm;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .cover h1 { font-size: 58px; }
+      .cover h2 { font-size: 26px; }
+
+      .inner {
+        padding: 8mm 4mm 10mm;
+      }
+
+      .doc-control { margin-bottom: 18px; }
+
+      h2.section-title {
+        font-size: 26px;
+        margin: 22px 0 10px;
+        padding-top: 10px;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      h2.section-title.break-before {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      h3 { font-size: 18px; margin: 16px 0 8px; }
+      .callout { font-size: 16px; padding: 12px 16px; }
+      .flow { font-size: 10.5px; padding: 14px 16px; }
+      .cards, .status, .levels, .two-col { gap: 10px; }
+      .closing {
+        padding: 28mm 18mm;
+        min-height: 70vh;
+        break-before: page;
+        page-break-before: always;
+      }
+      footer.page-foot { padding: 8px 0 0; }
+
+      .card, .callout, table, .flow, .level, .panel, .status article {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
       a { text-decoration: none; color: inherit; }
     }
   </style>
@@ -689,7 +755,7 @@ PRODUCTION READINESS
       ↓
 JUNIOR FULL-STACK DEVELOPER</div>
 
-      <h2 class="section-title" id="s7">7. 90-Day Master Roadmap</h2>
+      <h2 class="section-title break-before" id="s7">7. 90-Day Master Roadmap</h2>
       <table>
         <thead>
           <tr><th>Phase</th><th class="num">Days</th><th>Outcome</th></tr>
@@ -808,7 +874,7 @@ JUNIOR FULL-STACK DEVELOPER</div>
         </div>
       </div>
 
-      <h2 class="section-title" id="s14">14. Java Track</h2>
+      <h2 class="section-title break-before" id="s14">14. Java Track</h2>
       <div class="two-col">
         <div class="panel">
           <h4>Java fundamentals</h4>
@@ -888,7 +954,7 @@ GET    /api/leaves
 POST   /api/leaves
 PUT    /api/leaves/{id}/approve</div>
 
-      <h2 class="section-title" id="s21">21. Major Training Project</h2>
+      <h2 class="section-title break-before" id="s21">21. Major Training Project</h2>
       <h3>Employee Management System</h3>
       <p><strong>Roles:</strong> ADMIN · HR · EMPLOYEE</p>
       <div class="kpi">
@@ -972,7 +1038,7 @@ PUT    /api/leaves/{id}/approve</div>
       </table>
       <p>This teaches trainees how professional teams convert requirements into engineering work.</p>
 
-      <h2 class="section-title" id="s30">30. Definition of Done</h2>
+      <h2 class="section-title break-before" id="s30">30. Definition of Done</h2>
       <p>A feature is complete only when all of the following are true:</p>
       <ul class="checklist">
         <li>Requirement understood</li>
@@ -1047,7 +1113,7 @@ PUT    /api/leaves/{id}/approve</div>
       </div>
       <p>Amber and Red trainees receive an <strong>Individual Improvement Plan</strong>.</p>
 
-      <h2 class="section-title" id="s36">36. Weekly Score</h2>
+      <h2 class="section-title break-before" id="s36">36. Weekly Score</h2>
       <table>
         <thead><tr><th>Area</th><th class="num">Weight</th></tr></thead>
         <tbody>
