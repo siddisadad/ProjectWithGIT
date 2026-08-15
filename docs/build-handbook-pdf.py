@@ -42,7 +42,7 @@ MARKERS = [
     (1, "Part III — Project & Engineering", "Project & Engineering"),
     (2, "21 Major Training Project", "Major Training Project"),
     (1, "Part IV — Assessment & Career", "Assessment & Career"),
-    (2, "30 Definition of Done", "Definition of Done"),
+    (2, "30 Definition of Done", "A feature is complete only when"),
     (2, "36 Weekly Score", "Weekly Score"),
     (2, "42 Final DTTP Standard", "Final DTTP Standard"),
 ]
