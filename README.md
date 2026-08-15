@@ -1,6 +1,18 @@
-# Deshmukh Technologies — DTTP
+# Deshmukh Technologies
 
-**DTTP — Deshmukh Technologies Trainee Program**
+**Technology · Innovation · Engineering · Growth**
+
+> Building technology. Developing people. Solving real problems.
+
+## Corporate profile
+
+| Format | File |
+| --- | --- |
+| PDF | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.pdf](docs/DESHMUKH-TECHNOLOGIES-PROFILE.pdf) |
+| HTML | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.html](docs/DESHMUKH-TECHNOLOGIES-PROFILE.html) |
+| Markdown | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.md](docs/DESHMUKH-TECHNOLOGIES-PROFILE.md) |
+
+## DTTP — Trainee Program
 
 A 90-day full-stack software development and professional development program.
 
@@ -13,12 +25,10 @@ A 90-day full-stack software development and professional development program.
 | Database | MySQL / PostgreSQL |
 | Delivery | Git + GitHub + Docker + CI/CD + AWS |
 
-## Handbook
-
-| Format | File | Use |
-| --- | --- | --- |
-| PDF handbook | [docs/DTTP-PROGRAM-HANDBOOK.pdf](docs/DTTP-PROGRAM-HANDBOOK.pdf) | Formal A4 handbook with cover, contents, headers, and bookmarks. |
-| Designed handbook | [docs/DTTP-PROGRAM-HANDBOOK.html](docs/DTTP-PROGRAM-HANDBOOK.html) | Open in a browser. |
-| Markdown handbook | [docs/DTTP-PROGRAM-HANDBOOK.md](docs/DTTP-PROGRAM-HANDBOOK.md) | Read on GitHub or in any editor. |
+| Format | File |
+| --- | --- |
+| PDF handbook | [docs/DTTP-PROGRAM-HANDBOOK.pdf](docs/DTTP-PROGRAM-HANDBOOK.pdf) |
+| HTML handbook | [docs/DTTP-PROGRAM-HANDBOOK.html](docs/DTTP-PROGRAM-HANDBOOK.html) |
+| Markdown handbook | [docs/DTTP-PROGRAM-HANDBOOK.md](docs/DTTP-PROGRAM-HANDBOOK.md) |
 
 > Learn. Build. Solve. Review. Deploy. Grow.
