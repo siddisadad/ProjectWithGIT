@@ -378,6 +378,24 @@ Trainees learn:
 - Information security
 - Responsibility
 
+### Orientation reading
+
+Before Day 6, the trainee reads and can summarize:
+
+1. Corporate Master Profile — who we are and how we work
+2. This handbook — purpose, daily cycle, Definition of Done
+3. Self-Growth Program — how levels sit around the 90 days
+
+### Suggested Day 1–5
+
+| Day | Focus | Written output |
+| :---: | --- | --- |
+| 1 | Company, values, document family | One-page summary of how Deshmukh Technologies works |
+| 2 | Professional standards and security | Signed acknowledgment + first daily report |
+| 3 | Baseline assessment | Baseline Skill Profile |
+| 4 | GitHub access and first repository | Empty project README and first commit |
+| 5 | Mentor meeting | Week-1 plan with one measurable objective |
+
 ---
 
 ## 11. Baseline Assessment
@@ -411,6 +429,18 @@ Before technical training begins, assess the following. The result becomes the t
 - Technical explanation
 - Problem explanation
 
+### How to record the baseline
+
+Score each area L0–L5 using the competency model. Write one sentence of evidence, not a slogan.
+
+| Area | Level | Evidence |
+| --- | :---: | --- |
+| JavaScript | L2 | Built a form and fetch demo with mentor help |
+| SQL | L1 | Can explain SELECT/WHERE, has not written a join |
+| Git | L1 | Has committed locally, has not opened a pull request |
+
+The baseline is a starting point. It is not a grade and it is not a prediction.
+
 ---
 
 ## 12. Git & GitHub
@@ -439,6 +469,46 @@ Trainees must learn:
 TASK → BRANCH → CODE → TEST → COMMIT → PUSH
    → PULL REQUEST → REVIEW → FIX → APPROVE → MERGE
 ```
+
+### Naming
+
+```text
+Branch   dttp/<initials>/leave-approve-api
+Commit   feat(leave): add approve endpoint and role check
+```
+
+Useful prefixes: `feat`, `fix`, `test`, `docs`, `chore`. One purpose per commit.
+
+### Pull request body
+
+Every PR answers:
+
+1. **What** changed
+2. **Why** it changed
+3. **How** it was tested
+4. **What** a reviewer should look at first
+5. **Risks** or follow-up work
+
+```text
+## What
+Add leave approve API for HR and ADMIN.
+
+## Why
+HR cannot currently decide a pending request.
+
+## Test
+- unit: employee cannot approve
+- API: 401 / 403 / 409
+- manual: HR approves one pending leave
+
+## Review first
+LeaveService.approve() role check
+
+## Risk
+Already-decided leaves must stay unchanged
+```
+
+A pull request with no test note is not ready for review.
 
 ---
 
@@ -663,6 +733,30 @@ POST   /api/leaves
 PUT    /api/leaves/{id}/approve
 ```
 
+### Endpoint note
+
+Document every endpoint the trainee implements. Minimum fields:
+
+| Field | Example |
+| --- | --- |
+| Purpose | Create an employee |
+| Roles | ADMIN, HR |
+| Request | `{ "name", "email", "departmentId", "joiningDate" }` |
+| Success | `201` + employee JSON |
+| Errors | `400` validation, `401` missing token, `403` wrong role, `409` duplicate email |
+
+Use one error shape:
+
+```json
+{
+  "error": "VALIDATION_FAILED",
+  "message": "Email is required",
+  "field": "email"
+}
+```
+
+Keep the notes next to the code, in `docs/api.md` or an OpenAPI file. Do not leave the contract only in a mentor’s memory.
+
 ---
 
 ## 21. Major Training Project
@@ -702,6 +796,22 @@ PUT    /api/leaves/{id}/approve
 | Profile | View and update the signed-in user's own details |
 
 A module is not complete until it meets the Definition of Done, including tests, review, and documentation.
+
+### Project README
+
+The Employee Management repository must contain a README that another trainee can follow without asking the author.
+
+Required headings:
+
+1. What this system does
+2. Roles (ADMIN / HR / EMPLOYEE)
+3. How to run locally
+4. How to run tests
+5. Environment variables (names only, never secret values)
+6. API summary or link to `docs/api.md`
+7. Known limits
+
+A repository with only source files and no README is not a complete project.
 
 ---
 
@@ -895,6 +1005,19 @@ A feature is complete only when:
 - [ ] Documentation updated
 - [ ] Mentor approved
 
+### What “documentation updated” means
+
+At least one of the following must change when the feature changes behavior:
+
+| Change | Update this |
+| --- | --- |
+| How to run or install | Project README |
+| Endpoint, status, or payload | `docs/api.md` or OpenAPI |
+| A non-obvious design choice | Short decision note |
+| The day’s work | Daily report with commit / PR link |
+
+“Documentation updated” is not a checkbox for later. If the notes are missing, the feature is not done.
+
 ---
 
 ## 31. Mentor System
@@ -953,6 +1076,21 @@ Every trainee submits:
 | Git Activity | Commits / PRs |
 | Next Plan | Tomorrow's objectives |
 
+A report with only “worked on employees” is incomplete. Name the file, the endpoint, the error, or the commit.
+
+### Sample daily report
+
+| Field | Example |
+| --- | --- |
+| Daily Objective | Add validated POST /api/employees on the Java track |
+| Completed | Endpoint returns 201; duplicate email returns 409 |
+| Learning | Unique constraint belongs in the service and the database |
+| Problems | First attempt returned 500 on duplicate email |
+| Investigation | Read Hibernate exception and mapped it in the exception handler |
+| Resolution | Service throws ConflictException; handler returns 409 JSON |
+| Git Activity | `feat(employees): reject duplicate email` · PR #14 |
+| Next Plan | Add GET list with department name join |
+
 ---
 
 ## 33. Weekly Review
@@ -969,6 +1107,20 @@ Mentor reviews:
 - Git activity
 - Blockers
 - Skill gaps
+
+### Weekly review note
+
+The mentor writes a short note the trainee can act on. Four lines is enough:
+
+```text
+Progress: employee create/list works with auth.
+Quality: controller still contains the unique-email rule.
+Gap: cannot explain 401 vs 403 without notes.
+Next week: move the rule to the service; add 401/403 API tests.
+Status: AMBER
+```
+
+Verbal feedback that is not written down does not count as a weekly review.
 
 ---
 

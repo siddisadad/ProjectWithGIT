@@ -20,12 +20,13 @@ MARKERS = [
     (1, "01 Introduction", "Introduction"),
     (1, "02 Who we serve", "Who we serve"),
     (1, "03 How we work", "How we work"),
-    (1, "04 Our Vision", "Our Vision"),
-    (1, "06 Technology Focus", "Technology Focus"),
-    (1, "07 Development Philosophy", "Development Philosophy"),
-    (1, "09 Trainee Program", "Deshmukh Technologies Trainee Program"),
-    (1, "11 Core Values", "Our Core Values"),
-    (1, "13 Long-Term Direction", "Our Long-Term Direction"),
+    (1, "04 How we document", "How we document"),
+    (1, "05 Our Vision", "Our Vision"),
+    (1, "07 Technology Focus", "Technology Focus"),
+    (1, "08 Development Philosophy", "Development Philosophy"),
+    (1, "10 Trainee Program", "Deshmukh Technologies Trainee Program"),
+    (1, "12 Core Values", "Our Core Values"),
+    (1, "14 Long-Term Direction", "Our Long-Term Direction"),
 ]
 
 
@@ -71,7 +72,7 @@ def finish_pdf() -> None:
         )
         page.insert_text(
             pymupdf.Point(36, height - 16),
-            "Internal use  ·  Version 1.1",
+            "Internal use  ·  Version 1.2",
             fontname="helv",
             fontsize=7,
             color=MUTED,

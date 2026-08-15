@@ -231,7 +231,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.3</span>
+          <span class="badge">DTTP · v1.4</span>
         </div>
         <h1>Self-Growth<br />Program</h1>
         <div class="gold-rule"></div>
@@ -256,7 +256,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Self-Growth Program</div>
-          <div><small>Version</small>1.3</div>
+          <div><small>Version</small>1.4</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -377,6 +377,52 @@
           <h4>Commit standard</h4>
           <div class="tree">level-03: add protected employee list route</div>
           <p>A useful commit is small, named after the level, and reviewable. Do not store a week of mixed work in one commit.</p>
+        </div>
+      </div>
+      <h4>Writing standard</h4>
+      <p>Notes are part of the work. Write so a mentor can review the day without a meeting. Be specific: name the file, endpoint, status code, or error. Prefer evidence over adjectives. Record what is still unclear.</p>
+      <table>
+        <thead><tr><th>Field</th><th>Sample notebook entry</th></tr></thead>
+        <tbody>
+          <tr><td>Topic studied</td><td>Protected routes and service layer</td></tr>
+          <tr><td>What I can now explain</td><td>Why employee list state does not belong inside JSX</td></tr>
+          <tr><td>What I built</td><td><code>/employees</code> route, <code>employeeService.ts</code>, empty state</td></tr>
+          <tr><td>What broke</td><td>Redirect loop when the token was an empty string</td></tr>
+          <tr><td>What I still cannot explain</td><td>When Context is better than lifting state</td></tr>
+          <tr><td>Commit / PR</td><td><code>level-03: add protected employee list route</code></td></tr>
+          <tr><td>Tomorrow</td><td>Create-employee form with typed validation</td></tr>
+        </tbody>
+      </table>
+      <h4>Documentation artifact by level</h4>
+      <table>
+        <thead><tr><th>Level</th><th>Written artifact the mentor reviews</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Request-path diagram and URL parts</td></tr>
+          <tr><td>2</td><td>Accessibility and fetch-error notes</td></tr>
+          <tr><td>3</td><td>Component map and where state lives</td></tr>
+          <tr><td>4</td><td>API contract and Network-tab notes</td></tr>
+          <tr><td>5</td><td>Endpoint notes for each implemented route</td></tr>
+          <tr><td>6</td><td>Schema, seed notes, and the SQL behind one ORM call</td></tr>
+          <tr><td>7</td><td>Architecture diagram and three “not yet services” reasons</td></tr>
+          <tr><td>8</td><td>Test list, security note, before/after measurement</td></tr>
+          <tr><td>9</td><td>Compose runbook and CI failure explanation</td></tr>
+          <tr><td>10</td><td>User story, PR walkthrough notes, daily reports</td></tr>
+        </tbody>
+      </table>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Feature note</h4>
+          <div class="tree">Feature: Create employee
+Done when: ADMIN/HR can create; EMPLOYEE cannot; duplicate email is 409
+Tests: service duplicate-email; API 401/403/409
+Docs: README run steps unchanged; api.md updated</div>
+        </div>
+        <div class="panel">
+          <h4>Decision note</h4>
+          <div class="tree">Decision: keep leave in the same service as employees
+Why: one team, one database, one deployable
+Not chosen: leave microservice
+Revisit when: a second team owns leave</div>
         </div>
       </div>
 
@@ -933,7 +979,7 @@ MySQL or PostgreSQL</div>
       <p>Ten levels. One practice stack. Real projects.</p>
       <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.3 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.4 · Internal use</footer>
   </article>
 </body>
 </html>

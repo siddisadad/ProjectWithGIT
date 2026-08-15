@@ -55,6 +55,25 @@ A Deshmukh Technologies engagement should follow a practical sequence:
 
 We prefer working software over unused complexity. A layered system that a team can explain is better than a distributed system nobody can operate.
 
+### How we document
+
+Work that cannot be explained cannot be handed over. Deshmukh Technologies therefore treats writing as part of engineering, not as decoration after delivery.
+
+| We write | So that |
+| --- | --- |
+| Requirements and “done” | The team shares one outcome |
+| Design and data notes | The next person can change the system |
+| API contracts | Frontend and backend do not guess |
+| Reviews and daily notes | Feedback is specific and repeatable |
+| Runbooks | Someone else can start, test, and recover the system |
+
+Writing rules for company documents:
+
+- State facts. Do not invent headcount, clients, revenue, or market position.
+- Name the user and the problem before naming the technology.
+- Prefer a short table or a worked example over a slogan.
+- Keep the three official documents consistent: profile for identity, handbook for the 90 days, self-growth for the knowledge map.
+
 ---
 
 ## Our Vision
@@ -302,11 +321,11 @@ The long-term objective is to create an organization where **product development
 
 ### Document family
 
-| Document | Use |
-| --- | --- |
-| Corporate Master Profile | Who we are and how we work |
-| DTTP 90-Day Handbook | How trainees are trained, assessed, and graduated |
-| DTTP Self-Growth Program | How engineers keep growing after and around the 90 days |
+| Document | Use | Audience |
+| --- | --- | --- |
+| Corporate Master Profile | Who we are and how we work | Leadership, clients, new joiners |
+| DTTP 90-Day Handbook | How trainees are trained, assessed, and graduated | Mentors and trainees during the 90 days |
+| DTTP Self-Growth Program | How engineers keep growing after and around the 90 days | Self-study before, during, and after DTTP |
 
 ---
 

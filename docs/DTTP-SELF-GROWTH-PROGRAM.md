@@ -101,6 +101,62 @@ level-03: add protected employee list route
 
 A useful commit is small, named after the level, and reviewable. Do not store a week of mixed work in one commit.
 
+### Writing standard
+
+Notes are part of the work. Write so a mentor can review the day without a meeting.
+
+- Be specific: name the file, endpoint, status code, or error.
+- Prefer evidence over adjectives. “409 on duplicate email” is useful. “Improved backend” is not.
+- Record what is still unclear. Hidden confusion becomes a skipped level.
+- Keep one idea per note. Long essays are harder to review than a short table.
+
+### Sample notebook entry
+
+| Field | Example |
+| --- | --- |
+| Topic studied | Protected routes and service layer |
+| What I can now explain | Why employee list state does not belong inside JSX |
+| What I built | `/employees` route, `employeeService.ts`, empty state |
+| What broke | Redirect loop when the token was an empty string |
+| What I still cannot explain | When Context is better than lifting state |
+| Commit / PR | `level-03: add protected employee list route` |
+| Tomorrow | Create-employee form with typed validation |
+
+### Documentation artifact by level
+
+| Level | Written artifact the mentor reviews |
+| :---: | --- |
+| 1 | Request-path diagram and URL parts |
+| 2 | Accessibility and fetch-error notes |
+| 3 | Component map and where state lives |
+| 4 | API contract and Network-tab notes |
+| 5 | Endpoint notes for each implemented route |
+| 6 | Schema, seed notes, and the SQL behind one ORM call |
+| 7 | Architecture diagram and three “not yet services” reasons |
+| 8 | Test list, security note, before/after measurement |
+| 9 | Compose runbook and CI failure explanation |
+| 10 | User story, PR walkthrough notes, daily reports |
+
+### Feature note and decision note
+
+Use a **feature note** when behavior changes:
+
+```text
+Feature: Create employee
+Done when: ADMIN/HR can create; EMPLOYEE cannot; duplicate email is 409
+Tests: service duplicate-email; API 401/403/409
+Docs: README run steps unchanged; api.md updated
+```
+
+Use a **decision note** when the choice is not obvious:
+
+```text
+Decision: keep leave in the same service as employees
+Why: one team, one database, one deployable
+Not chosen: leave microservice — no independent scale or ownership yet
+Revisit when: a second team owns leave or the data must be isolated
+```
+
 ---
 
 ## Official progression

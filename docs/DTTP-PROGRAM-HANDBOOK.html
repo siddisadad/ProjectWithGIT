@@ -554,7 +554,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.2</span>
+          <span class="badge">DTTP · v1.3</span>
         </div>
         <h1>Trainee<br />Program</h1>
         <div class="gold-rule"></div>
@@ -579,7 +579,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Program Handbook</div>
-          <div><small>Version</small>1.2</div>
+          <div><small>Version</small>1.3</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -869,6 +869,18 @@
           </ul>
         </div>
       </div>
+      <h4>Orientation reading</h4>
+      <p>Before Day 6, the trainee reads and can summarize the Corporate Master Profile, this handbook (purpose, daily cycle, Definition of Done), and the Self-Growth Program.</p>
+      <table>
+        <thead><tr><th>Day</th><th>Focus</th><th>Written output</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Company, values, document family</td><td>One-page summary of how Deshmukh Technologies works</td></tr>
+          <tr><td>2</td><td>Professional standards and security</td><td>Signed acknowledgment + first daily report</td></tr>
+          <tr><td>3</td><td>Baseline assessment</td><td>Baseline Skill Profile</td></tr>
+          <tr><td>4</td><td>GitHub access and first repository</td><td>Empty project README and first commit</td></tr>
+          <tr><td>5</td><td>Mentor meeting</td><td>Week-1 plan with one measurable objective</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s11"><span class="n">11</span>Baseline Assessment</h2>
       <p>Before technical training begins, assess the trainee and record a <strong>Baseline Skill Profile</strong>.</p>
@@ -878,6 +890,16 @@
         <div class="panel"><h4>Problem solving</h4><ul><li>Logical reasoning</li><li>Coding problem</li></ul></div>
         <div class="panel"><h4>Communication</h4><ul><li>Self-introduction</li><li>Technical explanation</li><li>Problem explanation</li></ul></div>
       </div>
+      <h4>How to record the baseline</h4>
+      <p>Score each area L0–L5. Write one sentence of evidence, not a slogan. The baseline is a starting point, not a grade.</p>
+      <table>
+        <thead><tr><th>Area</th><th>Level</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>JavaScript</td><td>L2</td><td>Built a form and fetch demo with mentor help</td></tr>
+          <tr><td>SQL</td><td>L1</td><td>Can explain SELECT/WHERE, has not written a join</td></tr>
+          <tr><td>Git</td><td>L1</td><td>Has committed locally, has not opened a pull request</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s12"><span class="n">12</span>Git &amp; GitHub</h2>
       <p>Git is mandatory. Trainees must learn repository, clone, commit, branch, push, pull, merge, rebase, stash, revert, pull request, code review, and conflict resolution.</p>
@@ -885,6 +907,41 @@
       <ol class="stepper">
         <li>Task</li><li>Branch</li><li>Code</li><li>Test</li><li>Commit</li><li>Push</li><li>Pull Request</li><li>Review</li><li>Fix</li><li>Approve</li><li>Merge</li>
       </ol>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Naming</h4>
+          <div class="tree">Branch   dttp/&lt;initials&gt;/leave-approve-api
+Commit   feat(leave): add approve endpoint and role check</div>
+          <p>Useful prefixes: <code>feat</code>, <code>fix</code>, <code>test</code>, <code>docs</code>, <code>chore</code>. One purpose per commit.</p>
+        </div>
+        <div class="panel">
+          <h4>Pull request body</h4>
+          <ol>
+            <li><strong>What</strong> changed</li>
+            <li><strong>Why</strong> it changed</li>
+            <li><strong>How</strong> it was tested</li>
+            <li><strong>What</strong> a reviewer should look at first</li>
+            <li><strong>Risks</strong> or follow-up work</li>
+          </ol>
+          <p>A pull request with no test note is not ready for review.</p>
+        </div>
+      </div>
+      <div class="tree">## What
+Add leave approve API for HR and ADMIN.
+
+## Why
+HR cannot currently decide a pending request.
+
+## Test
+- unit: employee cannot approve
+- API: 401 / 403 / 409
+- manual: HR approves one pending leave
+
+## Review first
+LeaveService.approve() role check
+
+## Risk
+Already-decided leaves must stay unchanged</div>
 
       <h2 class="section-title" id="s13"><span class="n">13</span>Phase 2 — Programming</h2>
       <p><strong>Days 6–15.</strong></p>
@@ -995,6 +1052,23 @@
           <tr><td><span class="method put">PUT</span></td><td>/api/leaves/{id}/approve</td><td>Approve leave</td></tr>
         </tbody>
       </table>
+      <h4>Endpoint note</h4>
+      <p>Document every endpoint the trainee implements. Keep the notes in <code>docs/api.md</code> or OpenAPI. Do not leave the contract only in a mentor’s memory.</p>
+      <table>
+        <thead><tr><th>Field</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Purpose</td><td>Create an employee</td></tr>
+          <tr><td>Roles</td><td>ADMIN, HR</td></tr>
+          <tr><td>Request</td><td><code>{ "name", "email", "departmentId", "joiningDate" }</code></td></tr>
+          <tr><td>Success</td><td><code>201</code> + employee JSON</td></tr>
+          <tr><td>Errors</td><td><code>400</code> validation, <code>401</code> missing token, <code>403</code> wrong role, <code>409</code> duplicate email</td></tr>
+        </tbody>
+      </table>
+      <div class="tree">{
+  "error": "VALIDATION_FAILED",
+  "message": "Email is required",
+  "field": "email"
+}</div>
 
       <div class="part"><span>Part III</span><strong>Project &amp; Engineering</strong></div>
 
@@ -1018,6 +1092,18 @@
         </tbody>
       </table>
       <p>A module is not complete until it meets the Definition of Done, including tests, review, and documentation.</p>
+      <h4>Project README</h4>
+      <p>The Employee Management repository must contain a README that another trainee can follow without asking the author.</p>
+      <ol>
+        <li>What this system does</li>
+        <li>Roles (ADMIN / HR / EMPLOYEE)</li>
+        <li>How to run locally</li>
+        <li>How to run tests</li>
+        <li>Environment variables (names only, never secret values)</li>
+        <li>API summary or link to <code>docs/api.md</code></li>
+        <li>Known limits</li>
+      </ol>
+      <p>A repository with only source files and no README is not a complete project.</p>
 
       <h2 class="section-title" id="s22"><span class="n">22</span>Full-Stack Architecture</h2>
       <h4>Java implementation</h4>
@@ -1116,6 +1202,17 @@
         <li>Documentation updated</li>
         <li>Mentor approved</li>
       </ul>
+      <h4>What “documentation updated” means</h4>
+      <table>
+        <thead><tr><th>Change</th><th>Update this</th></tr></thead>
+        <tbody>
+          <tr><td>How to run or install</td><td>Project README</td></tr>
+          <tr><td>Endpoint, status, or payload</td><td><code>docs/api.md</code> or OpenAPI</td></tr>
+          <tr><td>A non-obvious design choice</td><td>Short decision note</td></tr>
+          <tr><td>The day’s work</td><td>Daily report with commit / PR link</td></tr>
+        </tbody>
+      </table>
+      <p>“Documentation updated” is not a checkbox for later. If the notes are missing, the feature is not done.</p>
 
       <h2 class="section-title" id="s31"><span class="n">31</span>Mentor System</h2>
       <p>Each trainee should have <strong>1 Primary Mentor</strong> and, where practical, <strong>1 Technical Reviewer</strong>.</p>
@@ -1162,9 +1259,31 @@
           <tr><td>Next Plan</td><td>Tomorrow’s objectives</td></tr>
         </tbody>
       </table>
+      <p>A report with only “worked on employees” is incomplete. Name the file, the endpoint, the error, or the commit.</p>
+      <h4>Sample daily report</h4>
+      <table>
+        <thead><tr><th>Field</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Daily Objective</td><td>Add validated POST /api/employees on the Java track</td></tr>
+          <tr><td>Completed</td><td>Endpoint returns 201; duplicate email returns 409</td></tr>
+          <tr><td>Learning</td><td>Unique constraint belongs in the service and the database</td></tr>
+          <tr><td>Problems</td><td>First attempt returned 500 on duplicate email</td></tr>
+          <tr><td>Investigation</td><td>Read Hibernate exception and mapped it in the exception handler</td></tr>
+          <tr><td>Resolution</td><td>Service throws ConflictException; handler returns 409 JSON</td></tr>
+          <tr><td>Git Activity</td><td><code>feat(employees): reject duplicate email</code> · PR #14</td></tr>
+          <tr><td>Next Plan</td><td>Add GET list with department name join</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s33"><span class="n">33</span>Weekly Review</h2>
       <p>The mentor reviews technical progress, assignment completion, project progress, code quality, problem solving, communication, discipline, Git activity, blockers, and skill gaps.</p>
+      <h4>Weekly review note</h4>
+      <p>The mentor writes a short note the trainee can act on. Verbal feedback that is not written down does not count as a weekly review.</p>
+      <div class="tree">Progress: employee create/list works with auth.
+Quality: controller still contains the unique-email rule.
+Gap: cannot explain 401 vs 403 without notes.
+Next week: move the rule to the service; add 401/403 API tests.
+Status: AMBER</div>
 
       <h2 class="section-title" id="s34"><span class="n">34</span>Competency Model</h2>
       <table>
@@ -1313,7 +1432,7 @@
       <p>Learn. Build. Solve. Review. Deploy. Grow.</p>
       <p class="final">A disciplined, technically capable and production-ready Junior Full-Stack Developer.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.1 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.3 · Internal use</footer>
   </article>
 </body>
 </html>
