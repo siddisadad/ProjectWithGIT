@@ -88,7 +88,7 @@ def finish_pdf() -> None:
         )
         page.insert_text(
             pymupdf.Point(36, height - 16),
-            "Internal use  ·  Version 1.4",
+            "Internal use  ·  Version 1.5",
             fontname="helv",
             fontsize=7,
             color=MUTED,

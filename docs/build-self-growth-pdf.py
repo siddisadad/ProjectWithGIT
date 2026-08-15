@@ -74,7 +74,7 @@ def finish_pdf() -> None:
             color=(0.84, 0.87, 0.90),
             width=0.5,
         )
-        page.insert_text(pymupdf.Point(36, height - 16), "Internal use  ·  Version 1.5", fontname="helv", fontsize=7, color=MUTED)
+        page.insert_text(pymupdf.Point(36, height - 16), "Internal use  ·  Version 1.6", fontname="helv", fontsize=7, color=MUTED)
         page.insert_text(pymupdf.Point(width - 68, height - 16), f"{i + 1}  /  {total}", fontname="helv", fontsize=7, color=NAVY)
 
     toc = [(1, "Cover", 1)]

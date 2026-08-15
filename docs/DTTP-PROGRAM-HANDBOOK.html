@@ -554,7 +554,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.4</span>
+          <span class="badge">DTTP · v1.5</span>
         </div>
         <h1>Trainee<br />Program</h1>
         <div class="gold-rule"></div>
@@ -579,7 +579,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Program Handbook</div>
-          <div><small>Version</small>1.4</div>
+          <div><small>Version</small>1.5</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -961,6 +961,16 @@ LeaveService.approve() role check
 
 ## Risk
 Already-decided leaves must stay unchanged</div>
+      <h4>Review comments that help</h4>
+      <table>
+        <thead><tr><th>Weak comment</th><th>Useful comment</th></tr></thead>
+        <tbody>
+          <tr><td>“This is wrong.”</td><td>“Duplicate email should be <code>409</code> from the service, not <code>500</code> from the controller.”</td></tr>
+          <tr><td>“Clean this up.”</td><td>“Move <code>fetch('/api/employees')</code> into <code>employeeService.ts</code>.”</td></tr>
+          <tr><td>“Add tests.”</td><td>“Add <code>employee_cannot_approve</code> before merging.”</td></tr>
+          <tr><td>“Looks good.”</td><td>“Approve path is clear. Please add the already-decided <code>409</code> case.”</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s13"><span class="n">13</span>Phase 2 — Programming</h2>
       <p><strong>Days 6–15.</strong></p>
@@ -1092,6 +1102,22 @@ Already-decided leaves must stay unchanged</div>
         </tbody>
       </table>
       <p>Required screens by Day 35: <code>/login</code>, <code>/dashboard</code>, <code>/employees</code> (list + create), shared layout, empty/loading/error states.</p>
+      <h4>Screen inventory</h4>
+      <table>
+        <thead><tr><th>Route</th><th>Role</th><th>Fields / actions</th><th>Empty / error copy</th></tr></thead>
+        <tbody>
+          <tr><td><code>/login</code></td><td>Public</td><td>Email, password, Submit</td><td>“Email or password is wrong.”</td></tr>
+          <tr><td><code>/dashboard</code></td><td>All signed-in</td><td>Employees, present today, pending leave</td><td>“No data yet. Add employees first.”</td></tr>
+          <tr><td><code>/employees</code></td><td>ADMIN, HR</td><td>Name, email, department, joining date, role, Add</td><td>“No employees match this filter.”</td></tr>
+          <tr><td><code>/employees/new</code></td><td>ADMIN, HR</td><td>Name, email, department, joining date, role</td><td>Inline field errors</td></tr>
+          <tr><td><code>/employees/:id</code></td><td>ADMIN, HR; EMPLOYEE own</td><td>Same fields; EMPLOYEE cannot change role</td><td>“Employee not found.”</td></tr>
+          <tr><td><code>/departments</code></td><td>ADMIN, HR</td><td>Name, employee count, Add</td><td>“No departments yet.”</td></tr>
+          <tr><td><code>/attendance</code></td><td>ADMIN, HR; EMPLOYEE own</td><td>Date, employee, Present/Absent/Leave</td><td>“No attendance for this date.”</td></tr>
+          <tr><td><code>/leaves</code></td><td>All</td><td>Dates, type, status; Approve/Reject for HR/ADMIN</td><td>“No leave requests.”</td></tr>
+          <tr><td><code>/profile</code></td><td>All</td><td>Own name, email, department, password change</td><td>Validation on email and password</td></tr>
+        </tbody>
+      </table>
+      <p>Shared layout: product name, signed-in user, role badge, logout. Missing token redirects to <code>/login</code>.</p>
 
       <h2 class="section-title" id="s19"><span class="n">19</span>Database</h2>
       <p>Trainees learn SQL, tables, keys, constraints, relationships, joins, indexes, transactions, normalization, and query optimization.</p>
@@ -1102,6 +1128,23 @@ employees(id, name, email UNIQUE, department_id FK, joining_date, role, password
 attendance(id, employee_id FK, work_date, status, UNIQUE(employee_id, work_date))
 leaves(id, employee_id FK, start_date, end_date, type, status)</div>
       <p>Required by-hand queries: employees with department names (<code>INNER JOIN</code>); leave count by department (<code>LEFT JOIN</code> + <code>GROUP BY</code>); a transaction that approves leave and writes related attendance or rolls both back.</p>
+      <div class="tree">BEGIN;
+UPDATE leaves SET status = 'APPROVED' WHERE id = 18 AND status = 'PENDING';
+-- if row count is 0, ROLLBACK and return 409
+INSERT INTO attendance (employee_id, work_date, status)
+VALUES (41, '2026-08-20', 'LEAVE');
+COMMIT;</div>
+      <h4>Seed data</h4>
+      <table>
+        <thead><tr><th>Table</th><th>Rows</th></tr></thead>
+        <tbody>
+          <tr><td>departments</td><td>Engineering, Human Resources, Finance</td></tr>
+          <tr><td>employees</td><td>Asha Patil (HR), Kiran Shah (ADMIN), Rohan Deshmukh (EMPLOYEE, Engineering)</td></tr>
+          <tr><td>attendance</td><td>Rohan Present on 2026-08-18 and 2026-08-19</td></tr>
+          <tr><td>leaves</td><td>Rohan 2026-08-20 to 2026-08-21, CASUAL, PENDING</td></tr>
+        </tbody>
+      </table>
+      <p>Passwords are hashed. These values are examples, not production credentials.</p>
 
       <h2 class="section-title" id="s20"><span class="n">20</span>REST API</h2>
       <p>Both backend tracks implement the same business API so Java and Python trainees learn the same API design principles.</p>
@@ -1140,6 +1183,19 @@ leaves(id, employee_id FK, start_date, end_date, type, status)</div>
   "message": "Email is required",
   "field": "email"
 }</div>
+      <h4>Remaining contracts the trainee must write</h4>
+      <table>
+        <thead><tr><th>Endpoint</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td><code>GET /api/employees</code></td><td><code>200</code> array. Empty is <code>[]</code>, not <code>404</code>. Filter <code>?departmentId=3</code>.</td></tr>
+          <tr><td><code>PUT /api/employees/{id}</code></td><td>Same roles as create. Unknown id <code>404</code>. EMPLOYEE may change own name only.</td></tr>
+          <tr><td><code>DELETE /api/employees/{id}</code></td><td>ADMIN only, <code>204</code>. Pending leave blocks delete with <code>409</code>.</td></tr>
+          <tr><td><code>GET/POST /api/departments</code></td><td>Create requires unique name. Duplicate <code>409</code>.</td></tr>
+          <tr><td><code>GET/POST /api/attendance</code></td><td>Body employeeId, workDate, status. Duplicate date <code>409</code>.</td></tr>
+          <tr><td><code>POST /api/leaves</code></td><td>Dates and type. Employee id from token. Overlap <code>409</code>. Starts <code>PENDING</code>.</td></tr>
+          <tr><td><code>GET /api/health</code></td><td>No auth. <code>{ "status": "ok" }</code> for Compose and CI.</td></tr>
+        </tbody>
+      </table>
 
       <div class="part"><span>Part III</span><strong>Project &amp; Engineering</strong></div>
 
@@ -1408,6 +1464,18 @@ leaves(id, employee_id FK, start_date, end_date, type, status)</div>
           </ul>
         </div>
       </div>
+      <h4>Sample Individual Improvement Plan</h4>
+      <div class="tree">Trainee: Rohan Deshmukh
+Status: AMBER
+Gap: Cannot separate 401 from 403; unique-email rule is still in the controller.
+Evidence required by 22 Aug:
+  1. Service rejects duplicate email; controller has no SQL.
+  2. API tests: 401 / 403 / 409.
+  3. Oral: explain both status codes without notes.
+Practice: move the rule, write the failing test first, add API tests, oral review.
+Mentor: Asha Patil
+Review date: 22 Aug</div>
+      <p>If the evidence is missing on the review date, the status stays Amber or becomes Red. The plan is a written agreement.</p>
 
       <h2 class="section-title" id="s32"><span class="n">32</span>Daily Report</h2>
       <table>
@@ -1497,6 +1565,16 @@ Status: AMBER</div>
         </tbody>
       </table>
       <p>A high weekly score requires Git history, not only a verbal update.</p>
+      <h4>What the bands look like on create employee</h4>
+      <table>
+        <thead><tr><th>Band</th><th>What the mentor sees</th></tr></thead>
+        <tbody>
+          <tr><td>85–100</td><td>Layered code, 409 mapped, tests, PR note, trainee explains the rule without slides</td></tr>
+          <tr><td>70–84</td><td>Feature works after two review rounds; tests cover the happy path only</td></tr>
+          <tr><td>55–69</td><td>Create works; duplicate email is 500; trainee cannot name the layer</td></tr>
+          <tr><td>Below 55</td><td>No validation, secrets in Git, or no pull request</td></tr>
+        </tbody>
+      </table>
 
       <h2 class="section-title" id="s37"><span class="n">37</span>Final Assessment</h2>
       <table>
@@ -1513,6 +1591,31 @@ Status: AMBER</div>
           <tr><td>Documentation</td><td class="num">5%</td></tr>
           <tr><td>Communication / Professionalism</td><td class="num">5%</td></tr>
           <tr><td><strong>Total</strong></td><td class="num"><strong>100%</strong></td></tr>
+        </tbody>
+      </table>
+      <h4>What a Developer Ready (85+) demo proves</h4>
+      <ol>
+        <li>Logs in as HR and as EMPLOYEE and shows the different menus.</li>
+        <li>Creates an employee and shows the <code>201</code> in the Network tab.</li>
+        <li>Repeats the same email and shows <code>409</code>.</li>
+        <li>Applies leave as EMPLOYEE, approves as HR, retries and shows <code>409</code>.</li>
+        <li>Opens the SQL for leave count by department.</li>
+        <li>Points to the service test that blocks EMPLOYEE approve.</li>
+        <li>Starts the stack with Compose and hits <code>/api/health</code>.</li>
+        <li>Names one next step and one thing they still cannot own.</li>
+      </ol>
+      <p>A 70–84 trainee can do most of this with mentor prompts. A 55–69 trainee cannot complete leave approve or cannot explain a status code.</p>
+      <h4>Ten-minute demo script</h4>
+      <table>
+        <thead><tr><th>Minute</th><th>Show</th></tr></thead>
+        <tbody>
+          <tr><td>0–1</td><td>Problem: HR cannot manage people or leave in one system</td></tr>
+          <tr><td>1–3</td><td>Login as HR. Dashboard counts. Employee list.</td></tr>
+          <tr><td>3–5</td><td>Create employee. Duplicate email. Network statuses.</td></tr>
+          <tr><td>5–7</td><td>EMPLOYEE apply leave. HR approve. Retry 409.</td></tr>
+          <tr><td>7–8</td><td>SQL report. One test name and what it proves.</td></tr>
+          <tr><td>8–9</td><td>Compose / health. What is not done yet.</td></tr>
+          <tr><td>9–10</td><td>Questions</td></tr>
         </tbody>
       </table>
 
@@ -1596,7 +1699,7 @@ Status: AMBER</div>
       <p>Learn. Build. Solve. Review. Deploy. Grow.</p>
       <p class="final">A disciplined, technically capable and production-ready Junior Full-Stack Developer.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.4 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.5 · Internal use</footer>
   </article>
 </body>
 </html>

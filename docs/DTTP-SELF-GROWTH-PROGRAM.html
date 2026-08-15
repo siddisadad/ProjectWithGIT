@@ -231,7 +231,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.5</span>
+          <span class="badge">DTTP · v1.6</span>
         </div>
         <h1>Self-Growth<br />Program</h1>
         <div class="gold-rule"></div>
@@ -256,7 +256,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Self-Growth Program</div>
-          <div><small>Version</small>1.5</div>
+          <div><small>Version</small>1.6</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -1015,6 +1015,43 @@ GROUP BY d.name;</div>
           <tr><td>10</td><td>“Done means it worked on my laptop.”</td></tr>
         </tbody>
       </table>
+      <h4>Remaining contracts</h4>
+      <table>
+        <thead><tr><th>Endpoint</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td><code>GET /api/employees</code></td><td><code>200</code> array. Empty is <code>[]</code>, not <code>404</code>.</td></tr>
+          <tr><td><code>PUT /api/employees/{id}</code></td><td>Same roles as create. EMPLOYEE may change own name only.</td></tr>
+          <tr><td><code>DELETE /api/employees/{id}</code></td><td>ADMIN only, <code>204</code>. Pending leave → <code>409</code>.</td></tr>
+          <tr><td><code>POST /api/leaves</code></td><td>Dates and type. Employee id from token. Starts <code>PENDING</code>.</td></tr>
+          <tr><td><code>GET /api/health</code></td><td>Public <code>{ "status": "ok" }</code>.</td></tr>
+        </tbody>
+      </table>
+      <h4>Screen map</h4>
+      <table>
+        <thead><tr><th>Route</th><th>Who</th><th>Must show</th></tr></thead>
+        <tbody>
+          <tr><td><code>/login</code></td><td>Public</td><td>Email, password, wrong-credential message</td></tr>
+          <tr><td><code>/dashboard</code></td><td>Signed-in</td><td>Employees, present today, pending leave</td></tr>
+          <tr><td><code>/employees</code></td><td>ADMIN, HR</td><td>Table + Add. Empty copy.</td></tr>
+          <tr><td><code>/leaves</code></td><td>All</td><td>Apply for EMPLOYEE. Approve/Reject for HR/ADMIN.</td></tr>
+          <tr><td><code>/profile</code></td><td>Signed-in</td><td>Own details only</td></tr>
+        </tbody>
+      </table>
+      <div class="tree">authService.login(email, password)
+employeeService.list(filters)
+employeeService.create(payload)
+leaveService.apply(payload)
+leaveService.approve(id, decision)</div>
+      <p>No page file contains a raw <code>fetch</code> URL.</p>
+      <h4>Ten-minute demo</h4>
+      <p>Minutes 0–1 problem; 1–3 HR login and list; 3–5 create + duplicate <code>409</code>; 5–7 EMPLOYEE apply / HR approve / retry <code>409</code>; 7–8 SQL report + one test name; 8–9 Compose health; 9–10 questions and known limits.</p>
+      <h4>Review comments that pass Level 10</h4>
+      <ul>
+        <li>“Duplicate email should be <code>409</code> from the service, not <code>500</code> from the controller.”</li>
+        <li>“Move <code>fetch('/api/employees')</code> into <code>employeeService.ts</code>.”</li>
+        <li>“Add <code>employee_cannot_approve</code> before merge.”</li>
+      </ul>
+      <p>“Looks good” and “clean this up” do not count as a review.</p>
 
       <h2 class="section-title"><span class="n">15</span>Official progression</h2>
       <table>
@@ -1059,7 +1096,7 @@ GROUP BY d.name;</div>
       <p>Ten levels. One practice stack. Real projects.</p>
       <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.5 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.6 · Internal use</footer>
   </article>
 </body>
 </html>

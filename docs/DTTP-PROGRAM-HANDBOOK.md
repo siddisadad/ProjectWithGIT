@@ -538,6 +538,17 @@ Already-decided leaves must stay unchanged
 
 A pull request with no test note is not ready for review.
 
+### Review comments that help
+
+Write about the code, not the person.
+
+| Weak comment | Useful comment |
+| --- | --- |
+| “This is wrong.” | “Duplicate email should be `409` from the service, not `500` from the controller.” |
+| “Clean this up.” | “Move `fetch('/api/employees')` into `employeeService.ts` so the page can be tested.” |
+| “Add tests.” | “Add `employee_cannot_approve` before merging. The happy path is not enough.” |
+| “Looks good.” | “Approve path is clear. Please add the already-decided `409` case.” |
+
 ---
 
 ## 13. Phase 2 — Programming
@@ -784,6 +795,24 @@ src/
 
 Required screens by Day 35: `/login`, `/dashboard`, `/employees` (list + create), shared layout, empty/loading/error states.
 
+### Screen inventory
+
+Every screen lists the fields, the role that sees it, and the empty/error copy. A screen with no empty state is not finished.
+
+| Route | Role | Fields / actions | Empty / error copy |
+| --- | --- | --- | --- |
+| `/login` | Public | Email, password, Submit | “Email or password is wrong.” |
+| `/dashboard` | All signed-in | Counts: employees, present today, pending leave | “No data yet. Add employees first.” |
+| `/employees` | ADMIN, HR | Table: name, email, department, joining date, role. Button: Add | “No employees match this filter.” |
+| `/employees/new` | ADMIN, HR | Name, email, department select, joining date, role | Inline field errors under each input |
+| `/employees/:id` | ADMIN, HR; EMPLOYEE own | Same fields; EMPLOYEE cannot change role or department | “Employee not found.” |
+| `/departments` | ADMIN, HR | Name, employee count, Add | “No departments yet.” |
+| `/attendance` | ADMIN, HR; EMPLOYEE own | Date, employee, status (Present/Absent/Leave) | “No attendance for this date.” |
+| `/leaves` | All signed-in | Dates, type, status, Approve/Reject for HR/ADMIN | “No leave requests.” |
+| `/profile` | All signed-in | Own name, email, department (read), password change | Validation on email and password |
+
+Shared layout: product name, signed-in user, role badge, logout. Protected routes redirect to `/login` when the token is missing.
+
 ---
 
 ## 19. Database
@@ -863,7 +892,24 @@ LEFT JOIN leaves l ON l.employee_id = e.id
 GROUP BY d.name;
 
 -- Approve leave only if still pending; both writes succeed or both roll back
+BEGIN;
+UPDATE leaves SET status = 'APPROVED' WHERE id = 18 AND status = 'PENDING';
+-- if row count is 0, ROLLBACK and return 409
+INSERT INTO attendance (employee_id, work_date, status)
+VALUES (41, '2026-08-20', 'LEAVE');
+COMMIT;
 ```
+
+### Seed data
+
+The trainee loads this data before the demo. Passwords are hashed. These values are examples, not production credentials.
+
+| Table | Rows |
+| --- | --- |
+| departments | Engineering, Human Resources, Finance |
+| employees | Asha Patil (HR), Kiran Shah (ADMIN), Rohan Deshmukh (EMPLOYEE, Engineering) |
+| attendance | Rohan Present on 2026-08-18 and 2026-08-19 |
+| leaves | Rohan 2026-08-20 to 2026-08-21, type CASUAL, status PENDING |
 
 ---
 
@@ -914,6 +960,22 @@ Use one error shape:
 ```
 
 Keep the notes next to the code, in `docs/api.md` or an OpenAPI file. Do not leave the contract only in a mentor’s memory.
+
+### Remaining contracts the trainee must write
+
+**GET `/api/employees`** — ADMIN/HR see all. EMPLOYEE may receive only their own row or `403` if the product rule is “HR only.” Query: `?departmentId=3&status=active`. Success `200` with an array. Empty list is `200 []`, not `404`.
+
+**PUT `/api/employees/{id}`** — same roles as create. Unknown id `404`. Duplicate email `409`. EMPLOYEE may update own name only.
+
+**DELETE `/api/employees/{id}`** — ADMIN only. Success `204`. EMPLOYEE or HR `403`. Unknown id `404`. Do not delete if pending leave exists — return `409`.
+
+**GET/POST `/api/departments`** — list is `200`. Create requires unique name. Duplicate name `409`.
+
+**GET/POST `/api/attendance`** — body `{ "employeeId", "workDate", "status" }`. Duplicate date for the same employee `409`. EMPLOYEE posts only their own id.
+
+**POST `/api/leaves`** — body `{ "startDate", "endDate", "type" }`. Employee id comes from the token, not the body. End before start `400`. Overlap with another pending/approved leave `409`. Status starts `PENDING`.
+
+**GET `/api/health`** — no auth. `{ "status": "ok" }`. Used by Compose and CI.
 
 ---
 
@@ -1314,6 +1376,28 @@ Amber and Red trainees receive a written plan with:
 - The review date
 - The mentor responsible
 
+### Sample Individual Improvement Plan
+
+```text
+Trainee: Rohan Deshmukh
+Status: AMBER
+Gap: Cannot separate 401 from 403; unique-email rule is still in the controller.
+Evidence required by 22 Aug:
+  1. Service method rejects duplicate email; controller has no SQL.
+  2. API tests: 401 without token, 403 as EMPLOYEE, 409 on duplicate email.
+  3. Oral: explain both status codes without notes.
+Practice (7 days):
+  Day 1–2  Move the rule. Write the failing test first.
+  Day 3–4  Add 401/403/409 API tests.
+  Day 5    Draw the request through every layer.
+  Day 6    Mentor oral review.
+  Day 7    Retest and update the weekly note.
+Mentor: Asha Patil
+Review date: 22 Aug
+```
+
+If the evidence is missing on the review date, the status stays Amber or becomes Red. The plan is not a conversation. It is a written agreement.
+
 ---
 
 ## 32. Daily Report
@@ -1434,6 +1518,17 @@ Advanced areas such as architecture, CI/CD, and AWS may initially target **L2**.
 
 A high weekly score requires Git history, not only a verbal update.
 
+### What the bands look like on the same task
+
+Task: create employee + reject duplicate email.
+
+| Band | What the mentor sees |
+| --- | --- |
+| 85–100 | Layered code, 409 mapped, tests, PR note, trainee explains the rule without slides |
+| 70–84 | Feature works after two review rounds; tests cover the happy path only |
+| 55–69 | Create works; duplicate email is 500; trainee cannot name the layer |
+| Below 55 | No validation, secrets in Git, or no pull request |
+
 ---
 
 ## 37. Final Assessment
@@ -1451,6 +1546,33 @@ A high weekly score requires Git history, not only a verbal update.
 | Documentation | 5% |
 | Communication / Professionalism | 5% |
 | **Total** | **100%** |
+
+### What a Developer Ready (85+) demo proves
+
+The trainee, without reading slides:
+
+1. Logs in as HR and as EMPLOYEE and shows the different menus.
+2. Creates an employee and shows the `201` in the Network tab.
+3. Repeats the same email and shows `409`.
+4. Applies leave as EMPLOYEE, approves as HR, retries and shows `409`.
+5. Opens the SQL for leave count by department.
+6. Points to the service test that blocks EMPLOYEE approve.
+7. Starts the stack with Compose and hits `/api/health`.
+8. Names one thing they would do next, and one thing they still cannot own.
+
+A 70–84 trainee can do most of this with mentor prompts. A 55–69 trainee cannot complete leave approve or cannot explain a status code.
+
+### Ten-minute demo script
+
+| Minute | Show |
+| ---: | --- |
+| 0–1 | Problem: HR cannot manage people or leave in one system |
+| 1–3 | Login as HR. Dashboard counts. Employee list. |
+| 3–5 | Create employee. Duplicate email. Network statuses. |
+| 5–7 | Switch to EMPLOYEE. Apply leave. Switch to HR. Approve. Retry. |
+| 7–8 | SQL report. One test name and what it proves. |
+| 8–9 | Compose / health. What is not done yet. |
+| 9–10 | Questions |
 
 ---
 

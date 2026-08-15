@@ -1232,6 +1232,52 @@ ORDER BY leave_count DESC;
 | 9 | “I pushed to master because the change was small.” |
 | 10 | “Done means it worked on my laptop.” |
 
+### Remaining contracts
+
+**GET `/api/employees`** returns `200` and an array. Empty is `[]`, not `404`. Filter with `?departmentId=3`.
+
+**PUT `/api/employees/{id}`** uses the same roles as create. Unknown id `404`. EMPLOYEE may change own name only.
+
+**DELETE `/api/employees/{id}`** is ADMIN only, `204`. Pending leave blocks delete with `409`.
+
+**POST `/api/leaves`** takes `{ "startDate", "endDate", "type" }`. The employee id comes from the token. Overlap `409`. Status starts `PENDING`.
+
+**GET `/api/health`** is public: `{ "status": "ok" }`.
+
+### Screen map
+
+| Route | Who | Must show |
+| --- | --- | --- |
+| `/login` | Public | Email, password, wrong-credential message |
+| `/dashboard` | Signed-in | Counts for employees, present today, pending leave |
+| `/employees` | ADMIN, HR | Table + Add. Empty copy. |
+| `/leaves` | All | Apply for EMPLOYEE. Approve/Reject for HR/ADMIN. |
+| `/profile` | Signed-in | Own details only |
+
+### Service methods the frontend must have
+
+```text
+authService.login(email, password)
+employeeService.list(filters)
+employeeService.create(payload)
+leaveService.apply(payload)
+leaveService.approve(id, decision)
+```
+
+No page file contains a raw `fetch` URL.
+
+### Ten-minute demo
+
+Minutes 0–1 problem; 1–3 HR login and list; 3–5 create + duplicate `409`; 5–7 EMPLOYEE apply / HR approve / retry `409`; 7–8 SQL report + one test name; 8–9 Compose health; 9–10 questions and known limits.
+
+### Review comments that pass Level 10
+
+- “Duplicate email should be `409` from the service, not `500` from the controller.”
+- “Move `fetch('/api/employees')` into `employeeService.ts`.”
+- “Add `employee_cannot_approve` before merge.”
+
+“Looks good” and “clean this up” do not count as a review.
+
 ---
 
 ## Mentor checkpoints and common mistakes
