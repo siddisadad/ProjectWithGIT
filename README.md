@@ -31,4 +31,14 @@ A 90-day full-stack software development and professional development program.
 | HTML handbook | [docs/DTTP-PROGRAM-HANDBOOK.html](docs/DTTP-PROGRAM-HANDBOOK.html) |
 | Markdown handbook | [docs/DTTP-PROGRAM-HANDBOOK.md](docs/DTTP-PROGRAM-HANDBOOK.md) |
 
+## DTTP — Self-Growth Program
+
+Ten learning levels from web fundamentals to professional engineering. Use full-stack reference material as a knowledge map, then apply it through the Deshmukh Technologies practice stack.
+
+| Format | File |
+| --- | --- |
+| PDF | [docs/DTTP-SELF-GROWTH-PROGRAM.pdf](docs/DTTP-SELF-GROWTH-PROGRAM.pdf) |
+| HTML | [docs/DTTP-SELF-GROWTH-PROGRAM.html](docs/DTTP-SELF-GROWTH-PROGRAM.html) |
+| Markdown | [docs/DTTP-SELF-GROWTH-PROGRAM.md](docs/DTTP-SELF-GROWTH-PROGRAM.md) |
+
 > Learn. Build. Solve. Review. Deploy. Grow.
