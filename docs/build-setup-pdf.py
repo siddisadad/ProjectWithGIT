@@ -28,7 +28,7 @@ MARKERS = [
     (1, "Trainee setup checklist", "Trainee setup checklist"),
     (1, "Trainee sign-off", "Trainee sign-off"),
     (1, "Mentor / admin verification", "Mentor / admin verification"),
-    (1, "Day-1 completion criteria", "Day-1 completion"),
+    (1, "Day-1 completion criteria", "Until Day 1 is complete"),
 ]
 
 

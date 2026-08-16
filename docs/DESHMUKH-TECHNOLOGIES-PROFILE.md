@@ -325,6 +325,7 @@ The long-term objective is to create an organization where **product development
 | --- | --- | --- |
 | Corporate Master Profile | Who we are and how we work | Leadership, clients, new joiners |
 | DTTP 90-Day Handbook | How trainees are trained, assessed, and graduated | Mentors and trainees during the 90 days |
+| DTTP Software Setup | How the Windows station is installed and verified | Day-1 trainees and mentors |
 | DTTP Self-Growth Program | How engineers keep growing after and around the 90 days | Self-study before, during, and after DTTP |
 
 ---
