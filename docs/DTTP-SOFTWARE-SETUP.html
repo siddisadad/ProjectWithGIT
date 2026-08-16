@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DTTP Software Setup &amp; Environment Verification — Deshmukh Technologies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@450;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1a2c;
+      --navy-mid: #16324f;
+      --ink: #1b2430;
+      --muted: #5c6673;
+      --line: #d7dde5;
+      --paper: #f6f2ea;
+      --white: #ffffff;
+      --gold: #b8892c;
+      --gold-soft: #f3e6c7;
+      --teal: #1b6a68;
+      --teal-soft: #e3f1f0;
+      --green: #1f7a4d;
+      --amber: #b7791f;
+      --red: #b42318;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #e8e2d6;
+      line-height: 1.55;
+      font-size: 15.5px;
+    }
+    a { color: var(--navy-mid); text-decoration: none; }
+    .page {
+      max-width: 980px;
+      margin: 28px auto 64px;
+      background: var(--white);
+      box-shadow: 0 18px 50px rgba(12, 27, 46, 0.08);
+    }
+    .cover {
+      background:
+        radial-gradient(circle at 88% 8%, rgba(184, 137, 44, 0.22), transparent 34%),
+        linear-gradient(165deg, #0b1a2c 0%, #132844 58%, #0b1a2c 100%);
+      color: #f4efe4;
+      min-height: 100vh;
+      padding: 64px 72px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid rgba(243, 230, 199, 0.26);
+      pointer-events: none;
+    }
+    .cover-top, .cover-footer { position: relative; z-index: 1; }
+    .brand-row {
+      display: flex; justify-content: space-between; align-items: center;
+      letter-spacing: 0.26em; text-transform: uppercase; font-size: 11px;
+      font-weight: 600; color: var(--gold-soft);
+    }
+    .badge { letter-spacing: 0.16em; border: 1px solid rgba(243, 230, 199, 0.4); padding: 6px 10px; }
+    .cover h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 58px; line-height: 0.94; font-weight: 600; margin: 32px 0 14px;
+    }
+    .gold-rule { width: 84px; height: 3px; background: var(--gold); margin: 0 0 18px; }
+    .cover h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 24px; font-weight: 500; color: #f3e6c7; margin-bottom: 16px;
+    }
+    .cover .subtitle { max-width: 560px; font-size: 17px; color: #d5cfc0; }
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px 28px; margin-top: 40px; max-width: 640px;
+    }
+    .meta-item { border-top: 1px solid rgba(243, 230, 199, 0.22); padding-top: 10px; }
+    .meta-item span {
+      display: block; font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #c9bea6; margin-bottom: 4px;
+    }
+    .tagline {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px; font-style: italic; color: var(--gold-soft);
+    }
+    .inner { padding: 42px 56px 48px; }
+    .front-matter { break-after: page; page-break-after: always; }
+    .doc-control { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+    .doc-control div { background: var(--paper); padding: 12px 14px; border-top: 3px solid var(--gold); }
+    .doc-control small {
+      display: block; color: var(--muted); letter-spacing: 0.12em;
+      text-transform: uppercase; font-size: 10px; margin-bottom: 3px;
+    }
+    .part {
+      display: flex; align-items: baseline; gap: 14px;
+      margin: 22px 0 12px; padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--navy); break-after: avoid;
+    }
+    .part span { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .part strong { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; color: var(--navy); }
+    h2.section-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 24px; color: var(--navy); margin: 22px 0 10px;
+      display: flex; align-items: baseline; gap: 12px; break-after: avoid;
+    }
+    h2.section-title .n {
+      font-family: "Source Sans 3", sans-serif; font-size: 12px;
+      letter-spacing: 0.08em; color: var(--gold); font-weight: 700; min-width: 28px;
+    }
+    h3 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 20px; color: var(--navy-mid); margin: 14px 0 8px; }
+    h4 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin: 12px 0 8px; font-weight: 700; }
+    p { margin: 0 0 10px; }
+    .lead { font-size: 16.5px; color: #334155; }
+    .toc ol { list-style: none; margin: 0; columns: 2; column-gap: 32px; }
+    .toc li { break-inside: avoid; display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dotted #cfc6b4; font-size: 13px; }
+    .toc .idx { color: var(--gold); font-weight: 700; min-width: 22px; }
+    .callout {
+      background: var(--gold-soft); border-left: 4px solid var(--gold);
+      padding: 13px 16px; margin: 12px 0 16px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 18px; line-height: 1.4; color: var(--navy); break-inside: avoid;
+    }
+    .callout.dark { background: var(--navy); color: #f4efe4; border-left-color: var(--gold); }
+    .two-col, .three-col { display: grid; gap: 12px; margin: 12px 0 16px; }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .three-col { grid-template-columns: repeat(3, 1fr); }
+    .card, .panel {
+      border: 1px solid var(--line); padding: 14px 14px 10px;
+      background: var(--white); break-inside: avoid;
+    }
+    .card { border-top: 4px solid var(--navy); }
+    .card.teal { border-top-color: var(--teal); }
+    .card.gold { border-top-color: var(--gold); }
+    .card h3, .panel h4 { margin-top: 0; }
+    ul { margin: 0 0 12px 18px; }
+    li { margin: 3px 0; }
+    .stepper, .path { list-style: none; margin: 0 0 14px; }
+    .stepper { display: flex; flex-wrap: wrap; gap: 6px; }
+    .stepper li {
+      background: var(--navy); color: #f4efe4; padding: 6px 9px;
+      font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase;
+      font-weight: 600; white-space: nowrap;
+    }
+    .path {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; counter-reset: step;
+    }
+    .path li {
+      background: var(--paper); padding: 8px 10px; border-left: 3px solid var(--gold);
+      font-size: 13px; font-weight: 600; counter-increment: step;
+    }
+    .path li::before { content: counter(step, decimal-leading-zero) "  "; color: var(--gold); font-size: 11px; }
+    .kpi { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
+    .chip { background: var(--teal-soft); color: var(--teal); padding: 4px 8px; font-size: 12px; font-weight: 600; }
+    .checklist { list-style: none; margin: 0 0 14px; columns: 2; column-gap: 22px; }
+    .checklist li {
+      break-inside: avoid; padding: 4px 0 4px 22px; position: relative;
+      border-bottom: 1px solid var(--line); font-size: 13px;
+    }
+    .checklist li::before {
+      content: ""; width: 12px; height: 12px; border: 1.4px solid var(--navy);
+      position: absolute; left: 0; top: 7px;
+    }
+    .tree {
+      background: var(--navy); color: #e8e2d4; font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px; line-height: 1.5; padding: 14px 16px; margin: 8px 0 14px;
+      white-space: pre; break-inside: avoid;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13.5px; break-inside: avoid; }
+    th, td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: #f4efe4; font-weight: 600; }
+    tr:nth-child(even) td { background: #faf8f3; }
+    .sign { border: 1px solid var(--line); padding: 16px; margin: 12px 0; break-inside: avoid; }
+    .sign p { margin-bottom: 8px; }
+    .sign .line { border-bottom: 1px solid var(--navy); min-height: 28px; margin: 8px 0 14px; }
+    .closing {
+      background: radial-gradient(circle at 50% 0%, rgba(184, 137, 44, 0.18), transparent 42%), var(--navy);
+      color: #f4efe4; padding: 56px 48px; text-align: center;
+      break-before: page; page-break-before: always;
+    }
+    .closing h2 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 32px; margin: 10px 0 12px; }
+    .closing p { max-width: 560px; margin: 0 auto 10px; color: #d5cfc0; }
+    .closing .final { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; color: var(--gold-soft); margin-top: 16px; }
+    .screen-foot { text-align: center; color: var(--muted); font-size: 12px; padding: 0 56px 28px; }
+    @media screen and (max-width: 820px) {
+      .cover, .inner, .closing { padding: 32px 20px; }
+      .cover h1 { font-size: 38px; }
+      .doc-control, .two-col, .three-col, .path, .toc ol { grid-template-columns: 1fr; columns: 1; }
+      .page { margin: 0; }
+    }
+    @page { size: A4; margin: 16mm 13mm 18mm; }
+    @page :first { margin: 0; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: white; font-size: 10.6pt; }
+      .page { margin: 0; box-shadow: none; max-width: none; }
+      .cover { min-height: 100vh; height: 100vh; padding: 26mm 20mm 20mm; break-after: page; }
+      .cover h1 { font-size: 44px; }
+      .inner { padding: 0; }
+      h2.section-title { font-size: 19px; margin: 15px 0 8px; }
+      .callout { font-size: 15px; }
+      .closing { padding: 48mm 14mm 36mm; min-height: 230mm; }
+      .screen-foot { display: none; }
+      .card, .callout, .panel, table, .path, .tree, .sign { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="cover">
+      <div class="cover-top">
+        <div class="brand-row">
+          <span>Deshmukh Technologies</span>
+          <span class="badge">DTTP · v1.0</span>
+        </div>
+        <h1>Software Setup<br />&amp; Environment</h1>
+        <div class="gold-rule"></div>
+        <h2>Trainee Onboarding — Windows Verification Guide</h2>
+        <p class="subtitle">Every trainee independently installs, configures, verifies, clones, builds, runs, tests, commits, and pushes before assigned project work.</p>
+        <div class="meta-grid">
+          <div class="meta-item"><span>Document type</span>Trainee Onboarding Standard</div>
+          <div class="meta-item"><span>Platform</span>Windows 10 / 11</div>
+          <div class="meta-item"><span>Primary stack</span>Java · Spring Boot · React · MySQL · Git · Docker</div>
+          <div class="meta-item"><span>Mobile track</span>Flutter + Android Studio</div>
+          <div class="meta-item"><span>Alternate backend</span>Python / FastAPI when assigned</div>
+          <div class="meta-item"><span>Audience</span>Trainees, mentors, coordinators, admin</div>
+        </div>
+      </div>
+      <div class="cover-footer" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;">
+        <p class="tagline">Install. Configure. Verify. Then build.</p>
+        <p class="brand-row">Internal Talent Development Standard</p>
+      </div>
+    </header>
+
+    <div class="inner">
+      <section class="front-matter">
+        <div class="doc-control">
+          <div><small>Document</small>DTTP Software Setup</div>
+          <div><small>Version</small>1.0</div>
+          <div><small>Classification</small>Internal Onboarding Standard</div>
+          <div><small>Owner</small>Deshmukh Technologies</div>
+        </div>
+        <div class="part"><span>Guide</span><strong>Contents</strong></div>
+        <nav class="toc">
+          <ol>
+            <li><span class="idx">01</span>Purpose</li>
+            <li><span class="idx">02</span>Scope</li>
+            <li><span class="idx">03</span>Software checklist</li>
+            <li><span class="idx">04</span>Hardware requirements</li>
+            <li><span class="idx">05</span>Windows preparation</li>
+            <li><span class="idx">06</span>Git</li>
+            <li><span class="idx">07</span>GitHub account</li>
+            <li><span class="idx">08</span>SSH configuration</li>
+            <li><span class="idx">09</span>VS Code</li>
+            <li><span class="idx">10</span>IntelliJ IDEA</li>
+            <li><span class="idx">11</span>Java JDK</li>
+            <li><span class="idx">12</span>Maven</li>
+            <li><span class="idx">13</span>Spring Boot</li>
+            <li><span class="idx">14</span>Node.js</li>
+            <li><span class="idx">15</span>React</li>
+            <li><span class="idx">16</span>MySQL</li>
+            <li><span class="idx">17</span>MySQL verification</li>
+            <li><span class="idx">18</span>Postman</li>
+            <li><span class="idx">19</span>Docker</li>
+            <li><span class="idx">20</span>Flutter — mobile</li>
+            <li><span class="idx">21</span>Chrome DevTools</li>
+            <li><span class="idx">22</span>Environment verification</li>
+            <li><span class="idx">23</span>Project verification</li>
+            <li><span class="idx">24</span>Environment variables</li>
+            <li><span class="idx">25</span>.gitignore</li>
+            <li><span class="idx">26</span>Troubleshooting</li>
+            <li><span class="idx">27</span>Security rules</li>
+            <li><span class="idx">28</span>Trainee checklist</li>
+            <li><span class="idx">29</span>Python / FastAPI track</li>
+            <li><span class="idx">30</span>Evidence pack</li>
+            <li><span class="idx">31</span>Trainee sign-off</li>
+            <li><span class="idx">32</span>Mentor verification</li>
+            <li><span class="idx">33</span>Day-1 completion</li>
+          </ol>
+        </nav>
+      </section>
+
+      <div class="part"><span>Part I</span><strong>Purpose &amp; machine</strong></div>
+
+      <h2 class="section-title"><span class="n">01</span>Purpose</h2>
+      <p class="lead">This document is the standard software and development environment for every Deshmukh Technologies trainee. Day 1 is not a lecture day. It is the day the machine becomes a working engineering station.</p>
+      <ol class="stepper">
+        <li>Install</li><li>Configure</li><li>Verify</li><li>Clone</li><li>Build</li><li>Run</li><li>Test</li><li>Commit</li><li>Push</li>
+      </ol>
+      <table>
+        <thead><tr><th>Document</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>This setup guide</td><td>Machine, tools, GitHub, Day-1 sign-off</td></tr>
+          <tr><td>90-Day DTTP Handbook</td><td>Timed training path, project, assessment</td></tr>
+          <tr><td>Self-Growth Program</td><td>Ten-level knowledge map</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">Complete this path before assigned project development. Employee Management features do not start until the mentor marks the environment Pass or Conditional.</div>
+
+      <h2 class="section-title"><span class="n">02</span>Scope</h2>
+      <p>Installation, Windows layout, Git, GitHub SSH, Java / Spring Boot, Node / React, MySQL, Postman, Docker, Flutter for the mobile track, verification, troubleshooting, trainee sign-off, mentor verification, and Day-1 completion. Python / FastAPI is installed only when that backend track is assigned. JDK remains the DTTP default.</p>
+
+      <h2 class="section-title"><span class="n">03</span>Standard software checklist</h2>
+      <table>
+        <thead><tr><th>Software</th><th>Purpose</th><th>Required</th></tr></thead>
+        <tbody>
+          <tr><td>Windows 10 / 11</td><td>Operating system</td><td>Yes</td></tr>
+          <tr><td>Git + GitHub account</td><td>Version control and source</td><td>Yes</td></tr>
+          <tr><td>VS Code</td><td>General / frontend</td><td>Yes</td></tr>
+          <tr><td>IntelliJ IDEA</td><td>Java / Spring Boot</td><td>Yes</td></tr>
+          <tr><td>JDK 17 (or 21 if the project says so)</td><td>Java</td><td>Yes</td></tr>
+          <tr><td>Maven</td><td>Java build</td><td>Yes</td></tr>
+          <tr><td>Node.js LTS + npm</td><td>React</td><td>Yes</td></tr>
+          <tr><td>MySQL Server + Workbench</td><td>Database</td><td>Yes</td></tr>
+          <tr><td>Postman + Chrome</td><td>API and debugging</td><td>Yes</td></tr>
+          <tr><td>Docker Desktop</td><td>Containers</td><td>Recommended</td></tr>
+          <tr><td>Flutter SDK + Android Studio</td><td>Mobile</td><td>Mobile track</td></tr>
+          <tr><td>Python 3.11+</td><td>FastAPI</td><td>Python track only</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><span class="n">04</span>Hardware requirements</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Minimum</h4>
+          <ul>
+            <li>8 GB RAM</li>
+            <li>256 GB SSD</li>
+            <li>Modern dual / quad-core CPU</li>
+            <li>Stable internet</li>
+            <li>Windows 10 / 11</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Recommended</h4>
+          <ul>
+            <li>16 GB RAM</li>
+            <li>512 GB SSD</li>
+            <li>Intel Core i5 / AMD Ryzen 5 or better</li>
+            <li>Full HD display</li>
+            <li>Reliable broadband</li>
+          </ul>
+        </div>
+      </div>
+      <p>A machine below the minimum will struggle with IntelliJ + Chrome + Docker + MySQL at once. Tell the mentor before Day 1 if the machine is below minimum.</p>
+
+      <h2 class="section-title"><span class="n">05</span>Windows preparation</h2>
+      <ol>
+        <li><strong>Update:</strong> Settings → Windows Update → Check for updates. Install security and system updates.</li>
+        <li><strong>Restart</strong> after major updates. Do not install JDK, Docker, or Android Studio on a pending-reboot machine.</li>
+        <li><strong>Create</strong> <code>C:\Development\</code> with <code>Projects</code>, <code>Tools</code>, <code>Documents</code>, and <code>Backups</code>.</li>
+      </ol>
+      <div class="callout dark">Do not keep clones in C:\Windows, C:\Program Files, Desktop, or Downloads.</div>
+      <p>Recommended: enable Windows long paths from an Administrator PowerShell so deep Node and Java trees do not fail.</p>
+      <div class="tree">New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" `
+  -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force</div>
+
+      <div class="part"><span>Part II</span><strong>Tools</strong></div>
+
+      <h2 class="section-title"><span class="n">06</span>Git installation</h2>
+      <p>Install Git for Windows. Enable Git from the command line, bundled OpenSSH, default branch <code>main</code>. Open a <strong>new</strong> PowerShell:</p>
+      <div class="tree">git --version
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+git config --global init.defaultBranch main
+git config --global --list</div>
+      <p>Expected: <code>git version 2.x.x</code>. Use the email on the GitHub profile.</p>
+
+      <h2 class="section-title"><span class="n">07</span>GitHub account</h2>
+      <p>Each trainee has an authorized GitHub account and repository access from the mentor or admin. Never share passwords, personal access tokens, private SSH keys, or company secrets. Access is granted to named people, not shared logins.</p>
+
+      <h2 class="section-title"><span class="n">08</span>GitHub SSH configuration</h2>
+      <div class="tree">ssh-keygen -t ed25519 -C "your-email@example.com"
+Get-Service ssh-agent | Set-Service -StartupType Automatic
+Start-Service ssh-agent
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
+Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub</div>
+      <p>Accept the default key path. Set a passphrase. If <code>Set-Service</code> is denied, run those two service lines as Administrator, then <code>ssh-add</code> in a normal window.</p>
+      <p>Copy the <strong>public</strong> key only (starts with <code>ssh-ed25519</code>, one line). GitHub → Settings → SSH and GPG keys → New SSH key. Title: <code>DTTP-Windows-&lt;name&gt;</code>.</p>
+      <div class="tree">ssh -T git@github.com
+Hi &lt;github-username&gt;! You've successfully authenticated, but GitHub does not provide shell access.</div>
+      <p>First connection may ask to trust GitHub’s host key. Type <code>yes</code>. Never copy <code>id_ed25519</code> without <code>.pub</code>.</p>
+
+      <h2 class="section-title"><span class="n">09</span>VS Code</h2>
+      <div class="kpi">
+        <span class="chip">Prettier</span><span class="chip">ESLint</span><span class="chip">GitLens</span><span class="chip">EditorConfig</span><span class="chip">Docker</span><span class="chip">REST Client</span><span class="chip">Java pack</span><span class="chip">Spring Boot pack</span>
+      </div>
+      <p>Format On Save: On. Auto Save: afterDelay or onFocusChange. Default formatter: Prettier for JavaScript, TypeScript, and JSON. React snippet packs are optional; prefer typing the code in training.</p>
+
+      <h2 class="section-title"><span class="n">10</span>IntelliJ IDEA</h2>
+      <p>Use IntelliJ for Java, Spring Boot, Maven, JUnit, Mockito, JPA, and Spring Security. Community is enough unless the company issues Ultimate.</p>
+      <table>
+        <thead><tr><th>Setting</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Project SDK</td><td>JDK 17 (or 21 if the project says so)</td></tr>
+          <tr><td>Build tool</td><td>Maven</td></tr>
+          <tr><td>Version control</td><td>Git</td></tr>
+          <tr><td>Annotation processing</td><td>Enabled for Spring projects</td></tr>
+        </tbody>
+      </table>
+      <p>Do not mix VS Code and IntelliJ on the same Java change in the same hour.</p>
+
+      <h2 class="section-title"><span class="n">11</span>Java JDK</h2>
+      <p>DTTP default: <strong>JDK 17 LTS</strong>. Install a full JDK, not a JRE.</p>
+      <div class="tree">JAVA_HOME = C:\Program Files\Java\jdk-17
+Path      += %JAVA_HOME%\bin</div>
+      <p>Point <code>JAVA_HOME</code> at the JDK root, not at <code>bin</code>. Folder names vary by vendor (Temurin, Microsoft, Oracle). New terminal:</p>
+      <div class="tree">java -version
+javac -version
+echo $env:JAVA_HOME</div>
+      <p>Both commands must work. <code>java</code> without <code>javac</code> means a JRE is on PATH. Expected: <code>openjdk version "17.0.x"</code> and <code>javac 17.0.x</code>.</p>
+
+      <h2 class="section-title"><span class="n">12</span>Maven</h2>
+      <p>Install Maven 3.9.x or use the project wrapper. Prefer the wrapper when <code>mvnw.cmd</code> exists:</p>
+      <div class="tree">mvn -version
+.\mvnw.cmd clean install</div>
+      <p>Do not upgrade Maven globally to fix a wrapper build.</p>
+
+      <h2 class="section-title"><span class="n">13</span>Spring Boot verification</h2>
+      <div class="tree">cd C:\Development\Projects
+git clone git@github.com:&lt;org&gt;/&lt;backend-repo&gt;.git
+cd &lt;backend-repo&gt;
+.\mvnw.cmd clean install
+.\mvnw.cmd spring-boot:run</div>
+      <p>Copy local config from the example. Never commit it.</p>
+      <div class="tree">spring.datasource.url=jdbc:mysql://localhost:3306/dttp_training
+spring.datasource.username=dttp_dev
+spring.datasource.password=use-a-local-password</div>
+      <p>Pass when: <code>BUILD SUCCESS</code>, process stays up, logs show MySQL connected, <code>GET http://localhost:8080/api/health</code> returns <code>{ "status": "ok" }</code> (or the project health path).</p>
+
+      <h2 class="section-title"><span class="n">14</span>Node.js</h2>
+      <p>Install the Node.js LTS that matches the frontend (<code>package.json</code> engines and <code>.nvmrc</code> if present). Expected: Node 20.x or 22.x unless the project pins another version.</p>
+      <div class="tree">node --version
+npm --version</div>
+      <p>Do not change Node versions to “fix” <code>npm install</code> on an existing lockfile.</p>
+
+      <h2 class="section-title"><span class="n">15</span>React environment</h2>
+      <div class="tree">cd C:\Development\Projects
+git clone git@github.com:&lt;org&gt;/&lt;frontend-repo&gt;.git
+cd &lt;frontend-repo&gt;
+copy .env.example .env
+npm install
+npm run dev</div>
+      <p>Some projects use <code>npm start</code>. Follow <code>package.json</code>. Chrome must load the printed URL (often <code>http://localhost:5173</code>). Be able to point at components, props, state, hooks, routing, service-layer API calls, forms, errors, and env vars. Never commit secrets.</p>
+
+      <h2 class="section-title"><span class="n">16</span>MySQL installation</h2>
+      <p>Install MySQL Server 8.x and Workbench. Local root password in a password manager, not in chat. Windows service enabled. Port <strong>3306</strong>.</p>
+      <table>
+        <thead><tr><th>Field</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Host</td><td>localhost</td></tr>
+          <tr><td>Port</td><td>3306</td></tr>
+          <tr><td>Training database</td><td><code>dttp_training</code></td></tr>
+        </tbody>
+      </table>
+      <p>Never use production credentials on a trainee machine.</p>
+
+      <h2 class="section-title"><span class="n">17</span>MySQL verification</h2>
+      <p>Connect in Workbench. The trainee must create a database, create a table, insert, query, update, and delete.</p>
+      <div class="tree">CREATE DATABASE IF NOT EXISTS dttp_training
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'dttp_dev'@'localhost' IDENTIFIED BY 'use-a-local-password';
+GRANT ALL PRIVILEGES ON dttp_training.* TO 'dttp_dev'@'localhost';
+USE dttp_training;
+CREATE TABLE smoke_test (id INT PRIMARY KEY AUTO_INCREMENT, label VARCHAR(80) NOT NULL);
+INSERT INTO smoke_test (label) VALUES ('DTTP Day 1');
+SELECT * FROM smoke_test;</div>
+
+      <h2 class="section-title"><span class="n">18</span>Postman</h2>
+      <p>Learn GET, POST, PUT, PATCH, DELETE, URL, query, path, headers, JSON, Bearer token, and status codes.</p>
+      <ol class="stepper"><li>POST /api/auth/login</li><li>JWT</li><li>Authorization Bearer</li><li>GET /api/employees</li><li>GET /api/health</li></ol>
+      <p>Save the collection under <code>C:\Development\Documents</code>. No production tokens.</p>
+
+      <h2 class="section-title"><span class="n">19</span>Docker Desktop</h2>
+      <p>WSL 2 backend required. Enable virtualization if Docker reports it off.</p>
+      <div class="tree">docker --version
+docker compose version
+docker run hello-world</div>
+      <p>Understand image, container, Dockerfile, volume, network, Compose. On 8 GB RAM, start Docker only when the day’s work needs it. Mentor may waive Docker in writing.</p>
+
+      <h2 class="section-title"><span class="n">20</span>Flutter — mobile track</h2>
+      <p>Install Flutter SDK (stable), Android Studio, Android SDK, emulator or authorized device with USB debugging. Add Flutter <code>bin</code> to PATH.</p>
+      <div class="tree">flutter --version
+flutter doctor
+flutter doctor -v
+cd C:\Development\Projects
+flutter create dttp_test_app
+cd dttp_test_app
+flutter run</div>
+      <p>Pass when the counter app launches. Resolve every red <code>flutter doctor</code> item on this track.</p>
+
+      <h2 class="section-title"><span class="n">21</span>Chrome DevTools</h2>
+      <p>Press <strong>F12</strong>. Elements (HTML/CSS), Console (JS errors), Network (API status and payload), Application (storage and cookies), Sources (breakpoints). Day-1: load the React app and confirm the document request, plus one XHR/fetch when the API is up.</p>
+
+      <div class="part"><span>Part III</span><strong>Verify</strong></div>
+
+      <h2 class="section-title"><span class="n">22</span>Environment verification</h2>
+      <p>Run in a <strong>new</strong> PowerShell. Paste output into the sign-off.</p>
+      <div class="tree">git --version
+java -version
+javac -version
+mvn -version
+node --version
+npm --version
+mysql --version
+docker --version
+docker compose version
+ssh -T git@github.com</div>
+      <p>Mobile: <code>flutter --version</code> and <code>flutter doctor</code>. Python track: <code>python --version</code> (3.11 or 3.12) and <code>pip --version</code>. Skip Docker commands only with a written mentor waiver.</p>
+
+      <h2 class="section-title"><span class="n">23</span>Project verification</h2>
+      <ol class="path">
+        <li>GitHub repository</li>
+        <li>Clone with SSH</li>
+        <li>Install dependencies</li>
+        <li>Configure local env (not committed)</li>
+        <li>Database connection</li>
+        <li>Build</li>
+        <li>Run backend</li>
+        <li>Run frontend</li>
+        <li>Test API</li>
+        <li>Small allowed change</li>
+        <li>Commit</li>
+        <li>Push</li>
+      </ol>
+      <p>First commit only after the mentor names a safe file:</p>
+      <div class="tree">git checkout -b dttp/&lt;initials&gt;/env-setup
+git add docs/setup-notes.md
+git commit -m "docs: record Day-1 environment verification"
+git push -u origin dttp/&lt;initials&gt;/env-setup</div>
+      <p>Do not commit <code>.env</code> or <code>application-local.properties</code>.</p>
+
+      <h2 class="section-title"><span class="n">24</span>Environment variables</h2>
+      <p>Never hard-code <code>DB_PASSWORD</code>, <code>JWT_SECRET</code>, <code>API_KEY</code>, or AWS keys. Use <code>.env</code>, <code>application-local.properties</code>, or <code>application-dev.properties</code>. Confirm secrets are in <code>.gitignore</code>.</p>
+
+      <h2 class="section-title"><span class="n">25</span>Recommended .gitignore</h2>
+      <div class="tree">.env
+.env.local
+application-local.properties
+.idea/
+.vscode/
+node_modules/
+build/
+dist/
+target/
+*.log
+*.jks
+*.pem
+*.p12
+id_ed25519</div>
+      <p>If a secret was committed by mistake, tell the mentor immediately. Do not only delete the file in a later commit.</p>
+
+      <h2 class="section-title"><span class="n">26</span>Troubleshooting</h2>
+      <table>
+        <thead><tr><th>Symptom</th><th>First check</th></tr></thead>
+        <tbody>
+          <tr><td>Git / Java / Node not recognized</td><td>Install, PATH, <strong>new</strong> PowerShell. JDK needs <code>javac</code>, not only <code>java</code>.</td></tr>
+          <tr><td>Maven not recognized</td><td>Use <code>.\mvnw.cmd</code> in the project.</td></tr>
+          <tr><td><code>npm install</code> fails</td><td>Match Node to <code>engines</code> / <code>.nvmrc</code>. Do not change lockfile versions at random.</td></tr>
+          <tr><td>MySQL connection fails</td><td>Service running, port 3306, user, password, database exists, host is <code>localhost</code>.</td></tr>
+          <tr><td>Docker does not start</td><td>Desktop running, virtualization, WSL 2, <code>docker info</code>.</td></tr>
+          <tr><td>SSH asks for a GitHub password</td><td>Remote is HTTPS. Set origin to <code>git@github.com:&lt;org&gt;/&lt;repo&gt;.git</code>.</td></tr>
+          <tr><td>Flutter doctor red</td><td><code>flutter doctor -v</code>. Fix SDK, licenses, emulator, or PATH first.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><span class="n">27</span>Security rules</h2>
+      <ul class="checklist">
+        <li>Never share passwords on WhatsApp or email</li>
+        <li>Never commit credentials to GitHub</li>
+        <li>Never expose API keys</li>
+        <li>Never share private SSH keys</li>
+        <li>Never upload company source to unauthorized locations</li>
+        <li>Never use production credentials for training</li>
+        <li>Never install unauthorized software on a company machine</li>
+        <li>Report security incidents immediately</li>
+      </ul>
+
+      <div class="part"><span>Part IV</span><strong>Sign-off</strong></div>
+
+      <h2 class="section-title"><span class="n">28</span>Trainee setup checklist</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Windows &amp; tools</h4>
+          <ul class="checklist" style="columns:1">
+            <li>Windows updated and restarted</li>
+            <li>C:\Development folders created</li>
+            <li>Git identity configured</li>
+            <li>VS Code + IntelliJ installed</li>
+            <li>java and javac both work</li>
+            <li>Maven wrapper or mvn verified</li>
+            <li>Node LTS and npm verified</li>
+            <li>Chrome installed</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Data, GitHub, tracks</h4>
+          <ul class="checklist" style="columns:1">
+            <li>MySQL 3306 + dttp_training smoke SQL</li>
+            <li>Postman collection saved</li>
+            <li>Docker hello-world or written waiver</li>
+            <li>SSH public key on GitHub</li>
+            <li>ssh -T git@github.com succeeded</li>
+            <li>Assigned repo cloned with SSH</li>
+            <li>Mobile: flutter doctor + test app</li>
+            <li>Python track: python 3.11+ if assigned</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title"><span class="n">29</span>Python / FastAPI track</h2>
+      <p>Install only when the mentor assigns this track. Same MySQL database, Git, and security rules. Health remains <code>GET /api/health</code>.</p>
+      <div class="tree">python --version
+pip --version
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn app.main:app --reload</div>
+      <p>If activation is blocked: <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code>.</p>
+
+      <h2 class="section-title"><span class="n">30</span>Evidence pack</h2>
+      <p>Attach screenshots or pasted logs to the Day-1 report. Crop secrets.</p>
+      <table>
+        <thead><tr><th>Evidence</th><th>Shows</th></tr></thead>
+        <tbody>
+          <tr><td><code>git --version</code> and global config</td><td>Git identity</td></tr>
+          <tr><td><code>ssh -T git@github.com</code></td><td>SSH works</td></tr>
+          <tr><td><code>java</code> / <code>javac</code> and Node / npm</td><td>JDK and Node</td></tr>
+          <tr><td>Workbench on <code>dttp_training</code></td><td>Database</td></tr>
+          <tr><td>Backend BUILD SUCCESS or run log</td><td>Spring Boot</td></tr>
+          <tr><td>Browser with the React app</td><td>Frontend</td></tr>
+          <tr><td>Postman <code>GET /api/health</code></td><td>API</td></tr>
+          <tr><td>GitHub setup branch</td><td>Push</td></tr>
+          <tr><td><code>flutter doctor</code> (mobile)</td><td>Mobile track</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><span class="n">31</span>Trainee sign-off</h2>
+      <p>A verbal “it’s done” is not Day-1 complete.</p>
+      <div class="sign">
+        <table>
+          <thead><tr><th>Field</th><th>Trainee fills</th></tr></thead>
+          <tbody>
+            <tr><td>Full name</td><td></td></tr>
+            <tr><td>Date</td><td></td></tr>
+            <tr><td>GitHub username</td><td></td></tr>
+            <tr><td>Machine (make / RAM / disk)</td><td></td></tr>
+            <tr><td>Windows version</td><td></td></tr>
+            <tr><td>Backend track (Java / Python)</td><td></td></tr>
+            <tr><td>Mobile track (Yes / No)</td><td></td></tr>
+            <tr><td>Docker (Installed / Waived)</td><td></td></tr>
+            <tr><td>Assigned repos</td><td></td></tr>
+          </tbody>
+        </table>
+        <p>I confirm that the required tools are installed, SSH works, I can clone, build, and run the assigned starter, no secrets are in Git, and the evidence pack is attached.</p>
+        <p><strong>Trainee signature / typed name</strong></p>
+        <div class="line"></div>
+        <p><strong>Date</strong></p>
+        <div class="line"></div>
+      </div>
+
+      <h2 class="section-title"><span class="n">32</span>Mentor / admin verification</h2>
+      <p>Spot-check: <code>ssh -T</code>, <code>java</code> and <code>javac</code> (or Python), MySQL <code>dttp_training</code>, one running app, <code>.gitignore</code> covers <code>.env</code>, remote is <code>git@github.com:</code> not HTTPS.</p>
+      <table>
+        <thead><tr><th>Result</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Pass</td><td>Day-1 complete. Trainee may start Phase 1 technical work.</td></tr>
+          <tr><td>Conditional</td><td>Listed gaps with a fix date within 48 hours.</td></tr>
+          <tr><td>Fail</td><td>Environment is not usable. Repeat setup with mentor support.</td></tr>
+        </tbody>
+      </table>
+      <div class="sign">
+        <p><strong>Mentor name</strong></p><div class="line"></div>
+        <p><strong>Result</strong> — Pass / Conditional / Fail</p><div class="line"></div>
+        <p><strong>Notes</strong></p><div class="line"></div>
+        <p><strong>Date</strong></p><div class="line"></div>
+      </div>
+
+      <h2 class="section-title"><span class="n">33</span>Day-1 completion criteria</h2>
+      <ul class="checklist">
+        <li>Core verification commands succeed</li>
+        <li>GitHub SSH authentication succeeds</li>
+        <li>Assigned repo cloned into C:\Development\Projects</li>
+        <li>dttp_training exists and smoke SQL ran</li>
+        <li>Backend or frontend starter runs locally</li>
+        <li>One API call shown in Postman or Network</li>
+        <li>One allowed commit pushed on a feature branch</li>
+        <li>Trainee sign-off filled</li>
+        <li>Mentor result is Pass or Conditional with dated gaps</li>
+      </ul>
+      <div class="callout dark">Until Day 1 is complete, the trainee does not start Employee Management features.</div>
+    </div>
+
+    <section class="closing">
+      <p class="brand-row" style="justify-content:center;">DTTP — Deshmukh Technologies Trainee Program</p>
+      <div class="gold-rule" style="margin:18px auto;"></div>
+      <h2>Install. Configure. Verify. Then build.</h2>
+      <p>Windows station ready. GitHub authenticated. Database local. First commit on a branch.</p>
+      <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
+    </section>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Software Setup v1.0 · Internal use</footer>
+  </article>
+</body>
+</html>

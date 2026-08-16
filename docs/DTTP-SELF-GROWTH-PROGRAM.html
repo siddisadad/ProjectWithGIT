@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DTTP Self-Growth Program — Deshmukh Technologies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1a2c;
+      --navy-mid: #16324f;
+      --ink: #1b2430;
+      --muted: #5c6673;
+      --line: #d7dde5;
+      --paper: #f6f2ea;
+      --white: #ffffff;
+      --gold: #b8892c;
+      --gold-soft: #f3e6c7;
+      --teal: #1b6a68;
+      --teal-soft: #e3f1f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #e8e2d6;
+      line-height: 1.55;
+      font-size: 15.5px;
+    }
+    a { color: var(--navy-mid); text-decoration: none; }
+    .page {
+      max-width: 980px;
+      margin: 28px auto 64px;
+      background: var(--white);
+      box-shadow: 0 18px 50px rgba(12, 27, 46, 0.08);
+    }
+    .cover {
+      background:
+        radial-gradient(circle at 88% 8%, rgba(184, 137, 44, 0.22), transparent 34%),
+        linear-gradient(165deg, #0b1a2c 0%, #132844 58%, #0b1a2c 100%);
+      color: #f4efe4;
+      min-height: 100vh;
+      padding: 64px 72px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid rgba(243, 230, 199, 0.26);
+      pointer-events: none;
+    }
+    .cover-top, .cover-footer { position: relative; z-index: 1; }
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold-soft);
+    }
+    .badge { letter-spacing: 0.16em; border: 1px solid rgba(243, 230, 199, 0.4); padding: 6px 10px; }
+    .cover h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 64px;
+      line-height: 0.92;
+      font-weight: 600;
+      margin: 32px 0 14px;
+    }
+    .gold-rule { width: 84px; height: 3px; background: var(--gold); margin: 0 0 18px; }
+    .cover h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: #f3e6c7;
+      margin-bottom: 16px;
+    }
+    .cover .subtitle { max-width: 560px; font-size: 17px; color: #d5cfc0; }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px 28px;
+      margin-top: 40px;
+      max-width: 620px;
+    }
+    .meta-item { border-top: 1px solid rgba(243, 230, 199, 0.22); padding-top: 10px; }
+    .meta-item span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #c9bea6;
+      margin-bottom: 4px;
+    }
+    .tagline {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--gold-soft);
+    }
+    .inner { padding: 42px 56px 48px; }
+    .front-matter { break-after: page; page-break-after: always; }
+    .doc-control { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+    .doc-control div { background: var(--paper); padding: 12px 14px; border-top: 3px solid var(--gold); }
+    .doc-control small {
+      display: block; color: var(--muted); letter-spacing: 0.12em;
+      text-transform: uppercase; font-size: 10px; margin-bottom: 3px;
+    }
+    .part {
+      display: flex; align-items: baseline; gap: 14px;
+      margin: 22px 0 12px; padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--navy); break-after: avoid;
+    }
+    .part span { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .part strong { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; color: var(--navy); }
+    h2.section-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 24px; color: var(--navy); margin: 22px 0 10px;
+      display: flex; align-items: baseline; gap: 12px; break-after: avoid;
+    }
+    h2.section-title .n {
+      font-family: "Source Sans 3", sans-serif; font-size: 12px;
+      letter-spacing: 0.08em; color: var(--gold); font-weight: 700; min-width: 28px;
+    }
+    h3 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 20px; color: var(--navy-mid); margin: 14px 0 8px; }
+    h4 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin: 12px 0 8px; font-weight: 700; }
+    p { margin: 0 0 10px; }
+    .lead { font-size: 16.5px; color: #334155; }
+    .toc ol { list-style: none; margin: 0; columns: 2; column-gap: 32px; }
+    .toc li { break-inside: avoid; display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dotted #cfc6b4; font-size: 13.5px; }
+    .toc .idx { color: var(--gold); font-weight: 700; min-width: 22px; }
+    .callout {
+      background: var(--gold-soft); border-left: 4px solid var(--gold);
+      padding: 13px 16px; margin: 12px 0 16px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 18px; line-height: 1.4; color: var(--navy); break-inside: avoid;
+    }
+    .callout.dark { background: var(--navy); color: #f4efe4; border-left-color: var(--gold); }
+    .cards, .two-col, .three-col { display: grid; gap: 12px; margin: 12px 0 16px; }
+    .cards, .three-col { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .card, .panel, .level-card {
+      border: 1px solid var(--line); padding: 14px 14px 10px;
+      background: var(--white); break-inside: avoid;
+    }
+    .card { border-top: 4px solid var(--navy); }
+    .card.teal { border-top-color: var(--teal); }
+    .card.gold { border-top-color: var(--gold); }
+    .card h3, .panel h4 { margin-top: 0; }
+    .level-card { background: var(--paper); border-left: 4px solid var(--gold); }
+    .level-card strong { display: block; color: var(--navy); margin-bottom: 4px; }
+    ul { margin: 0 0 12px 18px; }
+    li { margin: 3px 0; }
+    .stepper, .path { list-style: none; margin: 0 0 14px; }
+    .stepper { display: flex; flex-wrap: wrap; gap: 6px; }
+    .stepper li {
+      background: var(--navy); color: #f4efe4; padding: 6px 9px;
+      font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase;
+      font-weight: 600; white-space: nowrap;
+    }
+    .path {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; counter-reset: step;
+    }
+    .path li {
+      background: var(--paper); padding: 8px 10px; border-left: 3px solid var(--gold);
+      font-size: 13px; font-weight: 600; counter-increment: step;
+    }
+    .path li::before { content: counter(step, decimal-leading-zero) "  "; color: var(--gold); font-size: 11px; }
+    .kpi { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
+    .chip { background: var(--teal-soft); color: var(--teal); padding: 4px 8px; font-size: 12px; font-weight: 600; }
+    .checklist { list-style: none; margin: 0 0 14px; columns: 2; column-gap: 22px; }
+    .checklist li {
+      break-inside: avoid; padding: 4px 0 4px 22px; position: relative;
+      border-bottom: 1px solid var(--line); font-size: 13px;
+    }
+    .checklist li::before {
+      content: ""; width: 12px; height: 12px; border: 1.4px solid var(--navy);
+      position: absolute; left: 0; top: 7px;
+    }
+    .tree {
+      background: var(--navy); color: #e8e2d4; font-family: ui-monospace, monospace;
+      font-size: 12px; line-height: 1.5; padding: 14px 16px; margin: 8px 0 14px;
+      white-space: pre; break-inside: avoid;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 13.5px; break-inside: avoid; }
+    th, td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: #f4efe4; font-weight: 600; }
+    tr:nth-child(even) td { background: #faf8f3; }
+    .closing {
+      background: radial-gradient(circle at 50% 0%, rgba(184, 137, 44, 0.18), transparent 42%), var(--navy);
+      color: #f4efe4; padding: 56px 48px; text-align: center;
+      break-before: page; page-break-before: always;
+    }
+    .closing h2 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 32px; margin: 10px 0 12px; }
+    .closing p { max-width: 560px; margin: 0 auto 10px; color: #d5cfc0; }
+    .closing .final { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; color: var(--gold-soft); margin-top: 16px; }
+    .screen-foot { text-align: center; color: var(--muted); font-size: 12px; padding: 0 56px 28px; }
+    @media screen and (max-width: 820px) {
+      .cover, .inner, .closing { padding: 32px 20px; }
+      .cover h1 { font-size: 42px; }
+      .cards, .doc-control, .two-col, .three-col, .path, .toc ol { grid-template-columns: 1fr; columns: 1; }
+      .page { margin: 0; }
+    }
+    @page { size: A4; margin: 16mm 13mm 18mm; }
+    @page :first { margin: 0; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: white; font-size: 10.6pt; }
+      .page { margin: 0; box-shadow: none; max-width: none; }
+      .cover { min-height: 100vh; height: 100vh; padding: 26mm 20mm 20mm; break-after: page; }
+      .cover h1 { font-size: 48px; }
+      .inner { padding: 0; }
+      h2.section-title { font-size: 19px; margin: 15px 0 8px; }
+      .callout { font-size: 15px; }
+      .closing { padding: 48mm 14mm 36mm; min-height: 230mm; }
+      .screen-foot { display: none; }
+      .card, .callout, .panel, .level-card, table, .path { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="cover">
+      <div class="cover-top">
+        <div class="brand-row">
+          <span>Deshmukh Technologies</span>
+          <span class="badge">DTTP · v1.6</span>
+        </div>
+        <h1>Self-Growth<br />Program</h1>
+        <div class="gold-rule"></div>
+        <h2>DTTP Full-Stack Developer Self-Growth Roadmap</h2>
+        <p class="subtitle">Ten learning levels with timeboxes, worked examples, stop rules, and mentor reviews — turning full-stack reference material into a practical Deshmukh Technologies growth path.</p>
+        <div class="meta-grid">
+          <div class="meta-item"><span>Purpose</span>Self-directed full-stack growth</div>
+          <div class="meta-item"><span>Levels</span>10 progressive stages</div>
+          <div class="meta-item"><span>Tracks</span>Java / Spring Boot or Python / FastAPI</div>
+          <div class="meta-item"><span>Frontend</span>React + TypeScript</div>
+          <div class="meta-item"><span>Practice stack</span>SQL + GitHub + Docker + CI/CD + AWS</div>
+          <div class="meta-item"><span>Companion</span>90-Day DTTP Handbook</div>
+        </div>
+      </div>
+      <div class="cover-footer" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;">
+        <p class="tagline">Learn. Build. Solve. Review. Deploy. Grow.</p>
+        <p class="brand-row">Internal Talent Development Standard</p>
+      </div>
+    </header>
+
+    <div class="inner">
+      <section class="front-matter">
+        <div class="doc-control">
+          <div><small>Document</small>DTTP Self-Growth Program</div>
+          <div><small>Version</small>1.6</div>
+          <div><small>Classification</small>Internal Training Standard</div>
+          <div><small>Owner</small>Deshmukh Technologies</div>
+        </div>
+        <div class="part"><span>Roadmap</span><strong>Contents</strong></div>
+        <nav class="toc">
+          <ol>
+            <li><span class="idx">00</span>How to use this program</li>
+            <li><span class="idx">01</span>Level 1 — Web Fundamentals</li>
+            <li><span class="idx">02</span>Level 2 — Frontend Engineering</li>
+            <li><span class="idx">03</span>Level 3 — React &amp; Modern Frontend</li>
+            <li><span class="idx">04</span>Level 4 — Web Communication &amp; APIs</li>
+            <li><span class="idx">05</span>Level 5 — Backend Development</li>
+            <li><span class="idx">06</span>Level 6 — Database Engineering</li>
+            <li><span class="idx">07</span>Level 7 — Architecture</li>
+            <li><span class="idx">08</span>Level 8 — Testing, Security &amp; Performance</li>
+            <li><span class="idx">09</span>Level 9 — DevOps &amp; Deployment</li>
+            <li><span class="idx">10</span>Level 10 — Professional Software Engineering</li>
+            <li><span class="idx">11</span>Incremental Employee Management build</li>
+            <li><span class="idx">12</span>Oral review bank</li>
+            <li><span class="idx">13</span>Depth ladder</li>
+            <li><span class="idx">14</span>Complete reference answers</li>
+            <li><span class="idx">15</span>Official progression</li>
+          </ol>
+        </nav>
+      </section>
+
+      <h2 class="section-title"><span class="n">00</span>How to use this program</h2>
+      <p class="lead">Full-stack reference material provides a strong foundation. It is <strong>not</strong> the entire DTTP curriculum. Use it as the <strong>Full-Stack Knowledge Reference</strong>, then apply it through Deshmukh Technologies tracks and real projects.</p>
+      <div class="callout">Do not ask trainees to study the reference as one large syllabus. Complete one level before treating the next as the main focus. Combine each level with Java/Spring Boot or Python/FastAPI, React/TypeScript, SQL, GitHub, Docker, CI/CD, AWS, and real Deshmukh Technologies work.</div>
+      <table>
+        <thead><tr><th>Document</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>90-Day DTTP Handbook</td><td>Timed training path, project, assessment, and graduation</td></tr>
+          <tr><td>Self-Growth Program</td><td>Deeper knowledge map for study before, during, and after the 90 days</td></tr>
+          <tr><td>Full-Stack Reference</td><td>Topic encyclopedia — not a replacement for practice</td></tr>
+        </tbody>
+      </table>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Study method</h4>
+          <ol>
+            <li>Read the concept.</li>
+            <li>Explain it in your own words.</li>
+            <li>Build a small example.</li>
+            <li>Break it, then debug it.</li>
+            <li>Commit the work.</li>
+            <li>Ask a mentor to review it.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <h4>Weekly habit</h4>
+          <ul>
+            <li>20% theory</li>
+            <li>30% exercises</li>
+            <li>40% project work</li>
+            <li>10% review and notes</li>
+          </ul>
+        </div>
+      </div>
+      <ol class="path">
+        <li>Web Fundamentals</li>
+        <li>Frontend Fundamentals</li>
+        <li>React + TypeScript</li>
+        <li>HTTP + REST + Web APIs</li>
+        <li>Java / Python Backend</li>
+        <li>Databases</li>
+        <li>Architecture</li>
+        <li>Testing + Security + Performance</li>
+        <li>Git + Docker + CI/CD + Cloud</li>
+        <li>Agile + Professional Engineering</li>
+      </ol>
+      <p>The destination is a <strong>self-directed full-stack developer</strong> who can build, test, debug, explain, document, and maintain software.</p>
+      <h4>Mapping to the 90-day handbook</h4>
+      <table>
+        <thead><tr><th>Self-growth level</th><th>Typical 90-day phase</th></tr></thead>
+        <tbody>
+          <tr><td>1–2</td><td>Days 1–25 · orientation, programming, web foundation</td></tr>
+          <tr><td>3–4</td><td>Days 26–35 · React and API thinking</td></tr>
+          <tr><td>5–6</td><td>Days 36–55 · backend specialization and database</td></tr>
+          <tr><td>7</td><td>Throughout the project, made explicit in design reviews</td></tr>
+          <tr><td>8</td><td>Days 66–78 · security, testing, debugging</td></tr>
+          <tr><td>9</td><td>Days 79–86 · Docker, CI/CD, AWS</td></tr>
+          <tr><td>10</td><td>Entire program, assessed at the end</td></tr>
+        </tbody>
+      </table>
+      <p>A trainee may be ahead or behind the calendar. The level checklist matters more than the day number.</p>
+      <h4>Suggested timebox</h4>
+      <p>These are focus windows, not deadlines. A trainee who finishes early should deepen the same level with a harder artifact, not skip ahead casually.</p>
+      <table>
+        <thead><tr><th>Level</th><th>Suggested focus</th><th>Minimum artifact</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>3–5 days</td><td>Request-path diagram + static page</td></tr>
+          <tr><td>2</td><td>7–10 days</td><td>Responsive page, form, DOM app, fetch demo</td></tr>
+          <tr><td>3</td><td>8–12 days</td><td>Typed React app with layout, routes, and one form</td></tr>
+          <tr><td>4</td><td>4–6 days</td><td>API contract + Network notes + Postman collection</td></tr>
+          <tr><td>5</td><td>10–14 days</td><td>Authenticated CRUD API on one track</td></tr>
+          <tr><td>6</td><td>7–10 days</td><td>Schema, seed data, join report, transaction example</td></tr>
+          <tr><td>7</td><td>3–5 days</td><td>Layered architecture diagram and module map</td></tr>
+          <tr><td>8</td><td>7–10 days</td><td>Tests, one security write-up, one measured improvement</td></tr>
+          <tr><td>9</td><td>5–8 days</td><td>Compose file, CI workflow, deploy notes</td></tr>
+          <tr><td>10</td><td>Continuous</td><td>Stories, reviews, daily reports, demo</td></tr>
+        </tbody>
+      </table>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Daily notebook</h4>
+          <ol>
+            <li>Topic studied</li>
+            <li>What I can now explain</li>
+            <li>What I built</li>
+            <li>What broke</li>
+            <li>What I still cannot explain</li>
+            <li>Commit hash or PR link</li>
+            <li>Tomorrow’s one objective</li>
+          </ol>
+          <p>If there is no notebook entry and no Git artifact, the day does not count as self-growth.</p>
+        </div>
+        <div class="panel">
+          <h4>Commit standard</h4>
+          <div class="tree">level-03: add protected employee list route</div>
+          <p>A useful commit is small, named after the level, and reviewable. Do not store a week of mixed work in one commit.</p>
+        </div>
+      </div>
+      <h4>Writing standard</h4>
+      <p>Notes are part of the work. Write so a mentor can review the day without a meeting. Be specific: name the file, endpoint, status code, or error. Prefer evidence over adjectives. Record what is still unclear.</p>
+      <table>
+        <thead><tr><th>Field</th><th>Sample notebook entry</th></tr></thead>
+        <tbody>
+          <tr><td>Topic studied</td><td>Protected routes and service layer</td></tr>
+          <tr><td>What I can now explain</td><td>Why employee list state does not belong inside JSX</td></tr>
+          <tr><td>What I built</td><td><code>/employees</code> route, <code>employeeService.ts</code>, empty state</td></tr>
+          <tr><td>What broke</td><td>Redirect loop when the token was an empty string</td></tr>
+          <tr><td>What I still cannot explain</td><td>When Context is better than lifting state</td></tr>
+          <tr><td>Commit / PR</td><td><code>level-03: add protected employee list route</code></td></tr>
+          <tr><td>Tomorrow</td><td>Create-employee form with typed validation</td></tr>
+        </tbody>
+      </table>
+      <h4>Documentation artifact by level</h4>
+      <table>
+        <thead><tr><th>Level</th><th>Written artifact the mentor reviews</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Request-path diagram and URL parts</td></tr>
+          <tr><td>2</td><td>Accessibility and fetch-error notes</td></tr>
+          <tr><td>3</td><td>Component map and where state lives</td></tr>
+          <tr><td>4</td><td>API contract and Network-tab notes</td></tr>
+          <tr><td>5</td><td>Endpoint notes for each implemented route</td></tr>
+          <tr><td>6</td><td>Schema, seed notes, and the SQL behind one ORM call</td></tr>
+          <tr><td>7</td><td>Architecture diagram and three “not yet services” reasons</td></tr>
+          <tr><td>8</td><td>Test list, security note, before/after measurement</td></tr>
+          <tr><td>9</td><td>Compose runbook and CI failure explanation</td></tr>
+          <tr><td>10</td><td>User story, PR walkthrough notes, daily reports</td></tr>
+        </tbody>
+      </table>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Feature note</h4>
+          <div class="tree">Feature: Create employee
+Done when: ADMIN/HR can create; EMPLOYEE cannot; duplicate email is 409
+Tests: service duplicate-email; API 401/403/409
+Docs: README run steps unchanged; api.md updated</div>
+        </div>
+        <div class="panel">
+          <h4>Decision note</h4>
+          <div class="tree">Decision: keep leave in the same service as employees
+Why: one team, one database, one deployable
+Not chosen: leave microservice
+Revisit when: a second team owns leave</div>
+        </div>
+      </div>
+
+      <h2 class="section-title"><span class="n">01</span>Level 1 — Web Fundamentals</h2>
+      <p><strong>Purpose:</strong> give the trainee a mental model of the web before frameworks.</p>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Study</h4>
+          <ul>
+            <li>Client and server roles</li>
+            <li>Browser, DNS, domain, IP address, port</li>
+            <li>URL: protocol, host, path, query, fragment</li>
+            <li>HTTP as request/response</li>
+            <li>Static page vs dynamic application</li>
+            <li>HTML structure, CSS presentation, JavaScript behavior</li>
+            <li>Server-side logic and the meaning of full-stack</li>
+            <li>Editor, DevTools, terminal, package manager, Git</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Must be able to explain</h4>
+          <ul>
+            <li>What happens after a user types a URL</li>
+            <li>Difference between frontend and backend</li>
+            <li>File server vs application server</li>
+            <li>Why JavaScript runs in the browser and Java/Python run on the server</li>
+          </ul>
+          <h4>Practice</h4>
+          <ul>
+            <li>Draw browser → DNS → server → response</li>
+            <li>Build <code>index.html</code>, <code>styles.css</code>, <code>app.js</code></li>
+            <li>Inspect Elements, Network, and Console</li>
+            <li>Serve a static folder locally</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>Can explain client, server, URL, DNS, and HTTP</li>
+        <li>Can build and style a simple page</li>
+        <li>Can inspect HTML, CSS, and network calls</li>
+        <li>Can describe what a full-stack application contains</li>
+      </ul>
+      <div class="callout">A trainee who cannot explain how a browser request reaches a server is not ready for React or Spring Boot.</div>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Explain this URL in writing:</p>
+        <div class="tree">https://app.deshmukh.local:5173/employees?status=active#list</div>
+        <p>Identify protocol, host, port, path, query, and fragment. Then open any website, find one document request and one API request in the Network tab, and write the difference.</p>
+      </div>
+      <div class="callout dark">Stop rule: do not start Level 2 until the trainee can narrate a request without using the words “it just loads.”</div>
+
+      <h2 class="section-title"><span class="n">02</span>Level 2 — Frontend Engineering</h2>
+      <p><strong>Purpose:</strong> make the trainee fluent in the browser before React abstractions.</p>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Structure &amp; style</h4>
+          <ul>
+            <li>Semantic HTML, landmarks, tables, lists</li>
+            <li>Forms, labels, input types, native validation</li>
+            <li>Cascade, selectors, specificity, inheritance</li>
+            <li>Box model, Flexbox, CSS Grid</li>
+            <li>Responsive units and media queries</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Behavior &amp; access</h4>
+          <ul>
+            <li>Variables, types, scope, functions</li>
+            <li>Objects, arrays, errors, <code>try / catch</code></li>
+            <li>DOM events, create/update/remove nodes</li>
+            <li>Fetch: JSON, loading, error states</li>
+            <li>Storage, timers, history</li>
+            <li>Accessibility: keyboard, contrast, labels, focus</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Practice</h4>
+      <div class="kpi">
+        <span class="chip">Responsive landing page</span><span class="chip">Validated form</span><span class="chip">DOM todo list</span><span class="chip">Public JSON API render</span><span class="chip">Keyboard-only use</span>
+      </div>
+      <ul class="checklist">
+        <li>Can layout a page with Flexbox and Grid</li>
+        <li>Can handle form input and validation</li>
+        <li>Can update the DOM from JavaScript</li>
+        <li>Can fetch JSON and render success/error/loading</li>
+        <li>Can name at least three accessibility checks</li>
+      </ul>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Build a “New Employee” HTML form with name, email, department, and joining date. Validate empty fields before submit. After submit, append a row to a table using the DOM. Then fetch a public user list and render names. Make the form usable with Tab and Enter only.</p>
+      </div>
+      <div class="callout dark">Stop rule: do not start React until the trainee can do this without a framework.</div>
+
+      <h2 class="section-title"><span class="n">03</span>Level 3 — React &amp; Modern Frontend</h2>
+      <p><strong>Purpose:</strong> build maintainable UI with <strong>React + TypeScript</strong>.</p>
+      <div class="kpi">
+        <span class="chip">Components</span><span class="chip">Props vs state</span><span class="chip">Effects / lifecycle</span><span class="chip">Controlled forms</span><span class="chip">Composition</span><span class="chip">Context API</span><span class="chip">Routing</span><span class="chip">Protected routes</span><span class="chip">SPA structure</span><span class="chip">Typed API responses</span>
+      </div>
+      <div class="tree">src/
+├── components/   pages/   layouts/   services/
+├── hooks/        types/   utils/     routes/
+└── assets/</div>
+      <p>Practice: multi-page app, login + protected route, form POST, loading/empty/error states, reusable table. Apply this to the Employee Management System frontend.</p>
+      <ul class="checklist">
+        <li>Can create typed React components</li>
+        <li>Can manage local and shared state</li>
+        <li>Can implement routing and a protected page</li>
+        <li>Can integrate an API through a service layer</li>
+        <li>Can keep UI responsive and readable</li>
+      </ul>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Build <code>/login</code>, protected <code>/dashboard</code>, and protected <code>/employees</code> with a list plus create form. Put API calls in <code>services/employeeService.ts</code>. Types go in <code>types/employee.ts</code>. If the token is missing, redirect to login. Show an empty state when the list is <code>[]</code>.</p>
+      </div>
+      <div class="callout dark">Stop rule: do not start backend specialization until the trainee can explain props, state, effects, and a service layer.</div>
+
+      <h2 class="section-title"><span class="n">04</span>Level 4 — Web Communication &amp; APIs</h2>
+      <p><strong>Purpose:</strong> teach what actually happens between frontend and backend.</p>
+      <div class="three-col">
+        <article class="card">
+          <h3>HTTP</h3>
+          <ul>
+            <li>Request/response line, headers, body</li>
+            <li>GET, POST, PUT, PATCH, DELETE</li>
+            <li>Safe methods and idempotency</li>
+            <li>200, 201, 204, 400, 401, 403, 404, 409, 422, 500</li>
+            <li>Cookies, Content-Type, CORS preflight</li>
+          </ul>
+        </article>
+        <article class="card teal">
+          <h3>Realtime</h3>
+          <ul>
+            <li>Short and long polling</li>
+            <li>Server-Sent Events</li>
+            <li>WebSockets</li>
+            <li>When each model is the right choice</li>
+          </ul>
+        </article>
+        <article class="card gold">
+          <h3>API styles</h3>
+          <ul>
+            <li>JSON as a data contract</li>
+            <li>REST resources and error payloads</li>
+            <li>Pagination and filtering</li>
+            <li>GraphQL as a query API</li>
+            <li>OpenAPI / Swagger</li>
+          </ul>
+        </article>
+      </div>
+      <p>Both backend tracks implement the same Employee Management API so Java and Python trainees learn the same design.</p>
+      <div class="tree">POST /api/auth/login
+GET|POST /api/employees    GET|PUT|DELETE /api/employees/{id}
+GET|POST /api/departments  GET|POST /api/attendance
+GET|POST /api/leaves       PUT /api/leaves/{id}/approve</div>
+      <ul class="checklist">
+        <li>Can read a network trace and explain each part</li>
+        <li>Can choose the correct HTTP method and status code</li>
+        <li>Can describe REST resource design</li>
+        <li>Can say when polling, SSE, or WebSockets is appropriate</li>
+      </ul>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>For <code>POST /api/employees</code>, write the expected request JSON, <code>201</code> response, <code>400</code>/<code>422</code> validation response, <code>401</code> when the token is missing, and <code>403</code> when an EMPLOYEE tries to create another employee. Capture the same calls in Postman.</p>
+        <h4>Error payload standard</h4>
+        <div class="tree">{
+  "error": "VALIDATION_FAILED",
+  "message": "Email is required",
+  "field": "email"
+}</div>
+        <p>Use one error shape across Java and Python tracks.</p>
+      </div>
+      <div class="callout dark">Stop rule: do not start backend specialization until the trainee can choose method, status, and error shape for create, read, update, delete, unauthorized, and forbidden without guessing.</div>
+
+      <h2 class="section-title"><span class="n">05</span>Level 5 — Backend Development</h2>
+      <p><strong>Purpose:</strong> implement server-side business logic on one DTTP track. Trainees are not required to learn every backend language in the reference.</p>
+      <h4>Shared backend skills</h4>
+      <div class="kpi">
+        <span class="chip">Validation</span><span class="chip">DTO / models</span><span class="chip">Service layer</span><span class="chip">Repository</span><span class="chip">Errors &amp; logging</span><span class="chip">Authn / authz</span><span class="chip">Environment config</span>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Java track</h4>
+          <ol class="stepper"><li>Java</li><li>Spring Boot</li><li>REST</li><li>JPA / Hibernate</li><li>Spring Security</li><li>JUnit / Mockito</li></ol>
+          <p>Controller → Service → Repository → JPA / Hibernate → Database</p>
+        </div>
+        <div class="panel">
+          <h4>Python track</h4>
+          <ol class="stepper"><li>Python</li><li>FastAPI</li><li>Pydantic</li><li>SQLAlchemy</li><li>Authentication</li><li>Pytest</li></ol>
+          <p>Router → Service → Repository → SQLAlchemy → Database</p>
+        </div>
+      </div>
+      <p>Practice: login, employee CRUD, departments, attendance, leave apply/approve, consistent error JSON, one unit test per service.</p>
+      <ul class="checklist">
+        <li>Can implement a validated REST endpoint</li>
+        <li>Can separate controller, service, and repository</li>
+        <li>Can persist and read data through the ORM</li>
+        <li>Can protect at least one endpoint with authentication</li>
+        <li>Can explain a request through every backend layer</li>
+      </ul>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Implement <code>POST /api/employees</code> on the chosen track. The controller accepts a DTO. The service rejects a missing name or email, rejects a duplicate email, and assigns a valid department. The repository persists the employee.</p>
+        <ul>
+          <li>Missing email → <code>400</code> / <code>422</code> with the standard error payload</li>
+          <li>Duplicate email → <code>409</code></li>
+          <li>Missing token → <code>401</code></li>
+          <li>EMPLOYEE caller → <code>403</code></li>
+          <li>Success → <code>201</code> and the new employee JSON</li>
+          <li>One unit test proves the service rejects a duplicate email</li>
+        </ul>
+        <p>Then implement <code>GET</code>, <code>PUT</code>, and <code>DELETE</code> with the same layering.</p>
+      </div>
+      <div class="callout dark">Stop rule: if the trainee cannot walk one request through controller → service → repository → database, stay here. Fat controllers do not complete this level.</div>
+
+      <h2 class="section-title"><span class="n">06</span>Level 6 — Database Engineering</h2>
+      <p><strong>Purpose:</strong> make SQL a first-class skill. <strong>SQL + MySQL / PostgreSQL is mandatory.</strong> NoSQL is introduced later.</p>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Relational — mandatory</h4>
+          <ul>
+            <li>Tables, types, keys, constraints</li>
+            <li>One-to-one, one-to-many, many-to-many</li>
+            <li>SELECT, INSERT, UPDATE, DELETE</li>
+            <li>JOIN, GROUP BY, HAVING, indexes</li>
+            <li>Transactions and isolation</li>
+            <li>Normalization and query plans</li>
+            <li>ORM mapping and N+1 awareness</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Non-relational — later</h4>
+          <ul>
+            <li>Key-value stores</li>
+            <li>Document databases</li>
+            <li>Graph databases</li>
+            <li>Column-oriented databases</li>
+            <li>When SQL is still the better default</li>
+          </ul>
+        </div>
+      </div>
+      <p>Practice: schema for employees, departments, attendance, leave; join reports; justified index; all-or-nothing transaction; same query in SQL and ORM.</p>
+      <ul class="checklist">
+        <li>Can design a normalized schema for the training project</li>
+        <li>Can write joins and aggregations by hand</li>
+        <li>Can use transactions correctly</li>
+        <li>Can explain an ORM query in SQL</li>
+        <li>Can name one valid later use of NoSQL</li>
+      </ul>
+      <div class="callout">ORM knowledge must not replace SQL knowledge.</div>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Design and seed this minimum schema:</p>
+        <div class="tree">departments(id, name UNIQUE)
+employees(id, name, email UNIQUE, department_id FK, joining_date, role)
+attendance(id, employee_id FK, work_date, status)
+leaves(id, employee_id FK, start_date, end_date, type, status)</div>
+        <p>Then write, by hand: employees with department names (<code>INNER JOIN</code>); employees with or without a department (<code>LEFT JOIN</code>); leave count by department (<code>GROUP BY</code>); and a transaction that approves a leave and writes the related attendance change. If the second write fails, both roll back. Show the SQL the ORM would generate for the leave-count report.</p>
+      </div>
+      <div class="callout dark">Stop rule: if the trainee cannot write the join and the transaction without the ORM, stay here.</div>
+
+      <h2 class="section-title"><span class="n">07</span>Level 7 — Architecture</h2>
+      <p><strong>Purpose:</strong> move from developer thinking to engineer thinking. Study models, but understand <strong>why</strong> architecture changes.</p>
+      <div class="kpi">
+        <span class="chip">Client-server</span><span class="chip">Layered / n-tier</span><span class="chip">Monolith</span><span class="chip">Modular monolith</span><span class="chip">SOA</span><span class="chip">Microservices</span><span class="chip">Component-based</span><span class="chip">Microfrontends</span><span class="chip">Messaging</span><span class="chip">MVC</span><span class="chip">MVP</span><span class="chip">MVVM</span><span class="chip">Coupling / cohesion</span>
+      </div>
+      <div class="callout dark">Do not teach microservices first. Teach Monolith → Layered Architecture → Modular Monolith → Distributed Systems → Microservices.</div>
+      <p>Practice: draw Employee Management as a layered monolith; identify auth, employees, attendance, leave, reports; list three reasons not to split them into services yet.</p>
+      <p>Both tracks use the same shape: <strong>React → REST → Service → Persistence → MySQL / PostgreSQL</strong>.</p>
+      <ul class="checklist">
+        <li>Can draw the current training system</li>
+        <li>Can name each layer and its responsibility</li>
+        <li>Can explain monolith vs microservices without slogans</li>
+        <li>Can justify the DTTP architecture sequence</li>
+      </ul>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Draw one diagram with these layers and one sentence of ownership for each:</p>
+        <div class="tree">React pages / services
+        ↓
+REST controllers or routers
+        ↓
+Domain services (leave rules, role checks)
+        ↓
+Repositories / ORM
+        ↓
+MySQL or PostgreSQL</div>
+        <p>Mark modules: auth, employees, departments, attendance, leave, reports. Write three reasons this training system should remain a layered monolith — for example one database, one team, one deployable, and no independent scaling need yet.</p>
+      </div>
+      <div class="callout dark">Stop rule: if the trainee says “microservices scale better” without naming a concrete problem the current system has, stay here.</div>
+
+      <h2 class="section-title"><span class="n">08</span>Level 8 — Testing, Security &amp; Performance</h2>
+      <p><strong>Purpose:</strong> make quality a permanent habit, not a late phase.</p>
+      <div class="three-col">
+        <article class="card">
+          <h3>Testing</h3>
+          <ul>
+            <li>Unit tests for business rules</li>
+            <li>Integration tests for API and database</li>
+            <li>TDD as discipline, coverage as signal</li>
+            <li>Doubles: dummy, stub, spy, mock, fake</li>
+            <li>Frontend component, form, and error-state tests</li>
+            <li>Postman collections for the business API</li>
+          </ul>
+        </article>
+        <article class="card teal">
+          <h3>Security</h3>
+          <ul>
+            <li>SQL injection and XSS</li>
+            <li>Authentication vs authorization</li>
+            <li>Password hashing, JWT risks</li>
+            <li>Roles, secrets, environment variables</li>
+            <li>TLS / HTTPS, CORS, CSP</li>
+            <li>Least privilege and security headers</li>
+          </ul>
+        </article>
+        <article class="card gold">
+          <h3>Performance</h3>
+          <ul>
+            <li>Measure before optimizing</li>
+            <li>TTFB, payload size, query time</li>
+            <li>Server- and client-side caching</li>
+            <li>Images, minification, compression</li>
+            <li>Lazy loading and preloading</li>
+            <li>Slow SQL and N+1 queries</li>
+          </ul>
+        </article>
+      </div>
+      <ul class="checklist">
+        <li>Can write unit and API tests</li>
+        <li>Can explain authn vs authz</li>
+        <li>Can keep secrets out of source control</li>
+        <li>Can measure one performance number and improve it</li>
+        <li>Can name the main project security risks</li>
+      </ul>
+      <div class="callout">Never commit passwords, API keys, tokens, private keys, or production credentials to GitHub. Measure performance before optimizing it.</div>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>For leave approval, write a service unit test that HR can approve a pending leave, a service unit test that an ordinary employee cannot, and API tests for <code>401</code>, <code>403</code>, and <code>409</code>. Add a short security note: where the JWT is stored, why <code>localStorage</code> is risky, and how secrets stay out of Git. Time <code>GET /api/employees</code> before and after an index or query change and record both numbers.</p>
+      </div>
+      <div class="callout dark">Stop rule: if the trainee cannot show a failing test first, or cannot show a measured number, stay here. “It feels faster” does not complete this level.</div>
+
+      <h2 class="section-title"><span class="n">09</span>Level 9 — DevOps &amp; Deployment</h2>
+      <p><strong>Purpose:</strong> connect code to a running, repeatable delivery path.</p>
+      <div class="three-col">
+        <article class="card">
+          <h3>Git</h3>
+          <ul>
+            <li>Working tree, staging, commit</li>
+            <li>Meaningful messages</li>
+            <li>Branch per task, PR, review</li>
+            <li>Merge, rebase, conflicts</li>
+            <li>Revert and stash</li>
+          </ul>
+        </article>
+        <article class="card teal">
+          <h3>Docker</h3>
+          <ul>
+            <li>Image vs container</li>
+            <li>Dockerfile</li>
+            <li>Volumes, networks, env vars</li>
+            <li>Compose: frontend, backend, database</li>
+          </ul>
+        </article>
+        <article class="card gold">
+          <h3>Deployment</h3>
+          <ul>
+            <li>Build artifacts and hosting</li>
+            <li>Container deployment</li>
+            <li>Health checks and logs</li>
+            <li>Rollback thinking</li>
+          </ul>
+        </article>
+      </div>
+      <h4>DTTP delivery path</h4>
+      <ol class="stepper"><li>Git</li><li>GitHub</li><li>GitHub Actions</li><li>Docker</li><li>AWS</li></ol>
+      <p>Pipeline: Developer → GitHub → Build → Lint → Unit Tests → Integration Tests → Docker Build → Artifact → Deployment → Health Check.</p>
+      <p>AWS introduction: IAM, EC2, S3, RDS, CloudFront, Route 53, Security Groups, CloudWatch. Understand the purpose of each service before using it.</p>
+      <ul class="checklist">
+        <li>Can complete a branch / PR / review / merge cycle</li>
+        <li>Can run the project with Docker Compose</li>
+        <li>Can describe a CI pipeline</li>
+        <li>Can explain the purpose of the core AWS services</li>
+        <li>Can diagnose a failed deploy from logs</li>
+      </ul>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Deliver the Employee Management System as a repeatable path: a feature branch named after the task; Dockerfiles for frontend and backend; a Compose file that starts frontend, backend, and database; a GitHub Actions workflow for lint, unit tests, then image build; a health endpoint after Compose starts; and a one-page deploy note covering what ran, what failed, what the logs said, and how they recovered.</p>
+      </div>
+      <div class="callout dark">Stop rule: if the trainee cannot start the stack with Compose and explain a failed CI log, stay here. Pushing straight to main / master does not complete this level.</div>
+
+      <h2 class="section-title"><span class="n">10</span>Level 10 — Professional Software Engineering</h2>
+      <p><strong>Purpose:</strong> move beyond technology into how professional teams work.</p>
+      <div class="two-col">
+        <div class="panel">
+          <h4>Agile &amp; Scrum</h4>
+          <ul>
+            <li>Agile principles</li>
+            <li>Roles: Product Owner, Scrum Master, Developers</li>
+            <li>Events: planning, daily, review, retrospective</li>
+            <li>Artifacts: product backlog, sprint backlog, increment</li>
+            <li>User stories and acceptance criteria</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Professional skills</h4>
+          <ul>
+            <li>Stand-up and written communication</li>
+            <li>Requirement analysis and documentation</li>
+            <li>Code review: clarity, correctness, security, tests</li>
+            <li>Estimation, ownership, asking for help early</li>
+            <li>Technical presentation and peer mentoring</li>
+          </ul>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th>Level</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Epic</td><td>Employee Management</td></tr>
+          <tr><td>Feature</td><td>Leave</td></tr>
+          <tr><td>User story</td><td>As an HR user, I want to approve leave so that attendance stays accurate.</td></tr>
+          <tr><td>Task</td><td>Create leave approve API</td></tr>
+          <tr><td>Subtasks</td><td>Entity, DTO, service rule, controller, test, PR</td></tr>
+        </tbody>
+      </table>
+      <p>Daily report: objective, completed work, learning, problems, investigation, resolution, Git activity, next plan.</p>
+      <ul class="checklist">
+        <li>Can write a user story with acceptance criteria</li>
+        <li>Can break work into tasks and subtasks</li>
+        <li>Can review code with specific comments</li>
+        <li>Can present a feature to a mentor</li>
+        <li>Can describe their own skill gaps honestly</li>
+      </ul>
+      <div class="panel">
+        <h4>Worked example</h4>
+        <p>Write this story and the work under it:</p>
+        <p><em>As an HR user, I want to approve or reject a pending leave request so that attendance stays accurate.</em></p>
+        <ul>
+          <li>Only HR or ADMIN can approve or reject.</li>
+          <li>A pending leave can be decided once.</li>
+          <li>The employee can see the new status.</li>
+          <li>A rejected request does not change attendance.</li>
+          <li>Tests, review, and notes exist before the story is called done.</li>
+        </ul>
+        <p>Break it into backend, frontend, test, and documentation tasks. Present a 10-minute pull-request walkthrough. Keep daily reports for ten consecutive training days.</p>
+      </div>
+      <div class="callout dark">Stop rule: if the trainee cannot state acceptance criteria without saying “it works,” stay here.</div>
+
+      <h2 class="section-title"><span class="n">11</span>Incremental Employee Management build</h2>
+      <p class="lead">The same project grows through the ten levels. Do not wait until Level 5 to start it, and do not rebuild a new app at every level.</p>
+      <table>
+        <thead><tr><th>Level</th><th>What to add to the same Employee Management System</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Static employee table page and a request-path diagram</td></tr>
+          <tr><td>2</td><td>New-employee form, DOM table, public fetch demo</td></tr>
+          <tr><td>3</td><td>React login, protected list, create form, service layer, mocked API</td></tr>
+          <tr><td>4</td><td>Written API contract, error shape, Postman collection</td></tr>
+          <tr><td>5</td><td>Real authenticated CRUD on the chosen backend track</td></tr>
+          <tr><td>6</td><td>Schema, seed data, join report, leave transaction</td></tr>
+          <tr><td>7</td><td>Layered diagram and module map attached to the repo</td></tr>
+          <tr><td>8</td><td>Service tests, API tests, security note, one measured query</td></tr>
+          <tr><td>9</td><td>Compose file, CI workflow, health check, deploy notes</td></tr>
+          <tr><td>10</td><td>Stories, PR walkthrough, daily reports, mentor demo</td></tr>
+        </tbody>
+      </table>
+      <h4>Role matrix the trainee must implement</h4>
+      <table>
+        <thead><tr><th>Action</th><th>ADMIN</th><th>HR</th><th>EMPLOYEE</th></tr></thead>
+        <tbody>
+          <tr><td>Manage users and roles</td><td>Yes</td><td>No</td><td>No</td></tr>
+          <tr><td>Create / update employees</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+          <tr><td>View own profile</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Record / view attendance</td><td>Yes</td><td>Yes</td><td>Own only</td></tr>
+          <tr><td>Apply for leave</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Approve / reject leave</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><span class="n">12</span>Oral review bank</h2>
+      <p>A mentor can close a level with these questions. The trainee answers without reading notes. A vague answer means the level is not closed.</p>
+      <table>
+        <thead><tr><th>Level</th><th>Ask this</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>What happens after a user types a URL? What is the difference between a file server and an application server?</td></tr>
+          <tr><td>2</td><td>Why did this CSS rule not apply? How is <code>fetch</code> different from reloading the page?</td></tr>
+          <tr><td>3</td><td>Where should employee-list state live? Why is the API call not inside the JSX?</td></tr>
+          <tr><td>4</td><td>When is the answer <code>401</code> instead of <code>403</code>? What JSON do you return for a missing email?</td></tr>
+          <tr><td>5</td><td>Which layer owns “email must be unique”? What does the controller return if the service throws a conflict?</td></tr>
+          <tr><td>6</td><td>Write the SQL for employees with department names. What does a rollback protect in leave approval?</td></tr>
+          <tr><td>7</td><td>Why is this system still a monolith? What would have to be true before leave becomes its own service?</td></tr>
+          <tr><td>8</td><td>What did you measure? What test proves an employee cannot approve leave?</td></tr>
+          <tr><td>9</td><td>Why did CI fail? What is the difference between an image and a container?</td></tr>
+          <tr><td>10</td><td>What is the acceptance criteria for leave approval? What would you tell a peer in a review?</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><span class="n">13</span>Depth ladder</h2>
+      <p>Use this when a trainee finishes a level early. Do not skip ahead. Deepen the same level.</p>
+      <table>
+        <thead><tr><th>Level</th><th>Minimum</th><th>Expected</th><th>Stretch</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Static page + URL parts</td><td>Request-path diagram + DevTools notes</td><td>Compare static hosting vs an application server</td></tr>
+          <tr><td>2</td><td>Form + table</td><td>Keyboard-only use + fetch error state</td><td>Accessible date field and validation messages</td></tr>
+          <tr><td>3</td><td>Login + one list</td><td>Protected routes + service layer</td><td>Empty, loading, and error states on every page</td></tr>
+          <tr><td>4</td><td>Method/status table</td><td>Postman collection + error contract</td><td>Pagination and filter query design</td></tr>
+          <tr><td>5</td><td>One CRUD resource</td><td>Authn + one role check + one service test</td><td>Attendance and leave on the same layering</td></tr>
+          <tr><td>6</td><td>Schema + one join</td><td>Report query + transaction</td><td>Explain an EXPLAIN / query plan</td></tr>
+          <tr><td>7</td><td>Layer diagram</td><td>Module map + three “not yet services” reasons</td><td>Sketch a later modular-monolith split</td></tr>
+          <tr><td>8</td><td>Two tests</td><td>401/403/409 tests + security note</td><td>Before/after timing on one query</td></tr>
+          <tr><td>9</td><td>Branch + PR</td><td>Compose + failing-then-passing CI</td><td>Health check and rollback note</td></tr>
+          <tr><td>10</td><td>One user story</td><td>Ten daily reports + PR walkthrough</td><td>Mentor a peer on one topic</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><span class="n">14</span>Complete reference answers</h2>
+      <p class="lead">These are passing answers and contracts. A trainee who cannot produce something this specific is not finished, even if the checklist is ticked.</p>
+      <h4>Model oral answers</h4>
+      <table>
+        <thead><tr><th>Level</th><th>A passing answer sounds like this</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>The browser reads the URL, asks DNS for the host, connects to the port, sends HTTP for the path, and renders the response. A file server returns <code>index.html</code>. An application server runs Java or Python and may read a database first.</td></tr>
+          <tr><td>2</td><td><code>fetch</code> leaves the page in place. A submit without <code>preventDefault</code> reloads. If CSS fails, check selector, specificity, inheritance, and later overrides. Keyboard use means Tab plus Enter or Space.</td></tr>
+          <tr><td>3</td><td>List data is fetched in a service, stored in page state, and passed as props. The token lives in auth context. Missing token redirects to <code>/login</code>. JSX does not contain <code>fetch</code> URLs.</td></tr>
+          <tr><td>4</td><td><code>401</code> means the server does not know the caller. <code>403</code> means it knows and refuses. Create is <code>POST</code> and success is <code>201</code>.</td></tr>
+          <tr><td>5</td><td>Unique email lives in the service and a database constraint. The controller only maps the result to HTTP. A conflict is <code>409</code>, not <code>500</code>.</td></tr>
+          <tr><td>6</td><td><code>INNER JOIN</code> needs a department. <code>LEFT JOIN</code> keeps employees without one. A leave transaction commits both writes or rolls both back.</td></tr>
+          <tr><td>7</td><td>This system stays a layered monolith because one team, one database, and one deployable are enough. Microservices add cost before there is an independent scale problem.</td></tr>
+          <tr><td>8</td><td>A unit test must fail when an EMPLOYEE approves leave. Coverage is not proof. A performance claim needs two measured numbers.</td></tr>
+          <tr><td>9</td><td>An image is the packaged filesystem. A container is a running instance. CI runs the same tests and blocks merge when they fail.</td></tr>
+          <tr><td>10</td><td>Acceptance criteria are testable: who can act, what status changes, and what must not happen. “It works” is not a criterion.</td></tr>
+        </tbody>
+      </table>
+      <h4>Login contract</h4>
+      <div class="tree">POST /api/auth/login
+{ "email": "hr@deshmukh.local", "password": "correct-password" }
+
+200 { "token": "&lt;jwt&gt;", "role": "HR", "employeeId": 12, "name": "Asha Patil" }
+401 { "error": "INVALID_CREDENTIALS", "message": "Email or password is wrong" }</div>
+      <h4>Create employee contract</h4>
+      <div class="tree">POST /api/employees
+Authorization: Bearer &lt;hr-or-admin-token&gt;
+{ "name": "Rohan Deshmukh", "email": "rohan@deshmukh.local",
+  "departmentId": 3, "joiningDate": "2026-08-18", "role": "EMPLOYEE" }
+
+201 { "id": 41, "name": "Rohan Deshmukh", "email": "rohan@deshmukh.local",
+      "departmentId": 3, "departmentName": "Engineering",
+      "joiningDate": "2026-08-18", "role": "EMPLOYEE" }</div>
+      <table>
+        <thead><tr><th>Case</th><th>Status</th><th>Error code</th></tr></thead>
+        <tbody>
+          <tr><td>Missing email</td><td>400 / 422</td><td><code>VALIDATION_FAILED</code></td></tr>
+          <tr><td>No token</td><td>401</td><td><code>UNAUTHENTICATED</code></td></tr>
+          <tr><td>EMPLOYEE caller</td><td>403</td><td><code>FORBIDDEN</code></td></tr>
+          <tr><td>Email already used</td><td>409</td><td><code>CONFLICT</code></td></tr>
+          <tr><td>Department missing</td><td>404</td><td><code>NOT_FOUND</code></td></tr>
+        </tbody>
+      </table>
+      <h4>Leave approve contract</h4>
+      <div class="tree">PUT /api/leaves/18/approve
+Authorization: Bearer &lt;hr-token&gt;
+{ "decision": "APPROVED" }
+
+200 { "id": 18, "employeeId": 41, "status": "APPROVED", "decisionBy": 12 }
+409 { "error": "CONFLICT", "message": "Leave is already APPROVED" }</div>
+      <p>Narrate: apply (<code>PENDING</code>) → HR approves (<code>APPROVED</code>) → second approve (<code>409</code>) → employee sees the new status. Reject uses <code>"REJECTED"</code> and must not write attendance.</p>
+      <h4>SQL the trainee must write</h4>
+      <div class="tree">SELECT e.id, e.name, d.name AS department
+FROM employees e
+INNER JOIN departments d ON d.id = e.department_id
+WHERE e.role = 'EMPLOYEE';
+
+SELECT d.name, COUNT(l.id) AS leave_count
+FROM departments d
+LEFT JOIN employees e ON e.department_id = d.id
+LEFT JOIN leaves l ON l.employee_id = e.id AND l.status = 'APPROVED'
+GROUP BY d.name;</div>
+      <h4>Wrong answers that fail the level</h4>
+      <table>
+        <thead><tr><th>Level</th><th>Fails if the trainee says</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>“The browser just loads it.”</td></tr>
+          <tr><td>2</td><td>“I used a div for the form because it was easier.”</td></tr>
+          <tr><td>3</td><td>“I called fetch inside the button JSX.”</td></tr>
+          <tr><td>4</td><td>“401 and 403 are the same.”</td></tr>
+          <tr><td>5</td><td>“The controller checks the duplicate email and talks to the table.”</td></tr>
+          <tr><td>6</td><td>“The ORM writes the join. I do not need SQL.”</td></tr>
+          <tr><td>7</td><td>“We should start with microservices so it scales.”</td></tr>
+          <tr><td>8</td><td>“I did not write a failing test. Coverage is 90%.”</td></tr>
+          <tr><td>9</td><td>“I pushed to master because the change was small.”</td></tr>
+          <tr><td>10</td><td>“Done means it worked on my laptop.”</td></tr>
+        </tbody>
+      </table>
+      <h4>Remaining contracts</h4>
+      <table>
+        <thead><tr><th>Endpoint</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td><code>GET /api/employees</code></td><td><code>200</code> array. Empty is <code>[]</code>, not <code>404</code>.</td></tr>
+          <tr><td><code>PUT /api/employees/{id}</code></td><td>Same roles as create. EMPLOYEE may change own name only.</td></tr>
+          <tr><td><code>DELETE /api/employees/{id}</code></td><td>ADMIN only, <code>204</code>. Pending leave → <code>409</code>.</td></tr>
+          <tr><td><code>POST /api/leaves</code></td><td>Dates and type. Employee id from token. Starts <code>PENDING</code>.</td></tr>
+          <tr><td><code>GET /api/health</code></td><td>Public <code>{ "status": "ok" }</code>.</td></tr>
+        </tbody>
+      </table>
+      <h4>Screen map</h4>
+      <table>
+        <thead><tr><th>Route</th><th>Who</th><th>Must show</th></tr></thead>
+        <tbody>
+          <tr><td><code>/login</code></td><td>Public</td><td>Email, password, wrong-credential message</td></tr>
+          <tr><td><code>/dashboard</code></td><td>Signed-in</td><td>Employees, present today, pending leave</td></tr>
+          <tr><td><code>/employees</code></td><td>ADMIN, HR</td><td>Table + Add. Empty copy.</td></tr>
+          <tr><td><code>/leaves</code></td><td>All</td><td>Apply for EMPLOYEE. Approve/Reject for HR/ADMIN.</td></tr>
+          <tr><td><code>/profile</code></td><td>Signed-in</td><td>Own details only</td></tr>
+        </tbody>
+      </table>
+      <div class="tree">authService.login(email, password)
+employeeService.list(filters)
+employeeService.create(payload)
+leaveService.apply(payload)
+leaveService.approve(id, decision)</div>
+      <p>No page file contains a raw <code>fetch</code> URL.</p>
+      <h4>Ten-minute demo</h4>
+      <p>Minutes 0–1 problem; 1–3 HR login and list; 3–5 create + duplicate <code>409</code>; 5–7 EMPLOYEE apply / HR approve / retry <code>409</code>; 7–8 SQL report + one test name; 8–9 Compose health; 9–10 questions and known limits.</p>
+      <h4>Review comments that pass Level 10</h4>
+      <ul>
+        <li>“Duplicate email should be <code>409</code> from the service, not <code>500</code> from the controller.”</li>
+        <li>“Move <code>fetch('/api/employees')</code> into <code>employeeService.ts</code>.”</li>
+        <li>“Add <code>employee_cannot_approve</code> before merge.”</li>
+      </ul>
+      <p>“Looks good” and “clean this up” do not count as a review.</p>
+
+      <h2 class="section-title"><span class="n">15</span>Official progression</h2>
+      <table>
+        <thead><tr><th>Level</th><th>Focus</th><th>Outcome</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Web Fundamentals</td><td>Can explain how a browser request becomes a response</td></tr>
+          <tr><td>2</td><td>Frontend Engineering</td><td>Can build accessible pages and DOM interactions</td></tr>
+          <tr><td>3</td><td>React + TypeScript</td><td>Can build a structured SPA with routing and forms</td></tr>
+          <tr><td>4</td><td>HTTP + REST + Web APIs</td><td>Can reason about frontend–backend traffic</td></tr>
+          <tr><td>5</td><td>Java or Python backend</td><td>Can implement a secure REST API</td></tr>
+          <tr><td>6</td><td>Databases</td><td>Can design and query SQL independently</td></tr>
+          <tr><td>7</td><td>Architecture</td><td>Can choose structure for a reason</td></tr>
+          <tr><td>8</td><td>Testing, security, performance</td><td>Can protect, verify, and measure software</td></tr>
+          <tr><td>9</td><td>Git, Docker, CI/CD, cloud</td><td>Can deliver a running system</td></tr>
+          <tr><td>10</td><td>Agile + professional engineering</td><td>Can work as a team engineer</td></tr>
+        </tbody>
+      </table>
+      <h4>Mentor checkpoints and common mistakes</h4>
+      <table>
+        <thead><tr><th>Level</th><th>Mentor asks</th><th>Common mistake</th><th>Required artifact</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>What happens after a URL is entered?</td><td>Jumping to React immediately</td><td>Request-path diagram + static page</td></tr>
+          <tr><td>2</td><td>Why did this CSS rule not apply?</td><td>Ignoring accessibility and errors</td><td>Responsive page + fetch demo</td></tr>
+          <tr><td>3</td><td>Where does this state belong?</td><td>Putting API calls inside JSX</td><td>Typed React feature with routes</td></tr>
+          <tr><td>4</td><td>Why is this 403, not 401?</td><td>Treating all failures as 500</td><td>Network notes + API contract</td></tr>
+          <tr><td>5</td><td>Which layer owns this rule?</td><td>Fat controllers, no tests</td><td>CRUD API with one service test</td></tr>
+          <tr><td>6</td><td>Show the SQL behind this ORM call</td><td>Using only generated queries</td><td>Schema + join report query</td></tr>
+          <tr><td>7</td><td>Why is this still a monolith?</td><td>Copying microservices slogans</td><td>Architecture diagram</td></tr>
+          <tr><td>8</td><td>What did you measure?</td><td>Optimizing before measuring</td><td>Tests + one security note</td></tr>
+          <tr><td>9</td><td>Why did CI fail?</td><td>Committing to main directly</td><td>Compose file + Actions workflow</td></tr>
+          <tr><td>10</td><td>What is the acceptance criteria?</td><td>“It works on my machine”</td><td>Story, PR walkthrough, daily reports</td></tr>
+        </tbody>
+      </table>
+      <p>A level is not complete because the trainee attended a session. It is complete when the artifact exists in Git, the trainee can explain it, and a mentor has reviewed it.</p>
+      <div class="callout dark">The reference material is the knowledge map. Deshmukh Technologies projects are the proof. A trainee completes this program when they can independently build, test, debug, explain, document, and maintain a full-stack application.</div>
+    </div>
+
+    <section class="closing">
+      <p class="brand-row" style="justify-content:center;">DTTP — Deshmukh Technologies Trainee Program</p>
+      <div class="gold-rule" style="margin:18px auto;"></div>
+      <h2>Self-Directed Full-Stack Developer</h2>
+      <p>Ten levels. One practice stack. Real projects.</p>
+      <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
+    </section>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Self-Growth Program v1.6 · Internal use</footer>
+  </article>
+</body>
+</html>
