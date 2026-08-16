@@ -413,12 +413,15 @@ Before Day 6, the trainee reads and can summarize:
 1. Corporate Master Profile — who we are and how we work
 2. This handbook — purpose, daily cycle, Definition of Done
 3. Self-Growth Program — how levels sit around the 90 days
+4. [Trainee Software Setup & Environment Verification](./DTTP-SOFTWARE-SETUP.pdf) — machine, tools, GitHub, Day-1 sign-off
+
+Day 1 environment work follows that setup guide. Technical project work does not start until the mentor marks the environment **Pass** or **Conditional**.
 
 ### Suggested Day 1–5
 
 | Day | Focus | Written output |
 | :---: | --- | --- |
-| 1 | Company, values, document family | One-page summary of how Deshmukh Technologies works |
+| 1 | Company, values, **and software environment sign-off** | Setup evidence pack + one-page company summary |
 | 2 | Professional standards and security | Signed acknowledgment + first daily report |
 | 3 | Baseline assessment | Baseline Skill Profile |
 | 4 | GitHub access and first repository | Empty project README and first commit |
