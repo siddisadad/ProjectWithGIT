@@ -1,0 +1,131 @@
+{
+  "info": {
+    "name": "DTTP TMS Task 01 — Trainee CRUD",
+    "description": "Deshmukh Technologies · Real-Time Project 01 · Task 01. Base URL http://localhost:8000. No production credentials.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "traineeId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "02 Create Rohan",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Rohan Deshmukh\",\n  \"email\": \"rohan.deshmukh@example.com\",\n  \"phone\": \"9876543210\",\n  \"github_username\": \"rohan-dttp\"\n}"
+        },
+        "url": "{{baseUrl}}/trainees"
+      }
+    },
+    {
+      "name": "03 Create Rohan again (expect 409)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Rohan Deshmukh\",\n  \"email\": \"rohan.deshmukh@example.com\",\n  \"phone\": \"9876543210\",\n  \"github_username\": \"rohan-dttp\"\n}"
+        },
+        "url": "{{baseUrl}}/trainees"
+      }
+    },
+    {
+      "name": "04 Create Asha",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Asha Patil\",\n  \"email\": \"asha.patil@example.com\",\n  \"phone\": \"9123456780\",\n  \"github_username\": \"asha-dttp\"\n}"
+        },
+        "url": "{{baseUrl}}/trainees"
+      }
+    },
+    {
+      "name": "05 List active",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/trainees"
+      }
+    },
+    {
+      "name": "06 Get Rohan",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/trainees/{{traineeId}}"
+      }
+    },
+    {
+      "name": "07 Get missing id (expect 404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/trainees/99"
+      }
+    },
+    {
+      "name": "08 Update Rohan phone",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"9000000001\"\n}"
+        },
+        "url": "{{baseUrl}}/trainees/{{traineeId}}"
+      }
+    },
+    {
+      "name": "09 Deactivate Rohan",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/trainees/{{traineeId}}"
+      }
+    },
+    {
+      "name": "10 List active after deactivate",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/trainees"
+      }
+    },
+    {
+      "name": "11 Get Rohan inactive",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/trainees/{{traineeId}}"
+      }
+    },
+    {
+      "name": "12 List all",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/trainees?status=ALL"
+      }
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DTTP — Trainee Management System — Real-Time Project 01</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@450;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1a2c; --navy-mid: #16324f; --gold: #b8892c; --gold-soft: #f3e6c7;
+      --ink: #1b2430; --muted: #5c6673; --line: #d7dde5; --paper: #f6f2ea; --teal: #1b6a68;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      color: var(--ink); background: #e8e2d6; font-size: 14.5px; line-height: 1.45;
+    }
+    .page { max-width: 900px; margin: 24px auto 48px; background: #fff; box-shadow: 0 14px 40px rgba(12,27,46,.08); }
+    .mast {
+      background: radial-gradient(circle at 88% 0%, rgba(184,137,44,.22), transparent 38%), var(--navy);
+      color: #f4efe4; padding: 28px 36px 22px;
+    }
+    .mast .top { display: flex; justify-content: space-between; align-items: center;
+      letter-spacing: .2em; text-transform: uppercase; font-size: 10px; font-weight: 600; color: var(--gold-soft); }
+    .badge { border: 1px solid rgba(243,230,199,.4); padding: 6px 10px; }
+    h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 34px; font-weight: 600; line-height: 1; margin: 14px 0 8px; }
+    .gold-rule { width: 70px; height: 3px; background: var(--gold); margin: 0 0 10px; }
+    .mast p { max-width: 640px; color: #d5cfc0; font-size: 15px; }
+    .inner { padding: 22px 36px 28px; }
+    h2 {
+      font-family: "Cormorant Garamond", Georgia, serif; font-size: 21px; color: var(--navy);
+      margin: 18px 0 8px; display: flex; gap: 10px; align-items: baseline; break-after: avoid;
+    }
+    h2 .n { font-family: "Source Sans 3", sans-serif; font-size: 11px; letter-spacing: .08em; color: var(--gold); font-weight: 700; min-width: 22px; }
+    h3 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin: 10px 0 6px; }
+    p { margin: 0 0 8px; }
+    ul { margin: 0 0 10px 18px; }
+    li { margin: 2px 0; }
+    .two, .three { display: grid; gap: 10px; margin: 8px 0 12px; }
+    .two { grid-template-columns: 1fr 1fr; }
+    .three { grid-template-columns: 1fr 1fr 1fr; }
+    .panel { border: 1px solid var(--line); padding: 10px 12px; break-inside: avoid; }
+    .panel h3 { margin-top: 0; }
+    .chip { display: inline-block; background: #e3f1f0; color: var(--teal); padding: 3px 8px; font-size: 12px; font-weight: 600; margin: 0 4px 4px 0; }
+    .tree {
+      background: var(--navy); color: #e8e2d4; font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px; line-height: 1.45; padding: 12px 14px; margin: 6px 0 12px; white-space: pre; break-inside: avoid;
+    }
+    .callout {
+      background: var(--gold-soft); border-left: 4px solid var(--gold); padding: 11px 14px; margin: 8px 0 12px;
+      font-family: "Cormorant Garamond", Georgia, serif; font-size: 17px; color: var(--navy); break-inside: avoid;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 6px 0 12px; font-size: 13.5px; break-inside: avoid; }
+    th, td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: #f4efe4; font-weight: 600; }
+    tr:nth-child(even) td { background: #faf8f3; }
+    .check { list-style: none; margin: 0 0 12px; columns: 2; column-gap: 20px; }
+    .check li { break-inside: avoid; padding: 3px 0 3px 20px; position: relative; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .check li::before { content: ""; width: 11px; height: 11px; border: 1.3px solid var(--navy); position: absolute; left: 0; top: 6px; }
+    footer.screen { text-align: center; color: var(--muted); font-size: 12px; padding: 0 36px 20px; }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+    @media screen and (max-width: 760px) {
+      .mast, .inner { padding-left: 18px; padding-right: 18px; }
+      .two, .three, .check { grid-template-columns: 1fr; columns: 1; }
+      h1 { font-size: 28px; }
+    }
+    @page { size: A4; margin: 16mm 13mm 16mm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: white; font-size: 10.4pt; }
+      .page { margin: 0; box-shadow: none; max-width: none; }
+      .mast { padding: 16px 0 14px; }
+      .inner { padding: 8px 0 0; }
+      h2 { font-size: 16px; margin: 12px 0 6px; }
+      footer.screen { display: none; }
+      .panel, .tree, .callout, table { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="mast">
+      <div class="top">
+        <span>Deshmukh Technologies · DTTP</span>
+        <span class="badge">Real-Time Project 01</span>
+      </div>
+      <h1>Trainee Management System</h1>
+      <div class="gold-rule"></div>
+      <p>The first real project for DTTP trainees. Build it as a genuine internal business application, not as a tutorial project.</p>
+    </header>
+    <div class="inner">
+
+      <h2><span class="n">01</span>Project goal</h2>
+      <p>Build a web application to manage the complete DTTP trainee lifecycle.</p>
+      <div class="tree">Registration → Batch Assignment → Training → Attendance
+→ Tasks &amp; Assignments → Evaluation → Feedback → Completion</div>
+
+      <h2><span class="n">02</span>Technology stack</h2>
+      <div class="three">
+        <div class="panel">
+          <h3>Backend</h3>
+          <p>Python · FastAPI · SQLAlchemy · MySQL · JWT · Pydantic · Pytest</p>
+        </div>
+        <div class="panel">
+          <h3>Frontend</h3>
+          <p>React · TypeScript · HTML/CSS · REST API</p>
+        </div>
+        <div class="panel">
+          <h3>Tools</h3>
+          <p>VS Code · Git · GitHub · Postman · MySQL Workbench · Docker · GitHub Actions</p>
+        </div>
+      </div>
+
+      <h2><span class="n">03</span>User roles</h2>
+      <div class="three">
+        <div class="panel">
+          <h3>Admin</h3>
+          <p>Complete system.</p>
+          <ul><li>Trainees</li><li>Mentors</li><li>Batches</li><li>Projects</li><li>Users</li><li>Reports</li></ul>
+        </div>
+        <div class="panel">
+          <h3>Mentor</h3>
+          <p>Assigned trainees.</p>
+          <ul><li>Attendance</li><li>Tasks</li><li>Assignments</li><li>Reviews</li><li>Feedback</li><li>Performance</li></ul>
+        </div>
+        <div class="panel">
+          <h3>Trainee</h3>
+          <p>Own activities.</p>
+          <ul><li>Profile</li><li>Attendance</li><li>Tasks</li><li>Assignments</li><li>Submissions</li><li>Feedback</li><li>Progress</li></ul>
+        </div>
+      </div>
+
+      <h2><span class="n">04</span>Module 1 — Authentication</h2>
+      <p>Login · Logout · JWT · Role-based access · Password management</p>
+      <p><span class="chip">ADMIN</span><span class="chip">MENTOR</span><span class="chip">TRAINEE</span></p>
+
+      <h2><span class="n">05</span>Module 2 — Trainee management</h2>
+      <p>Admin can add, view, edit, search, filter, activate/deactivate, assign batch, and assign mentor.</p>
+      <p>Fields: Trainee ID, Name, Email, Mobile, Address, Education, Joining Date, Batch, Mentor, Status.</p>
+
+      <h2><span class="n">06</span>Module 3 — Batch management</h2>
+      <p>Admin creates batches such as <code>DTTP-2026-01</code>, <code>DTTP-2026-02</code>, <code>DTTP-2026-03</code>.</p>
+      <p>Fields: Batch Name, Start Date, End Date, Mentor, Capacity, Status.</p>
+
+      <h2><span class="n">07</span>Module 4 — Mentor management</h2>
+      <p>Admin can add, update, assign, view assigned trainees, and activate/deactivate a mentor.</p>
+
+      <h2><span class="n">08</span>Module 5 — Attendance</h2>
+      <p>Mentor marks Present, Absent, Late, or Leave.</p>
+      <table>
+        <thead><tr><th>Date</th><th>Trainee</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>19-Aug</td><td>Rahul</td><td>Present</td></tr>
+          <tr><td>19-Aug</td><td>Amit</td><td>Absent</td></tr>
+          <tr><td>19-Aug</td><td>Sana</td><td>Present</td></tr>
+        </tbody>
+      </table>
+      <p>Reports: daily, monthly, individual, attendance percentage.</p>
+
+      <h2><span class="n">09</span>Module 6 — Task management</h2>
+      <p>Fields: Title, Description, Priority, Deadline, Assigned To.</p>
+      <p><span class="chip">TODO</span><span class="chip">IN_PROGRESS</span><span class="chip">SUBMITTED</span><span class="chip">UNDER_REVIEW</span><span class="chip">COMPLETED</span></p>
+
+      <h2><span class="n">10</span>Module 7 — Assignment and submission</h2>
+      <div class="tree">Mentor → Create Assignment → Trainee → Complete Work → Submit → Mentor Review → Feedback</div>
+      <p>Submission: description, GitHub repository, file/document, submission date, comments.</p>
+
+      <h2><span class="n">11</span>Module 8 — Evaluation</h2>
+      <table>
+        <thead><tr><th>Skill</th><th>Score</th></tr></thead>
+        <tbody>
+          <tr><td>Python</td><td>8/10</td></tr>
+          <tr><td>FastAPI</td><td>7/10</td></tr>
+          <tr><td>MySQL</td><td>8/10</td></tr>
+          <tr><td>React</td><td>7/10</td></tr>
+          <tr><td>Git</td><td>9/10</td></tr>
+          <tr><td>Problem Solving</td><td>8/10</td></tr>
+          <tr><td>Communication</td><td>8/10</td></tr>
+        </tbody>
+      </table>
+
+      <h2><span class="n">12</span>Module 9 — Feedback</h2>
+      <p>Mentor provides technical, task, and project feedback, plus strengths, areas for improvement, and recommendations. Trainee views feedback from the dashboard.</p>
+
+      <h2><span class="n">13</span>Module 10 — Dashboard</h2>
+      <div class="three">
+        <div class="panel">
+          <h3>Admin</h3>
+          <ul>
+            <li>Total / active trainees</li>
+            <li>Total batches and mentors</li>
+            <li>Today’s attendance</li>
+            <li>Pending tasks and reviews</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Mentor</h3>
+          <ul>
+            <li>My trainees</li>
+            <li>Today’s attendance</li>
+            <li>Pending tasks</li>
+            <li>Pending submissions</li>
+            <li>Performance</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Trainee</h3>
+          <ul>
+            <li>My profile</li>
+            <li>Attendance %</li>
+            <li>Pending / completed tasks</li>
+            <li>Assignments</li>
+            <li>Performance and feedback</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2><span class="n">14</span>Database design</h2>
+      <p>Tables: <code>users</code> · <code>roles</code> · <code>trainees</code> · <code>mentors</code> · <code>batches</code> · <code>attendance</code> · <code>tasks</code> · <code>assignments</code> · <code>submissions</code> · <code>evaluations</code> · <code>feedback</code></p>
+      <div class="tree">User → Trainee | Mentor
+Batch → Trainees
+Mentor → Trainees
+Trainee → Attendance, Tasks, Assignments, Submissions, Evaluations, Feedback</div>
+
+      <h2><span class="n">15</span>Backend architecture</h2>
+      <div class="tree">FastAPI
+  ├── Routers  ├── Schemas  ├── Services  ├── Models
+  ├── Database ├── Auth     └── Exceptions
+          ↓
+     SQLAlchemy → MySQL</div>
+      <div class="tree">backend/
+├── app/  (main.py, config, database, models, schemas,
+│          routers, services, auth, exceptions)
+├── tests/
+├── requirements.txt
+├── .env          ← never commit secrets
+└── README.md</div>
+
+      <h2><span class="n">16</span>Frontend architecture</h2>
+      <p>React: Pages · Components · Layouts · Services · Hooks · Routes · Types · Utils</p>
+      <p>Screens: Login, Dashboard, Trainees, Trainee Details, Batches, Mentors, Attendance, Tasks, Assignments, Submissions, Evaluation, Feedback, Profile.</p>
+
+      <h2><span class="n">17</span>First MVP</h2>
+      <p>Do not build all modules at once.</p>
+      <div class="tree">Login → Admin Dashboard → Trainee Management → Batch Management</div>
+      <div class="tree">POST   /api/auth/login
+POST   /api/trainees
+GET    /api/trainees
+GET    /api/trainees/{id}
+PUT    /api/trainees/{id}
+DELETE /api/trainees/{id}
+POST   /api/batches
+GET    /api/batches
+GET    /api/batches/{id}
+PUT    /api/batches/{id}</div>
+
+      <h2><span class="n">18</span>Development sprints</h2>
+      <table>
+        <thead><tr><th>Sprint</th><th>Work</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>GitHub repo, backend, frontend, MySQL, structure, README</td></tr>
+          <tr><td>2</td><td>Trainee model, CRUD APIs, validation, Postman</td></tr>
+          <tr><td>3</td><td>React login, dashboard, trainee list, add/edit, API integration</td></tr>
+          <tr><td>4</td><td>Login, JWT, roles, protected APIs</td></tr>
+          <tr><td>5</td><td>Batch, mentor, assignment</td></tr>
+          <tr><td>6</td><td>Mark attendance, reports, percentage</td></tr>
+          <tr><td>7</td><td>Tasks, assign, submission, review</td></tr>
+          <tr><td>8</td><td>Evaluation, feedback, progress</td></tr>
+          <tr><td>9</td><td>Unit, API, frontend tests, bug fixing</td></tr>
+          <tr><td>10</td><td>GitHub → Actions → Tests → Build → Docker → Deployment</td></tr>
+        </tbody>
+      </table>
+
+      <h2><span class="n">19</span>First real-time requirement</h2>
+      <div class="callout">As an Admin, I want to register DTTP trainees and assign them to a batch so that I can maintain a centralized trainee database.</div>
+      <ul class="check">
+        <li>Admin can log in</li>
+        <li>Admin can create a trainee</li>
+        <li>Required fields are validated</li>
+        <li>Email cannot be duplicated</li>
+        <li>Admin can view trainees</li>
+        <li>Admin can search trainees</li>
+        <li>Admin can edit trainee details</li>
+        <li>Admin can deactivate a trainee</li>
+        <li>Admin can assign a batch</li>
+        <li>Data is stored in MySQL</li>
+        <li>APIs are tested</li>
+        <li>Frontend works</li>
+        <li>Code is committed through Git</li>
+        <li>Pull request is reviewed by mentor</li>
+      </ul>
+
+      <h2><span class="n">20</span>Trainee development workflow</h2>
+      <div class="tree">Requirement → Issue → Feature Branch → Design → Code → Test
+→ Commit → Push → Pull Request → Mentor Review → Fix → Approval → Merge</div>
+      <p>The first project should teach how real software teams work, not merely how to write Python.</p>
+      <div class="callout">First milestone: build and deploy a working TMS MVP using Python + FastAPI + MySQL + React, with GitHub-based code review.</div>
+    </div>
+    <footer class="screen">© Deshmukh Technologies · DTTP TMS Real-Time Project 01 · v1.0</footer>
+  </article>
+</body>
+</html>
