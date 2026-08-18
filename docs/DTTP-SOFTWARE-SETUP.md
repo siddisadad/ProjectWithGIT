@@ -3,7 +3,7 @@
 ### Deshmukh Technologies Trainee Program
 
 **Document type:** Trainee Onboarding  
-**Version:** 1.1  
+**Version:** 1.2  
 **Status:** Standard  
 **Audience:** DTTP Trainees, Mentors, Technical Coordinators, Admin  
 **Platform:** Windows 10 / 11  
@@ -27,7 +27,7 @@ Every trainee must independently complete this path **before** assigned project 
 Install → Configure → Verify → Clone → Build → Run → Test → Commit → Push
 ```
 
-Day 1 of DTTP is not a lecture day. It is the day the machine becomes a working engineering station.
+Day 1 of DTTP is not a lecture day. It is the day the machine becomes a working engineering station. Read this guide **before** you write Employee Management code. Follow the [Day-1 hour plan](#33-day-1-hour-plan). Mentors use the [10-minute station check](#35-mentor-10-minute-station-check).
 
 ### Companion documents
 
@@ -57,7 +57,10 @@ This guide covers:
 12. Troubleshooting
 13. Trainee sign-off
 14. Mentor / admin verification
-15. Day-1 completion criteria
+15. Day-1 hour plan
+16. Official installer product names
+17. Mentor 10-minute station check
+18. Day-1 completion criteria
 
 Python / FastAPI is installed only when the trainee is assigned that backend track. JDK remains the DTTP default.
 
@@ -277,6 +280,38 @@ React trainees also install **ES7+ React/Redux/React-Native snippets** if the me
 - Auto Save: **afterDelay** or **onFocusChange**
 - Default formatter: Prettier for `javascript`, `typescript`, `json`
 
+Open Command Palette (`Ctrl+Shift+P`) → **Preferences: Open User Settings (JSON)**. This is the DTTP default for React + TypeScript:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+}
+```
+
+Create `.prettierrc` in the **frontend** folder if the starter does not ship one:
+
+```json
+{
+  "singleQuote": true,
+  "semi": true,
+  "trailingComma": "es5",
+  "printWidth": 100
+}
+```
+
+Line endings stay **LF** even on Windows so Linux CI does not fight you.
+
 ---
 
 ## 10. IntelliJ IDEA
@@ -303,6 +338,19 @@ Configure:
 | Annotation processing | Enabled for Spring projects |
 
 Do not mix VS Code and IntelliJ on the same Java change in the same hour. Pick one editor for a given backend task.
+
+### First open of the Maven project
+
+1. File → Open → select the folder that contains `pom.xml` (not a parent zip).
+2. Trust the project.
+3. Wait for Maven import. If it hangs: click the **m** reload icon in the Maven tool window.
+4. File → Project Structure (`Ctrl+Alt+Shift+S`) → Project SDK **17** → Language level **17**.
+5. Settings → Build, Execution, Deployment → Build Tools → Maven → **Maven home** = Use Maven wrapper (or Bundled). Runner JRE = 17.
+6. Settings → Build → Compiler → Annotation Processors → **Enable annotation processing** (needed later for MapStruct / Lombok if the starter uses them).
+7. Open the class with `@SpringBootApplication`. Green arrow → Run.
+8. Terminal in IntelliJ: `curl http://localhost:8080/api/health` — or use the HTTP Client.
+
+If IntelliJ says “SDK is not defined”: Project Structure → Project SDK → **17** → Apply → Maven reload.
 
 ---
 
@@ -559,15 +607,36 @@ Save the collection in `C:\Development\Documents`. Do not put real production to
 
 ## 19. Docker Desktop
 
-Install Docker Desktop for Windows. WSL 2 backend is required. Enable virtualization in BIOS if Docker says it is off.
+Install Docker Desktop for Windows. The **Windows Subsystem for Linux 2** backend is required. Do this **before** you expect `docker run hello-world` to work.
+
+### WSL 2
+
+**PowerShell as Administrator:**
 
 ```powershell
+wsl --install
+wsl --status
+wsl --set-default-version 2
+```
+
+Restart Windows when Windows asks. After reboot, complete the Ubuntu (or default distro) user prompt if it appears — you can use a simple local username; this is not the GitHub account.
+
+**BIOS / UEFI (if `wsl --install` or Docker says virtualization is disabled):**
+
+1. Reboot → enter firmware (often Del, F2, or F10 — laptop sticker / manual).
+2. Enable **Intel VT-x** or **AMD-V** / SVM. Save and exit.
+3. Company laptop: stop and ask IT. Do not share BIOS passwords in Slack.
+
+Then install **Docker Desktop**. Settings → General → Use the WSL 2 based engine. Apply & Restart.
+
+```powershell
+wsl --status
 docker --version
 docker compose version
 docker run hello-world
 ```
 
-`hello-world` must print a success message once.
+`hello-world` must pull and print a success message once. You do **not** need Kubernetes enabled in Docker Desktop for DTTP.
 
 Useful commands:
 
@@ -582,7 +651,7 @@ docker info
 
 Understand: image, container, Dockerfile, volume, network, Compose.
 
-If RAM is 8 GB, start Docker only when the day’s work needs it.
+If RAM is 8 GB, start Docker only when the day’s work needs it. The mentor may waive Docker **in writing**.
 
 ---
 
@@ -837,6 +906,37 @@ Check: service running, port 3306, username, password, database exists, `applica
 
 Windows Services: **MySQL80** (name may vary) must be Running.
 
+```powershell
+Get-Service *mysql*
+Start-Service MySQL80
+```
+
+The service name may be `MySQL57` or similar. Open Workbench only after the service is **Running**.
+
+### Port 8080 already in use
+
+```powershell
+netstat -ano | findstr :8080
+```
+
+The last column is the PID. Task Manager → Details → End task, **or** run Spring Boot on 8081 and write that in `docs/setup-notes.md`.
+
+### IntelliJ “SDK is not defined”
+
+File → Project Structure → Project SDK → **17**. Apply. Maven reload.
+
+### VS Code TypeScript errors on a new clone
+
+`npm install` in `frontend/`. Reload window. Confirm `typescript` is in `devDependencies`.
+
+### `wsl --install` says virtualization disabled
+
+BIOS/UEFI: Intel VT-x or AMD-V **Enabled**. Save, boot, retry. Company laptops: ask IT — do not guess BIOS passwords.
+
+### Antivirus blocks JDK / Docker
+
+Add `C:\Development` and Docker Desktop as exceptions **only if company policy allows**. Record the ticket in `docs/setup-notes.md`.
+
 ### Docker does not start
 
 1. Docker Desktop is running
@@ -890,6 +990,7 @@ ssh -T git@github.com
 
 - [ ] Git installed and identity configured
 - [ ] VS Code installed with required extensions
+- [ ] VS Code format-on-save and Prettier default formatter
 - [ ] IntelliJ IDEA installed, SDK = JDK 17/21
 - [ ] `java` and `javac` both work
 - [ ] Maven or `mvnw.cmd` verified
@@ -907,6 +1008,7 @@ ssh -T git@github.com
 ### DevOps
 
 - [ ] Docker Desktop installed **or** written waiver from mentor
+- [ ] WSL 2 installed (`wsl --status`) if Docker is required
 - [ ] `docker run hello-world` succeeded (if Docker is required)
 
 ### GitHub
@@ -1007,6 +1109,8 @@ The mentor checks the machine or the evidence pack. Spot-check at least:
 5. `.gitignore` does not leave `.env` unignored
 6. Remote URL is `git@github.com:...` not `https://`
 
+Then run the [10-minute station check](#35-mentor-10-minute-station-check). Do not sign Pass from screenshots of a different PC.
+
 | Result | Meaning |
 | --- | --- |
 | **Pass** | Day-1 complete. Trainee may start Phase 1 technical work. |
@@ -1027,23 +1131,101 @@ Gaps (fix by 20 Aug, 17:00):
 Docker waived (8 GB RAM) until Week 10.
 ```
 
+Do not write “fix environment” with no command. The trainee should know the exact remaining step.
+
 ---
 
-## 33. Day-1 completion criteria
+## 33. Day-1 hour plan
+
+Do **not** start Employee Management screens on Day 1. Finish this clock. If you fall behind, skip Flutter and Docker polish — finish Git, JDK, Node, MySQL, clone, health, first commit, and the sign-off table.
+
+| Hour | Block | Done when |
+| --- | --- | --- |
+| **0–1** | Folders, Git identity, SSH, GitHub test | `ssh -T git@github.com` succeeds. `git config --global user.email` is your **company** address. |
+| **1–2** | JDK 17 GUI `JAVA_HOME`, Maven wrapper, IntelliJ | `java -version` is 17. `.\mvnw.cmd -v` works. IntelliJ SDK is 17. |
+| **2–3** | Node LTS, VS Code + ESLint + Prettier | `node -v` is 20 or 22. Settings.json has format-on-save ([§9](#9-vs-code-installation)). |
+| **3–4** | MySQL 8, `dttp_training`, Postman | Smoke SQL ran. Postman GET `https://postman-echo.com/get` is 200. |
+| **4–5** | Clone starter, run `/api/health`, first commit, evidence pack, sign-off | Health JSON prints. GitHub shows the commit. Mentor has the table. |
+
+If the starter repo is late: still finish tools and `dttp_training`. Write that sentence in `docs/setup-notes.md`. Do **not** invent a private Spring project as a substitute for the official starter.
+
+**What you will not do on Day 1:** EMS leave APIs, AWS, Kubernetes, Flutter (unless assigned), production Docker images.
+
+---
+
+## 34. Official product names
+
+Download from the vendor. Do not use a random “JDK 17” zip from a blog.
+
+| Tool | What to search / download |
+| --- | --- |
+| Git | Git for Windows — `https://git-scm.com/download/win` |
+| JDK 17 | Eclipse Temurin 17 (x64 MSI) **or** Microsoft Build of OpenJDK 17 |
+| IntelliJ | IntelliJ IDEA Community Edition |
+| Node | Node.js **LTS** Windows Installer (.msi) x64 |
+| VS Code | Visual Studio Code User Installer x64 |
+| MySQL | MySQL Installer for Windows — MySQL Server **8.0** |
+| PostgreSQL | PostgreSQL Windows x86-64 installer from EnterpriseDB (only if assigned) |
+| Postman | Postman for Windows |
+| Docker | Docker Desktop for Windows |
+| Flutter | Flutter SDK Windows zip from Flutter docs (only if assigned) |
+| Python | Python 3.12 from `https://www.python.org/downloads/` (only if assigned FastAPI) |
+
+---
+
+## 35. Mentor 10-minute station check
+
+Sit at the trainee machine. Run **these** commands. Do not accept screenshots of a different PC.
+
+**PowerShell:**
+
+```powershell
+git --version
+git config --global user.name
+git config --global user.email
+ssh -T git@github.com
+java -version
+echo $env:JAVA_HOME
+node -v
+npm -v
+Get-Service *mysql*
+```
+
+**Then:**
+
+1. `cd` into the cloned starter. `git remote -v` must be GitHub, not a USB copy.
+2. `.\mvnw.cmd -q -DskipTests spring-boot:run` (or IntelliJ Run). Wait until the process starts.
+3. `curl http://localhost:8080/api/health` — JSON with a healthy status (project path may differ).
+4. `mysql -u dttp_dev -p -e "USE dttp_training; SELECT 1;"` (password from the trainee’s local notes — not from chat).
+5. Open `docs/setup-notes.md` in the repo. Confirm it is **committed**, not only on Desktop.
+6. GitHub.com → the assigned repo → latest allowed commit author is the trainee.
+
+**Pass in 10 minutes** means: identity, SSH, JDK 17, Node, MySQL service running, health JSON, notes file on GitHub.
+
+**Fail immediately if:** `user.email` is Gmail/personal; `JAVA_HOME` empty; health never returns; MySQL service Stopped and trainee cannot start it; repo is missing.
+
+---
+
+## 36. Day-1 completion criteria
 
 Day 1 is complete only when **all** of the following are true:
 
 - [ ] Core verification commands succeed (Docker only if not waived)
 - [ ] GitHub SSH authentication succeeds
+- [ ] Git identity uses the **company email**
+- [ ] JDK 17 is on PATH and `JAVA_HOME` is set (verified after a **new** terminal)
+- [ ] Node LTS is on PATH. VS Code format-on-save is on ([§9](#9-vs-code-installation))
 - [ ] Assigned repository is cloned into `C:\Development\Projects`
-- [ ] `dttp_training` exists and smoke SQL ran
+- [ ] MySQL (or assigned PostgreSQL) **service is Running** and `dttp_training` exists; smoke SQL ran
 - [ ] Backend **or** frontend starter runs locally (both if both repos are assigned)
+- [ ] `GET /api/health` returned JSON
 - [ ] One API call is shown in Postman or Chrome Network
-- [ ] One allowed commit is pushed on a feature branch
+- [ ] One allowed commit is pushed on a feature branch with `docs/setup-notes.md`
 - [ ] Trainee sign-off is filled
-- [ ] Mentor result is Pass or Conditional with a dated gap list
+- [ ] Mentor result is Pass or Conditional after the [10-minute station check](#35-mentor-10-minute-station-check)
+- [ ] Docker is Pass **or** Conditional with a dated next action — not silently skipped
 
-Until then, the trainee does not start Employee Management features.
+Until then, the trainee does not start Employee Management features. A broken machine produces fake velocity.
 
 > Install. Configure. Verify. Then build.
 

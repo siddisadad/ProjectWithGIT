@@ -28,6 +28,9 @@ MARKERS = [
     (1, "Trainee setup checklist", "Trainee setup checklist"),
     (1, "Trainee sign-off", "Trainee sign-off"),
     (1, "Mentor / admin verification", "Mentor / admin verification"),
+    (1, "Day-1 hour plan", "Day-1 hour plan"),
+    (1, "Official product names", "Official product names"),
+    (1, "Mentor 10-minute station check", "Mentor 10-minute station check"),
     (1, "Day-1 completion criteria", "Until Day 1 is complete"),
 ]
 
@@ -70,7 +73,7 @@ def finish_pdf() -> None:
             color=(0.84, 0.87, 0.90),
             width=0.5,
         )
-        page.insert_text(pymupdf.Point(36, height - 16), "Internal use  ·  Version 1.1", fontname="helv", fontsize=7, color=MUTED)
+        page.insert_text(pymupdf.Point(36, height - 16), "Internal use  ·  Version 1.2", fontname="helv", fontsize=7, color=MUTED)
         page.insert_text(pymupdf.Point(width - 68, height - 16), f"{i + 1}  /  {total}", fontname="helv", fontsize=7, color=NAVY)
 
     toc = [(1, "Cover", 1)]

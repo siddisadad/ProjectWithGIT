@@ -416,7 +416,7 @@ Before Day 6, the trainee reads and can summarize:
 3. Self-Growth Program — how levels sit around the 90 days
 4. [Trainee Software Setup & Environment Verification](./DTTP-SOFTWARE-SETUP.pdf) — machine, tools, GitHub, Day-1 sign-off
 
-Day 1 environment work follows that setup guide. Technical project work does not start until the mentor marks the environment **Pass** or **Conditional**.
+Day 1 environment work follows that setup guide (hour plan, evidence pack, mentor 10-minute station check). Technical project work does not start until the mentor marks the environment **Pass** or **Conditional**.
 
 ### Suggested Day 1–5
 
