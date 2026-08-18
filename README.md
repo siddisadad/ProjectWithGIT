@@ -14,17 +14,18 @@ This repository holds the official internal document family. Each document has a
 | [DTTP 90-Day Handbook](docs/DTTP-PROGRAM-HANDBOOK.pdf) | Mentors and trainees | You need the timed path, project, and graduation rules | 1.5 |
 | [DTTP Software Setup](docs/DTTP-SOFTWARE-SETUP.pdf) | Trainees, mentors, coordinators | Day-1 Windows environment, GitHub SSH, and sign-off | 1.0 |
 | [DTTP Self-Growth Program](docs/DTTP-SELF-GROWTH-PROGRAM.pdf) | Trainees and self-directed engineers | You need the ten-level knowledge map around the 90 days | 1.6 |
-| [TMS Real-Time Project 01](docs/DTTP-TMS-PROJECT-01.pdf) | Python-track trainees | Trainee Management System — features, first task, APIs | 1.0 |
+| [TMS Project Brief](docs/DTTP-TMS-BRIEF.pdf) | Python-track trainees | Full Real-Time Project 01 specification | 1.0 |
+| [TMS Real-Time Project 01](docs/DTTP-TMS-PROJECT-01.pdf) | Python-track trainees | Short project outline | 1.0 |
 | [TMS Project Sheet](docs/DTTP-TMS-PROJECT.pdf) | Python-track trainees | One-page project overview | 1.0 |
 | [TMS Task 01](docs/DTTP-TMS-TASK-01.pdf) | Python-track trainees | Trainee CRUD — first assignment | 1.0 |
 
-The profile does **not** claim current headcount, clients, revenue, or market position. The handbook is the timed training path. The self-growth program is the deeper study map, not a second calendar. TMS sheets are simple trainee handouts. The main assignment PDF is Real-Time Project 01.
+The profile does **not** claim current headcount, clients, revenue, or market position. The handbook is the timed training path. The self-growth program is the deeper study map, not a second calendar. TMS sheets are simple trainee handouts. The main TMS assignment PDF is [`docs/DTTP-TMS-BRIEF.pdf`](docs/DTTP-TMS-BRIEF.pdf).
 
-| Format | Profile | Handbook | Setup | Self-growth | TMS Project 01 |
+| Format | Profile | Handbook | Setup | Self-growth | TMS Brief |
 | --- | --- | --- | --- | --- | --- |
-| PDF | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.pdf](docs/DESHMUKH-TECHNOLOGIES-PROFILE.pdf) | [docs/DTTP-PROGRAM-HANDBOOK.pdf](docs/DTTP-PROGRAM-HANDBOOK.pdf) | [docs/DTTP-SOFTWARE-SETUP.pdf](docs/DTTP-SOFTWARE-SETUP.pdf) | [docs/DTTP-SELF-GROWTH-PROGRAM.pdf](docs/DTTP-SELF-GROWTH-PROGRAM.pdf) | [docs/DTTP-TMS-PROJECT-01.pdf](docs/DTTP-TMS-PROJECT-01.pdf) |
-| HTML | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.html](docs/DESHMUKH-TECHNOLOGIES-PROFILE.html) | [docs/DTTP-PROGRAM-HANDBOOK.html](docs/DTTP-PROGRAM-HANDBOOK.html) | [docs/DTTP-SOFTWARE-SETUP.html](docs/DTTP-SOFTWARE-SETUP.html) | [docs/DTTP-SELF-GROWTH-PROGRAM.html](docs/DTTP-SELF-GROWTH-PROGRAM.html) | [docs/DTTP-TMS-PROJECT-01.html](docs/DTTP-TMS-PROJECT-01.html) |
-| Markdown | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.md](docs/DESHMUKH-TECHNOLOGIES-PROFILE.md) | [docs/DTTP-PROGRAM-HANDBOOK.md](docs/DTTP-PROGRAM-HANDBOOK.md) | [docs/DTTP-SOFTWARE-SETUP.md](docs/DTTP-SOFTWARE-SETUP.md) | [docs/DTTP-SELF-GROWTH-PROGRAM.md](docs/DTTP-SELF-GROWTH-PROGRAM.md) | [docs/DTTP-TMS-PROJECT-01.md](docs/DTTP-TMS-PROJECT-01.md) |
+| PDF | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.pdf](docs/DESHMUKH-TECHNOLOGIES-PROFILE.pdf) | [docs/DTTP-PROGRAM-HANDBOOK.pdf](docs/DTTP-PROGRAM-HANDBOOK.pdf) | [docs/DTTP-SOFTWARE-SETUP.pdf](docs/DTTP-SOFTWARE-SETUP.pdf) | [docs/DTTP-SELF-GROWTH-PROGRAM.pdf](docs/DTTP-SELF-GROWTH-PROGRAM.pdf) | [docs/DTTP-TMS-BRIEF.pdf](docs/DTTP-TMS-BRIEF.pdf) |
+| HTML | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.html](docs/DESHMUKH-TECHNOLOGIES-PROFILE.html) | [docs/DTTP-PROGRAM-HANDBOOK.html](docs/DTTP-PROGRAM-HANDBOOK.html) | [docs/DTTP-SOFTWARE-SETUP.html](docs/DTTP-SOFTWARE-SETUP.html) | [docs/DTTP-SELF-GROWTH-PROGRAM.html](docs/DTTP-SELF-GROWTH-PROGRAM.html) | [docs/DTTP-TMS-BRIEF.html](docs/DTTP-TMS-BRIEF.html) |
+| Markdown | [docs/DESHMUKH-TECHNOLOGIES-PROFILE.md](docs/DESHMUKH-TECHNOLOGIES-PROFILE.md) | [docs/DTTP-PROGRAM-HANDBOOK.md](docs/DTTP-PROGRAM-HANDBOOK.md) | [docs/DTTP-SOFTWARE-SETUP.md](docs/DTTP-SOFTWARE-SETUP.md) | [docs/DTTP-SELF-GROWTH-PROGRAM.md](docs/DTTP-SELF-GROWTH-PROGRAM.md) | [docs/DTTP-TMS-BRIEF.md](docs/DTTP-TMS-BRIEF.md) |
 
 ## DTTP — Trainee Program
 
@@ -49,11 +50,7 @@ Ten learning levels from web fundamentals to professional engineering, with time
 
 ## DTTP — TMS trainee documents
 
-**Real-Time Project 01** PDF: purpose, technology, seven features, first task path, first APIs, and first deliverable.
-
-- [`docs/DTTP-TMS-PROJECT-01.pdf`](docs/DTTP-TMS-PROJECT-01.pdf) — full project document
-- [`docs/DTTP-TMS-PROJECT.pdf`](docs/DTTP-TMS-PROJECT.pdf) — one-page overview
-- [`docs/DTTP-TMS-TASK-01.pdf`](docs/DTTP-TMS-TASK-01.pdf) — Task 01 CRUD sheet
+**[`docs/DTTP-TMS-BRIEF.pdf`](docs/DTTP-TMS-BRIEF.pdf)** is the Real-Time Project 01 brief: goal, stack, roles, ten modules, database, architecture, MVP, sprints, first user story, and GitHub workflow.
 
 ## How to rebuild a PDF
 
