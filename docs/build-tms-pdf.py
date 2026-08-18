@@ -48,6 +48,13 @@ JOBS = [
         "skip_first_header": True,
     },
     {
+        "html": ROOT / "DTTP-TMS-MVP-1.html",
+        "pdf": ROOT / "DTTP-TMS-MVP-1.pdf",
+        "title": "DTTP TMS — MVP-1 First Assignment — Deshmukh Technologies",
+        "headers": False,
+        "toc": [(1, "MVP-1 First Assignment", 1)],
+    },
+    {
         "html": ROOT / "DTTP-TMS-PROJECT-01.html",
         "pdf": ROOT / "DTTP-TMS-PROJECT-01.pdf",
         "title": "DTTP — Trainee Management System (TMS) — Real-Time Project 01",

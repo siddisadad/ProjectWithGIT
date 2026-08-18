@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DTTP TMS — MVP-1 First Assignment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@450;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1a2c; --gold: #b8892c; --gold-soft: #f3e6c7;
+      --ink: #1b2430; --muted: #5c6673; --line: #d7dde5; --paper: #f6f2ea; --teal: #1b6a68;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Source Sans 3", sans-serif; color: var(--ink); background: #e8e2d6; font-size: 14.5px; line-height: 1.45; }
+    .page { max-width: 860px; margin: 24px auto 48px; background: #fff; box-shadow: 0 14px 40px rgba(12,27,46,.08); }
+    .mast {
+      background: radial-gradient(circle at 88% 0%, rgba(184,137,44,.22), transparent 38%), var(--navy);
+      color: #f4efe4; padding: 24px 32px 18px;
+    }
+    .mast .top { display: flex; justify-content: space-between; align-items: center;
+      letter-spacing: .2em; text-transform: uppercase; font-size: 10px; font-weight: 600; color: var(--gold-soft); }
+    .badge { border: 1px solid rgba(243,230,199,.4); padding: 6px 10px; }
+    h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 32px; font-weight: 600; margin: 12px 0 8px; line-height: 1; }
+    .gold-rule { width: 64px; height: 3px; background: var(--gold); margin: 0 0 10px; }
+    .mast p { color: #d5cfc0; max-width: 580px; }
+    main { padding: 18px 32px 20px; }
+    h2 { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 14px 0 6px; }
+    p { margin: 0 0 8px; }
+    .callout {
+      background: var(--gold-soft); border-left: 4px solid var(--gold); padding: 12px 14px; margin: 8px 0 12px;
+      font-family: "Cormorant Garamond", Georgia, serif; font-size: 17px; color: var(--navy);
+    }
+    .tree {
+      background: var(--navy); color: #e8e2d4; font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px; line-height: 1.45; padding: 12px 14px; margin: 6px 0 10px; white-space: pre;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 13.5px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: #f4efe4; }
+    tr:nth-child(even) td { background: #faf8f3; }
+    .check { list-style: none; margin: 0; columns: 2; gap: 18px; }
+    .check li { break-inside: avoid; padding: 3px 0 3px 20px; position: relative; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .check li::before { content: ""; width: 11px; height: 11px; border: 1.3px solid var(--navy); position: absolute; left: 0; top: 6px; }
+    footer { border-top: 1px solid var(--line); padding: 8px 32px 14px; font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
+    @media screen and (max-width: 720px) { .mast, main, footer { padding-left: 18px; padding-right: 18px; } .check { columns: 1; } }
+    @page { size: A4; margin: 12mm 12mm 14mm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: white; }
+      .page { margin: 0; box-shadow: none; max-width: none; }
+      .callout, .tree, table { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header class="mast">
+      <div class="top">
+        <span>Deshmukh Technologies · DTTP · TMS</span>
+        <span class="badge">MVP-1 · Start now</span>
+      </div>
+      <h1>First assignment</h1>
+      <div class="gold-rule"></div>
+      <p>Read the project brief first. This sheet is what you build now. Do not start Sprint 5 until the mentor says so.</p>
+    </header>
+    <main>
+      <h2>Requirement</h2>
+      <div class="callout">As an Admin, I want to register DTTP trainees and assign them to a batch so that I can maintain a centralized trainee database.</div>
+
+      <h2>Build only</h2>
+      <div class="tree">Login → Admin Dashboard → Trainee Management → Batch Management</div>
+      <p>Do <strong>not</strong> build attendance, tasks, assignments, evaluation, feedback, Docker, or CI/CD yet.</p>
+
+      <h2>APIs</h2>
+      <div class="tree">POST   /api/auth/login
+POST   /api/trainees
+GET    /api/trainees
+GET    /api/trainees/{id}
+PUT    /api/trainees/{id}
+DELETE /api/trainees/{id}
+POST   /api/batches
+GET    /api/batches
+GET    /api/batches/{id}
+PUT    /api/batches/{id}</div>
+      <p><code>DELETE</code> on a trainee deactivates the row. Do not remove it from MySQL.</p>
+
+      <h2>Sprints for this MVP</h2>
+      <table>
+        <thead><tr><th>Sprint</th><th>Work</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>GitHub repo, FastAPI + React folders, MySQL, README</td></tr>
+          <tr><td>2</td><td>Trainee and batch models, CRUD APIs, validation, Postman</td></tr>
+          <tr><td>3</td><td>React: login, dashboard, trainee list, add/edit, API calls</td></tr>
+          <tr><td>4</td><td>JWT login, roles, protected APIs</td></tr>
+        </tbody>
+      </table>
+      <p>Stop after Sprint 4 until the mentor opens Sprint 5.</p>
+
+      <h2>Acceptance criteria</h2>
+      <ul class="check">
+        <li>Admin can log in</li>
+        <li>Admin can create a trainee</li>
+        <li>Required fields are validated</li>
+        <li>Email cannot be duplicated</li>
+        <li>Admin can view and search trainees</li>
+        <li>Admin can edit trainee details</li>
+        <li>Admin can deactivate a trainee</li>
+        <li>Admin can assign a batch</li>
+        <li>Data is stored in MySQL</li>
+        <li>APIs are tested in Postman</li>
+        <li>Frontend works</li>
+        <li>Code is on GitHub</li>
+        <li>Pull request is reviewed by the mentor</li>
+      </ul>
+
+      <h2>Workflow</h2>
+      <div class="tree">Issue → Feature branch → Design → Code → Test → Commit → Push → PR → Mentor review → Fix → Merge</div>
+      <div class="callout">Done: a working TMS MVP on Python + FastAPI + MySQL + React, with GitHub code review.</div>
+    </main>
+    <footer>
+      <span>Internal training</span>
+      <span>TMS MVP-1 · v1.0</span>
+    </footer>
+  </article>
+</body>
+</html>
