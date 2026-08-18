@@ -12,6 +12,12 @@ ROOT = Path(__file__).resolve().parent
 
 JOBS = [
     {
+        "html": ROOT / "DTTP-TMS-PROJECT-01.html",
+        "pdf": ROOT / "DTTP-TMS-PROJECT-01.pdf",
+        "title": "DTTP — Trainee Management System (TMS) — Real-Time Project 01",
+        "toc": [(1, "Trainee Management System", 1)],
+    },
+    {
         "html": ROOT / "DTTP-TMS-PROJECT.html",
         "pdf": ROOT / "DTTP-TMS-PROJECT.pdf",
         "title": "DTTP TMS — Project Sheet — Deshmukh Technologies",

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DTTP — Trainee Management System (TMS) — Real-Time Project 01</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@450;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1a2c;
+      --gold: #b8892c;
+      --gold-soft: #f3e6c7;
+      --ink: #1b2430;
+      --muted: #5c6673;
+      --line: #d7dde5;
+      --paper: #f6f2ea;
+      --teal: #1b6a68;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #e8e2d6;
+      font-size: 14.5px;
+      line-height: 1.45;
+    }
+    .sheet {
+      max-width: 860px;
+      margin: 24px auto 48px;
+      background: #fff;
+      box-shadow: 0 14px 40px rgba(12, 27, 46, 0.08);
+    }
+    header {
+      background:
+        radial-gradient(circle at 92% 0%, rgba(184, 137, 44, 0.22), transparent 36%),
+        var(--navy);
+      color: #f4efe4;
+      padding: 18px 32px 14px;
+    }
+    header .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold-soft);
+    }
+    .badge { border: 1px solid rgba(243, 230, 199, 0.4); padding: 6px 10px; letter-spacing: 0.14em; }
+    h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 0.98;
+      margin: 12px 0 6px;
+    }
+    .gold-rule { width: 72px; height: 3px; background: var(--gold); margin: 10px 0 12px; }
+    header h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--gold-soft);
+    }
+    main { padding: 16px 32px 12px; }
+    h3 {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 6px;
+    }
+    section { margin-bottom: 12px; }
+    .lead { font-size: 15px; color: #334155; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: #e3f1f0;
+      color: var(--teal);
+      padding: 5px 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .card.wide { grid-column: 1 / -1; border-top-color: var(--gold); }
+    .card {
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--navy);
+      padding: 8px 10px 6px;
+      break-inside: avoid;
+    }
+    .card h4 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 16px;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .card .n { color: var(--gold); font-size: 12px; font-weight: 700; margin-right: 4px; }
+    .card ul { margin: 0 0 0 16px; }
+    .card li { margin: 1px 0; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; page-break-before: always; break-before: page; }
+    .tree {
+      background: var(--navy);
+      color: #e8e2d4;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      line-height: 1.45;
+      padding: 10px 12px;
+      white-space: pre;
+    }
+    .done {
+      background: var(--gold-soft);
+      border-left: 4px solid var(--gold);
+      padding: 10px 12px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 16px;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 8px 32px 12px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    @media screen and (max-width: 720px) {
+      header, main, footer { padding-left: 18px; padding-right: 18px; }
+      .features, .split { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+    }
+    @page { size: A4; margin: 11mm 12mm 12mm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: white; }
+      .sheet { margin: 0; box-shadow: none; max-width: none; }
+      .card, .tree, .done { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <article class="sheet">
+    <header>
+      <div class="top">
+        <span>Deshmukh Technologies · DTTP</span>
+        <span class="badge">Real-Time Project 01</span>
+      </div>
+      <h1>Trainee Management System (TMS)</h1>
+      <div class="gold-rule"></div>
+      <h2>A simple system to manage Deshmukh Technologies trainees.</h2>
+    </header>
+    <main>
+      <section>
+        <h3>Purpose</h3>
+        <p class="lead">Build a simple system to manage Deshmukh Technologies trainees.</p>
+      </section>
+
+      <section>
+        <h3>Technology</h3>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">React</span>
+          <span class="chip">Git &amp; GitHub</span>
+          <span class="chip">Postman</span>
+        </div>
+      </section>
+
+      <section>
+        <h3>Main features</h3>
+        <div class="features">
+          <div class="card">
+            <h4><span class="n">01</span> Login</h4>
+            <ul>
+              <li>Admin</li>
+              <li>Mentor</li>
+              <li>Trainee</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><span class="n">02</span> Trainee management</h4>
+            <ul>
+              <li>Add trainee</li>
+              <li>View trainees</li>
+              <li>Edit trainee</li>
+              <li>Deactivate trainee</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><span class="n">03</span> Batch management</h4>
+            <ul>
+              <li>Create batch</li>
+              <li>Assign trainees</li>
+              <li>Assign mentor</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><span class="n">04</span> Attendance</h4>
+            <ul>
+              <li>Present</li>
+              <li>Absent</li>
+              <li>Leave</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><span class="n">05</span> Tasks</h4>
+            <ul>
+              <li>Create task</li>
+              <li>Assign task</li>
+              <li>Submit task</li>
+              <li>Review task</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><span class="n">06</span> Performance</h4>
+            <ul>
+              <li>Evaluation</li>
+              <li>Feedback</li>
+              <li>Progress</li>
+            </ul>
+          </div>
+          <div class="card wide">
+            <h4><span class="n">07</span> Dashboard</h4>
+            <ul>
+              <li>Total trainees</li>
+              <li>Attendance</li>
+              <li>Pending tasks</li>
+              <li>Performance</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="split">
+        <div>
+          <h3>First task</h3>
+          <p style="margin-bottom:6px;">Start only with:</p>
+          <div class="tree">Python
+   ↓
+FastAPI
+   ↓
+MySQL
+   ↓
+Trainee CRUD
+   ↓
+Postman testing
+   ↓
+GitHub</div>
+        </div>
+        <div>
+          <h3>First APIs</h3>
+          <div class="tree">POST   /trainees
+GET    /trainees
+GET    /trainees/{id}
+PUT    /trainees/{id}
+DELETE /trainees/{id}</div>
+          <h3 style="margin-top:16px;">First deliverable</h3>
+          <p class="done">Working Trainee CRUD API connected to MySQL and uploaded to GitHub.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>Deshmukh Technologies · Internal training</span>
+      <span>DTTP · TMS · v1.0</span>
+    </footer>
+  </article>
+</body>
+</html>
