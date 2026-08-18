@@ -215,7 +215,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.0</span>
+          <span class="badge">DTTP · v1.1</span>
         </div>
         <h1>Software Setup<br />&amp; Environment</h1>
         <div class="gold-rule"></div>
@@ -240,7 +240,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Software Setup</div>
-          <div><small>Version</small>1.0</div>
+          <div><small>Version</small>1.1</div>
           <div><small>Classification</small>Internal Onboarding Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -413,6 +413,14 @@ Path      += %JAVA_HOME%\bin</div>
 javac -version
 echo $env:JAVA_HOME</div>
       <p>Both commands must work. <code>java</code> without <code>javac</code> means a JRE is on PATH. Expected: <code>openjdk version "17.0.x"</code> and <code>javac 17.0.x</code>.</p>
+      <h4>Set JAVA_HOME in the Windows GUI</h4>
+      <ol>
+        <li>Start → type <strong>environment variables</strong> → Edit the system environment variables</li>
+        <li>Environment Variables…</li>
+        <li>System variables → New… Name <code>JAVA_HOME</code>, value the JDK folder (not <code>bin</code>)</li>
+        <li>Edit Path → New → <code>%JAVA_HOME%\bin</code></li>
+        <li>OK. Open a <strong>new</strong> PowerShell.</li>
+      </ol>
 
       <h2 class="section-title"><span class="n">12</span>Maven</h2>
       <p>Install Maven 3.9.x or use the project wrapper. Prefer the wrapper when <code>mvnw.cmd</code> exists:</p>
@@ -433,7 +441,7 @@ spring.datasource.password=use-a-local-password</div>
       <p>Pass when: <code>BUILD SUCCESS</code>, process stays up, logs show MySQL connected, <code>GET http://localhost:8080/api/health</code> returns <code>{ "status": "ok" }</code> (or the project health path).</p>
 
       <h2 class="section-title"><span class="n">14</span>Node.js</h2>
-      <p>Install the Node.js LTS that matches the frontend (<code>package.json</code> engines and <code>.nvmrc</code> if present). Expected: Node 20.x or 22.x unless the project pins another version.</p>
+      <p>Install the Node.js LTS that matches the frontend (<code>package.json</code> engines and <code>.nvmrc</code> if present). DTTP frontend is <strong>React + TypeScript</strong>. Expected: Node 20.x or 22.x unless the project pins another version.</p>
       <div class="tree">node --version
 npm --version</div>
       <p>Do not change Node versions to “fix” <code>npm install</code> on an existing lockfile.</p>
@@ -460,7 +468,8 @@ npm run dev</div>
       <p>Never use production credentials on a trainee machine.</p>
 
       <h2 class="section-title"><span class="n">17</span>MySQL verification</h2>
-      <p>Connect in Workbench. The trainee must create a database, create a table, insert, query, update, and delete.</p>
+      <p>The trainee must create a database, create a table, insert, query, update, and delete.</p>
+      <p>If the assigned repo uses <strong>PostgreSQL</strong> instead: port 5432, same database name <code>dttp_training</code>, JDBC URL <code>jdbc:postgresql://localhost:5432/dttp_training</code>. Do not mix MySQL and PostgreSQL drivers.</p>
       <div class="tree">CREATE DATABASE IF NOT EXISTS dttp_training
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER IF NOT EXISTS 'dttp_dev'@'localhost' IDENTIFIED BY 'use-a-local-password';
@@ -533,6 +542,18 @@ git add docs/setup-notes.md
 git commit -m "docs: record Day-1 environment verification"
 git push -u origin dttp/&lt;initials&gt;/env-setup</div>
       <p>Do not commit <code>.env</code> or <code>application-local.properties</code>.</p>
+      <h4>Sample docs/setup-notes.md</h4>
+      <div class="tree"># Day-1 environment
+- OS: Windows 11
+- RAM: 16 GB
+- JDK: 17 (javac 17.0.x)
+- Node: 22.x
+- MySQL: 8.x on 3306, database dttp_training
+- Docker: installed / waived
+- GitHub SSH: pass
+- Backend health: GET /api/health
+- Frontend: npm run dev
+- Secrets: none committed</div>
 
       <h2 class="section-title"><span class="n">24</span>Environment variables</h2>
       <p>Never hard-code <code>DB_PASSWORD</code>, <code>JWT_SECRET</code>, <code>API_KEY</code>, or AWS keys. Use <code>.env</code>, <code>application-local.properties</code>, or <code>application-dev.properties</code>. Confirm secrets are in <code>.gitignore</code>.</p>
@@ -679,6 +700,12 @@ uvicorn app.main:app --reload</div>
         <p><strong>Notes</strong></p><div class="line"></div>
         <p><strong>Date</strong></p><div class="line"></div>
       </div>
+      <h4>Sample Conditional note</h4>
+      <div class="tree">Result: CONDITIONAL
+Gaps (fix by 20 Aug, 17:00):
+  1. javac not on PATH — set JAVA_HOME, new terminal.
+  2. Origin is HTTPS — set-url to git@github.com:org/repo.git
+Docker waived (8 GB RAM) until Week 10.</div>
 
       <h2 class="section-title"><span class="n">33</span>Day-1 completion criteria</h2>
       <ul class="checklist">
@@ -702,7 +729,7 @@ uvicorn app.main:app --reload</div>
       <p>Windows station ready. GitHub authenticated. Database local. First commit on a branch.</p>
       <p class="final">Learn. Build. Solve. Review. Deploy. Grow.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Software Setup v1.0 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Software Setup v1.1 · Internal use</footer>
   </article>
 </body>
 </html>
