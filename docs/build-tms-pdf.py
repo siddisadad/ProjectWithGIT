@@ -9,8 +9,6 @@ from pathlib import Path
 import pymupdf
 
 ROOT = Path(__file__).resolve().parent
-NAVY = (0.043, 0.102, 0.173)
-MUTED = (0.42, 0.45, 0.49)
 
 JOBS = [
     {
@@ -50,22 +48,6 @@ def finish(job: dict) -> None:
         if not doc[i].get_text("text").strip():
             doc.delete_page(i)
     total = doc.page_count
-    for i, page in enumerate(doc):
-        width, height = page.rect.width, page.rect.height
-        page.insert_text(
-            pymupdf.Point(width - 68, height - 14),
-            f"{i + 1}  /  {total}",
-            fontname="helv",
-            fontsize=7,
-            color=NAVY,
-        )
-        page.insert_text(
-            pymupdf.Point(36, height - 14),
-            "Deshmukh Technologies  ·  Internal use",
-            fontname="helv",
-            fontsize=7,
-            color=MUTED,
-        )
     doc.set_toc(job["toc"])
     doc.set_metadata(
         {
