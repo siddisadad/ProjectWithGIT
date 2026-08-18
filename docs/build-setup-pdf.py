@@ -28,9 +28,9 @@ MARKERS = [
     (1, "Trainee setup checklist", "Trainee setup checklist"),
     (1, "Trainee sign-off", "Trainee sign-off"),
     (1, "Mentor / admin verification", "Mentor / admin verification"),
-    (1, "Day-1 hour plan", "Day-1 hour plan"),
-    (1, "Official product names", "Official product names"),
-    (1, "Mentor 10-minute station check", "Mentor 10-minute station check"),
+    (1, "Day-1 hour plan", "Finish this clock"),
+    (1, "Official product names", "Download from the vendor"),
+    (1, "Mentor 10-minute station check", "Sit at the trainee machine"),
     (1, "Day-1 completion criteria", "Until Day 1 is complete"),
 ]
 
