@@ -3,7 +3,7 @@
 ### Deshmukh Technologies Trainee Program
 
 **Document type:** Trainee Onboarding  
-**Version:** 1.0  
+**Version:** 1.1  
 **Status:** Standard  
 **Audience:** DTTP Trainees, Mentors, Technical Coordinators, Admin  
 **Platform:** Windows 10 / 11  
@@ -333,6 +333,20 @@ echo $env:JAVA_HOME
 
 Both `java` and `javac` must work. `java` without `javac` means a JRE is on PATH.
 
+### Set JAVA_HOME in the Windows GUI
+
+If PowerShell still cannot see Java:
+
+1. Start → type **environment variables** → **Edit the system environment variables**
+2. **Environment Variables…**
+3. Under **System variables**, **New…**
+   - Name: `JAVA_HOME`
+   - Value: the JDK folder, for example `C:\Program Files\Eclipse Adoptium\jdk-17.0.12+7`
+4. Edit **Path**, **New**, add `%JAVA_HOME%\bin`
+5. OK all dialogs. Open a **new** PowerShell.
+
+Do not point `JAVA_HOME` at `bin`. Do not add both a JRE `bin` and a JDK `bin` and hope.
+
 Expected shape:
 
 ```text
@@ -406,7 +420,7 @@ If the assigned repo is not ready on Day 1, create `dttp_training` in MySQL anyw
 
 ## 14. Node.js installation
 
-Install the **current Node.js LTS** that matches the assigned frontend (check `package.json` → `engines` and `.nvmrc` if present).
+Install the **current Node.js LTS** that matches the assigned frontend (check `package.json` → `engines` and `.nvmrc` if present). DTTP frontend is **React + TypeScript**.
 
 ```powershell
 node --version
@@ -503,6 +517,18 @@ DELETE FROM smoke_test WHERE id = 1;
 ```
 
 The trainee must be able to: connect, create a database, create a table, insert, query, update, and delete.
+
+### PostgreSQL — when the project says so
+
+The DTTP default is MySQL. If the assigned repo uses PostgreSQL:
+
+| Field | Value |
+| --- | --- |
+| Host | localhost |
+| Port | 5432 |
+| Training database | `dttp_training` |
+
+Install PostgreSQL and pgAdmin (or use `psql`). Create `dttp_training` and a local user. Spring URL becomes `jdbc:postgresql://localhost:5432/dttp_training`. Do not run MySQL and PostgreSQL on the same port. Do not mix drivers.
 
 ---
 
@@ -694,6 +720,25 @@ git push -u origin dttp/<initials>/env-setup
 ```
 
 Do not push secrets. Do not commit `.env` or `application-local.properties`.
+
+### Sample `docs/setup-notes.md`
+
+The mentor may ask for this file on the setup branch:
+
+```markdown
+# Day-1 environment
+
+- OS: Windows 11
+- RAM: 16 GB
+- JDK: 17 (`javac 17.0.x`)
+- Node: 22.x
+- MySQL: 8.x on 3306, database dttp_training
+- Docker: installed / waived
+- GitHub SSH: pass (`ssh -T`)
+- Backend: cloned, `mvnw spring-boot:run`, GET /api/health
+- Frontend: `npm run dev`, Chrome loads
+- Secrets: none committed
+```
 
 ---
 
@@ -971,6 +1016,16 @@ The mentor checks the machine or the evidence pack. Spot-check at least:
 **Mentor name:** ______________________ **Result:** Pass / Conditional / Fail  
 **Notes:**  
 **Date:** __________
+
+### Sample Conditional note
+
+```text
+Result: CONDITIONAL
+Gaps (fix by 20 Aug, 17:00):
+  1. javac not on PATH — set JAVA_HOME via System Properties, new terminal.
+  2. Origin is HTTPS — set-url to git@github.com:org/repo.git and retest ssh -T.
+Docker waived (8 GB RAM) until Week 10.
+```
 
 ---
 

@@ -11,8 +11,8 @@ This repository holds the official internal document family. Each document has a
 | Document | Audience | Use it when | Version |
 | --- | --- | --- | :---: |
 | [Corporate Master Profile](docs/DESHMUKH-TECHNOLOGIES-PROFILE.pdf) | Leadership, new joiners, partners | You need identity, values, and working method | 1.2 |
-| [DTTP 90-Day Handbook](docs/DTTP-PROGRAM-HANDBOOK.pdf) | Mentors and trainees | You need the timed path, project, and graduation rules | 1.5 |
-| [DTTP Software Setup](docs/DTTP-SOFTWARE-SETUP.pdf) | Trainees, mentors, coordinators | Day-1 Windows environment, GitHub SSH, and sign-off | 1.0 |
+| [DTTP 90-Day Handbook](docs/DTTP-PROGRAM-HANDBOOK.pdf) | Mentors and trainees | You need the timed path, project, and graduation rules | 1.6 |
+| [DTTP Software Setup](docs/DTTP-SOFTWARE-SETUP.pdf) | Trainees, mentors, coordinators | Day-1 Windows environment, GitHub SSH, and sign-off | 1.1 |
 | [DTTP Self-Growth Program](docs/DTTP-SELF-GROWTH-PROGRAM.pdf) | Trainees and self-directed engineers | You need the ten-level knowledge map around the 90 days | 1.6 |
 
 The profile does **not** claim current headcount, clients, revenue, or market position. The handbook is the timed training path. The self-growth program is the deeper study map, not a second calendar.
