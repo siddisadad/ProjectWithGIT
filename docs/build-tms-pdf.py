@@ -55,6 +55,13 @@ JOBS = [
         "toc": [(1, "MVP-1 First Assignment", 1)],
     },
     {
+        "html": ROOT / "DTTP-TMS-SPRINT-1.html",
+        "pdf": ROOT / "DTTP-TMS-SPRINT-1.pdf",
+        "title": "DTTP TMS — Sprint 1 Project Setup — Deshmukh Technologies",
+        "headers": False,
+        "toc": [(1, "Sprint 1 Project Setup", 1)],
+    },
+    {
         "html": ROOT / "DTTP-TMS-PROJECT-01.html",
         "pdf": ROOT / "DTTP-TMS-PROJECT-01.pdf",
         "title": "DTTP — Trainee Management System (TMS) — Real-Time Project 01",

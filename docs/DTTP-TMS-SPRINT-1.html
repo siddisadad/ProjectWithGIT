@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DTTP TMS — Sprint 1 Project Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@450;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1a2c; --gold: #b8892c; --gold-soft: #f3e6c7;
+      --ink: #1b2430; --muted: #5c6673; --line: #d7dde5; --teal: #1b6a68;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Source Sans 3", sans-serif; color: var(--ink); background: #e8e2d6; font-size: 14.5px; line-height: 1.45; }
+    .page { max-width: 820px; margin: 24px auto 48px; background: #fff; box-shadow: 0 14px 40px rgba(12,27,46,.08); }
+    header {
+      background: radial-gradient(circle at 88% 0%, rgba(184,137,44,.22), transparent 38%), var(--navy);
+      color: #f4efe4; padding: 22px 32px 16px;
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+    }
+    header small { letter-spacing: .2em; text-transform: uppercase; font-size: 10px; color: var(--gold-soft); display: block; }
+    h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: 30px; font-weight: 600; margin-top: 8px; line-height: 1; }
+    .badge { border: 1px solid rgba(243,230,199,.4); padding: 6px 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .gold { width: 64px; height: 3px; background: var(--gold); margin: 0 32px; }
+    main { padding: 16px 32px 18px; }
+    h2 { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 12px 0 6px; }
+    p, li { margin: 0 0 6px; }
+    ol { margin: 0 0 8px 18px; }
+    .tree {
+      background: var(--navy); color: #e8e2d4; font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px; line-height: 1.42; padding: 10px 12px; margin: 6px 0 10px; white-space: pre;
+    }
+    .callout {
+      background: var(--gold-soft); border-left: 4px solid var(--gold); padding: 10px 12px; margin: 8px 0 0;
+      font-family: "Cormorant Garamond", Georgia, serif; font-size: 17px; color: var(--navy);
+    }
+    .check { list-style: none; margin: 0; columns: 2; }
+    .check li { break-inside: avoid; padding: 3px 0 3px 20px; position: relative; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .check li::before { content: ""; width: 11px; height: 11px; border: 1.3px solid var(--navy); position: absolute; left: 0; top: 6px; }
+    footer { border-top: 1px solid var(--line); padding: 8px 32px 14px; font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
+    @media screen and (max-width: 720px) { header, main, footer { padding-left: 18px; padding-right: 18px; } .check { columns: 1; } }
+    @page { size: A4; margin: 12mm 12mm 14mm; }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      html, body { background: white; }
+      .page { margin: 0; box-shadow: none; max-width: none; }
+      .tree, .callout { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <header>
+      <div>
+        <small>Deshmukh Technologies · DTTP · TMS</small>
+        <h1>Sprint 1 — Project setup</h1>
+      </div>
+      <span class="badge">Before CRUD</span>
+    </header>
+    <div class="gold"></div>
+    <main>
+      <h2>Goal</h2>
+      <p>A GitHub repository that runs FastAPI, connects to MySQL, and has a React app folder. Another trainee can follow the README. No trainee or batch APIs yet.</p>
+
+      <h2>Do this</h2>
+      <ol>
+        <li>Create or clone the assigned GitHub repo (SSH). Branch: <code>tms/sprint-1-setup</code>.</li>
+        <li>Create the folders below.</li>
+        <li>Create MySQL database <code>dttp_tms</code> and user <code>tms_dev</code> (local password, not in chat).</li>
+        <li>FastAPI <code>GET /api/health</code> returns <code>{ "status": "ok" }</code>.</li>
+        <li>React (Vite + TypeScript) <code>npm run dev</code> loads in Chrome.</li>
+        <li>README: Python version, database, install, run backend, run frontend.</li>
+        <li>Commit, push, open a pull request.</li>
+      </ol>
+      <div class="tree">tms/
+├── backend/
+│   ├── app/main.py
+│   ├── requirements.txt
+│   └── .env.example
+├── frontend/          ← Vite React + TypeScript
+├── README.md
+└── .gitignore</div>
+
+      <h2>.env.example</h2>
+      <div class="tree">MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=tms_dev
+MYSQL_PASSWORD=use-a-local-password
+MYSQL_DATABASE=dttp_tms</div>
+      <p>Never commit <code>.env</code>.</p>
+
+      <h2>Done when</h2>
+      <ul class="check">
+        <li>Repo is on GitHub</li>
+        <li>GET /api/health works</li>
+        <li>MySQL dttp_tms exists</li>
+        <li>React opens in Chrome</li>
+        <li>README another trainee can follow</li>
+        <li>Mentor reviewed the pull request</li>
+      </ul>
+      <div class="callout">Then start Sprint 2 (trainee and batch CRUD). Not before.</div>
+    </main>
+    <footer>
+      <span>Internal training</span>
+      <span>TMS Sprint 1 · v1.0</span>
+    </footer>
+  </article>
+</body>
+</html>

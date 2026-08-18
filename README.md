@@ -16,6 +16,7 @@ This repository holds the official internal document family. Each document has a
 | [DTTP Self-Growth Program](docs/DTTP-SELF-GROWTH-PROGRAM.pdf) | Trainees and self-directed engineers | You need the ten-level knowledge map around the 90 days | 1.6 |
 | [TMS Project Brief](docs/DTTP-TMS-BRIEF.pdf) | Python-track trainees | Full Real-Time Project 01 specification | 1.0 |
 | [TMS MVP-1 Assignment](docs/DTTP-TMS-MVP-1.pdf) | Python-track trainees | First assignment: login, trainees, batches | 1.0 |
+| [TMS Sprint 1](docs/DTTP-TMS-SPRINT-1.pdf) | Python-track trainees | Repo, FastAPI health, React, MySQL setup | 1.0 |
 | [TMS Real-Time Project 01](docs/DTTP-TMS-PROJECT-01.pdf) | Python-track trainees | Short project outline | 1.0 |
 | [TMS Project Sheet](docs/DTTP-TMS-PROJECT.pdf) | Python-track trainees | One-page project overview | 1.0 |
 | [TMS Task 01](docs/DTTP-TMS-TASK-01.pdf) | Python-track trainees | Trainee CRUD — first assignment | 1.0 |
@@ -51,7 +52,7 @@ Ten learning levels from web fundamentals to professional engineering, with time
 
 ## DTTP — TMS trainee documents
 
-**[`docs/DTTP-TMS-BRIEF.pdf`](docs/DTTP-TMS-BRIEF.pdf)** is the Real-Time Project 01 brief. **[`docs/DTTP-TMS-MVP-1.pdf`](docs/DTTP-TMS-MVP-1.pdf)** is the first assignment: login, trainee management, and batches only.
+**[`docs/DTTP-TMS-BRIEF.pdf`](docs/DTTP-TMS-BRIEF.pdf)** is the project brief. **[`docs/DTTP-TMS-MVP-1.pdf`](docs/DTTP-TMS-MVP-1.pdf)** is the first assignment. **[`docs/DTTP-TMS-SPRINT-1.pdf`](docs/DTTP-TMS-SPRINT-1.pdf)** is week-one setup (repo, health API, React, MySQL) before CRUD.
 
 ## How to rebuild a PDF
 
