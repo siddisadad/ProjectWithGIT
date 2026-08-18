@@ -36,7 +36,42 @@ BRIEF_MARKERS = [
     (1, "Trainee development workflow", "how real software teams work"),
 ]
 
+COMPLETE_MARKERS = [
+    (1, "Project goal", "complete DTTP trainee lifecycle"),
+    (1, "Technology stack", "Pydantic"),
+    (1, "User roles", "Own activities"),
+    (1, "Authentication", "Role-based access"),
+    (1, "Trainee management", "lowercase"),
+    (1, "Batch management", "DTTP-2026-01"),
+    (1, "Mentor management", "activate/deactivate a mentor"),
+    (1, "Attendance", "attendance percentage"),
+    (1, "Task management", "UNDER_REVIEW"),
+    (1, "Assignment and submission", "Create Assignment"),
+    (1, "Evaluation", "Problem Solving"),
+    (1, "Feedback", "areas for improvement"),
+    (1, "Dashboard", "Attendance %"),
+    (1, "Database design", "utf8mb4"),
+    (1, "Backend architecture", "never commit secrets"),
+    (1, "Frontend architecture", "MVP-1 screens only"),
+    (1, "Error shape", "VALIDATION_FAILED"),
+    (1, "First MVP", "Do not build all modules"),
+    (1, "Sprint 1", "tms/sprint-1-setup"),
+    (1, "Development sprints", "After MVP-1 Pass"),
+    (1, "First real-time requirement", "centralized trainee database"),
+    (1, "Trainee development workflow", "how real software teams work"),
+]
+
 JOBS = [
+    {
+        "html": ROOT / "DTTP-TMS.html",
+        "pdf": ROOT / "DTTP-TMS.pdf",
+        "title": "DTTP — Trainee Management System — Complete Project Guide",
+        "subject": "Complete TMS project guide for DTTP trainees",
+        "headers": True,
+        "header_label": "DTTP TMS COMPLETE GUIDE",
+        "markers": COMPLETE_MARKERS,
+        "skip_first_header": True,
+    },
     {
         "html": ROOT / "DTTP-TMS-BRIEF.html",
         "pdf": ROOT / "DTTP-TMS-BRIEF.pdf",

@@ -4,7 +4,7 @@
 
 Print: [`DTTP-TMS-MVP-1.pdf`](./DTTP-TMS-MVP-1.pdf)
 
-Read the full brief first: [`DTTP-TMS-BRIEF.pdf`](./DTTP-TMS-BRIEF.pdf). This sheet is what you build **now**.
+Read the complete guide first: [`DTTP-TMS.pdf`](./DTTP-TMS.pdf). This sheet is what you build **now**.
 
 ---
 
