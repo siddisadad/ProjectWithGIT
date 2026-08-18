@@ -106,6 +106,7 @@ The program is not a short tutorial series. It is a supervised professional envi
 | Document | Role |
 | --- | --- |
 | This handbook | 90-day path, project, assessment, graduation |
+| Software Setup Guide | Windows station, GitHub SSH, Day-1 sign-off |
 | Self-Growth Program | Ten-level knowledge map around and after the 90 days |
 | Corporate Profile | Company identity, values, and working method |
 
@@ -415,7 +416,7 @@ Before Day 6, the trainee reads and can summarize:
 3. Self-Growth Program — how levels sit around the 90 days
 4. [Trainee Software Setup & Environment Verification](./DTTP-SOFTWARE-SETUP.pdf) — machine, tools, GitHub, Day-1 sign-off
 
-Day 1 environment work follows that setup guide. Technical project work does not start until the mentor marks the environment **Pass** or **Conditional**.
+Day 1 environment work follows that setup guide (hour plan, evidence pack, mentor 10-minute station check). Technical project work does not start until the mentor marks the environment **Pass** or **Conditional**.
 
 ### Suggested Day 1–5
 
@@ -476,7 +477,7 @@ The baseline is a starting point. It is not a grade and it is not a prediction.
 
 ## 12. Git & GitHub
 
-Git is mandatory.
+Git is mandatory. Full Windows install, SSH, and Day-1 verification are in [`DTTP-SOFTWARE-SETUP.pdf`](./DTTP-SOFTWARE-SETUP.pdf). This section is the Git workflow used after the machine is verified.
 
 Trainees must learn:
 
@@ -984,9 +985,9 @@ Keep the notes next to the code, in `docs/api.md` or an OpenAPI file. Do not lea
 
 ## 21. Major Training Project
 
-# Employee Management System
+### Employee Management System
 
-### Roles
+#### Roles
 
 | Role | Scope |
 | --- | --- |
@@ -994,7 +995,7 @@ Keep the notes next to the code, in `docs/api.md` or an OpenAPI file. Do not lea
 | **HR** | People operations |
 | **EMPLOYEE** | Self-service |
 
-### Modules
+#### Modules
 
 - Authentication
 - Dashboard
@@ -1005,7 +1006,7 @@ Keep the notes next to the code, in `docs/api.md` or an OpenAPI file. Do not lea
 - Reports
 - Profile
 
-### Module acceptance criteria
+#### Module acceptance criteria
 
 | Module | Minimum complete behavior |
 | --- | --- |
@@ -1020,7 +1021,7 @@ Keep the notes next to the code, in `docs/api.md` or an OpenAPI file. Do not lea
 
 A module is not complete until it meets the Definition of Done, including tests, review, and documentation.
 
-### Project README
+#### Project README
 
 The Employee Management repository must contain a README that another trainee can follow without asking the author.
 
@@ -1036,7 +1037,7 @@ Required headings:
 
 A repository with only source files and no README is not a complete project.
 
-### Leave approval — full path
+#### Leave approval — full path
 
 This is the feature used in demos and the production-readiness gate.
 

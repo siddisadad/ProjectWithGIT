@@ -27,6 +27,9 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
 
     body {
       font-family: "Source Sans 3", "Segoe UI", sans-serif;
@@ -554,7 +557,7 @@
       <div class="cover-top">
         <div class="brand-row">
           <span>Deshmukh Technologies</span>
-          <span class="badge">DTTP · v1.5</span>
+          <span class="badge">DTTP · v1.6</span>
         </div>
         <h1>Trainee<br />Program</h1>
         <div class="gold-rule"></div>
@@ -579,7 +582,7 @@
       <section class="front-matter">
         <div class="doc-control">
           <div><small>Document</small>DTTP Program Handbook</div>
-          <div><small>Version</small>1.5</div>
+          <div><small>Version</small>1.6</div>
           <div><small>Classification</small>Internal Training Standard</div>
           <div><small>Owner</small>Deshmukh Technologies</div>
         </div>
@@ -667,6 +670,7 @@
           <h4>Companion documents</h4>
           <ul>
             <li>This handbook — 90-day path and graduation</li>
+            <li>Software Setup Guide — Windows station and Day-1 sign-off</li>
             <li>Self-Growth Program — ten-level knowledge map</li>
             <li>Corporate Profile — identity, values, and method</li>
           </ul>
@@ -889,7 +893,7 @@
         </div>
       </div>
       <h4>Orientation reading</h4>
-      <p>Before Day 6, the trainee reads and can summarize the Corporate Master Profile, this handbook (purpose, daily cycle, Definition of Done), the Self-Growth Program, and the <strong>Trainee Software Setup &amp; Environment Verification</strong> guide. Day 1 environment work follows that guide. Project work does not start until the mentor marks the environment Pass or Conditional.</p>
+      <p>Before Day 6, the trainee reads and can summarize the Corporate Master Profile, this handbook (purpose, daily cycle, Definition of Done), the Self-Growth Program, and the <strong>Trainee Software Setup &amp; Environment Verification</strong> guide. Day 1 environment work follows that guide (hour plan, evidence pack, mentor 10-minute station check). Project work does not start until the mentor marks the environment Pass or Conditional.</p>
       <table>
         <thead><tr><th>Day</th><th>Focus</th><th>Written output</th></tr></thead>
         <tbody>
@@ -921,7 +925,7 @@
       </table>
 
       <h2 class="section-title" id="s12"><span class="n">12</span>Git &amp; GitHub</h2>
-      <p>Git is mandatory. Trainees must learn repository, clone, commit, branch, push, pull, merge, rebase, stash, revert, pull request, code review, and conflict resolution.</p>
+      <p>Git is mandatory. Full Windows install, SSH, and Day-1 verification are in the <strong>Trainee Software Setup</strong> guide. This section is the Git workflow used after the machine is verified. Trainees must learn repository, clone, commit, branch, push, pull, merge, rebase, stash, revert, pull request, code review, and conflict resolution.</p>
       <h4>Standard workflow</h4>
       <ol class="stepper">
         <li>Task</li><li>Branch</li><li>Code</li><li>Test</li><li>Commit</li><li>Push</li><li>Pull Request</li><li>Review</li><li>Fix</li><li>Approve</li><li>Merge</li>
@@ -1699,7 +1703,7 @@ Status: AMBER</div>
       <p>Learn. Build. Solve. Review. Deploy. Grow.</p>
       <p class="final">A disciplined, technically capable and production-ready Junior Full-Stack Developer.</p>
     </section>
-    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.5 · Internal use</footer>
+    <footer class="screen-foot">© Deshmukh Technologies · DTTP Program Handbook v1.6 · Internal use</footer>
   </article>
 </body>
 </html>

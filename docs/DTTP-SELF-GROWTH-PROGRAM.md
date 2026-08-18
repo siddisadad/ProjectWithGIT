@@ -25,6 +25,7 @@ Do not ask trainees to study the reference as one large syllabus. Organize growt
 | Document | Role |
 | --- | --- |
 | 90-Day DTTP Handbook | Timed training path, project, assessment, and graduation |
+| Software Setup Guide | Windows station, GitHub SSH, Day-1 sign-off |
 | Self-Growth Program | Deeper knowledge map for study before, during, and after the 90 days |
 | Full-Stack Reference | Topic encyclopedia — not a replacement for practice |
 
